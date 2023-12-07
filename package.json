@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ./**/*.{ts,tsx,scss,css} --config ./.prettierrc.json"
+    "format": "prettier --write ./**/*.{ts,tsx,css} --config ./.prettierrc.json",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "14.0.3",
@@ -23,6 +24,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.3",
     "prettier": "^3.1.0",
     "typescript": "^5"
   }
