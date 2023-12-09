@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import styles from 'styles/Home.module.css';
 import { ReactNode } from 'react';
+import variables from '../styles/variables.module.scss';
 
 const inter = Inter({ subsets: ['latin'] });
 export default function Home(): ReactNode {
@@ -16,7 +17,7 @@ export default function Home(): ReactNode {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.description}>
-          <p>
+          <p style={{ color: variables.primaryColor }}>
             Get started by editing&nbsp;
             <code className={styles.code}>pages/index.tsx</code>
           </p>
