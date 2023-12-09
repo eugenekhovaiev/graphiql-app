@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier --write ./**/*.{ts,tsx,css} --config ./.prettierrc.json",
     "prepare": "husky install",
