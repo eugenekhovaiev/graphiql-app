@@ -33,6 +33,8 @@
     "no-debugger": "warn",
     "no-console": "warn",
     "prefer-const": "error",
+    "prettier/prettier": "error",
+    "react/react-in-jsx-scope": "off",
     "react/self-closing-comp": [
       "error",
       {
@@ -45,7 +47,6 @@
     "@typescript-eslint/explicit-function-return-type": "error",
     "@typescript-eslint/ban-ts-comment": "error",
     "@typescript-eslint/no-unnecessary-type-assertion": "error",
-    "react/react-in-jsx-scope": "off",
     "@typescript-eslint/array-type": [
       "error",
       {
