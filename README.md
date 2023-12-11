@@ -1,40 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GraphiQL App
 
-## Getting Started
+Welcome to the GraphiQL App project developed by the team from [Rolling Scopes School](https://rs.school/). This app is
+a GraphQL playground/IDE with additional features such as authentication, authorization, and the ability to work with
+any user-specified open GraphQL endpoint.
 
-First, run the development server:
+## Team Members
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Xeniya Gazizova
+- Maria Bogdanova
+- Yevhenii Khovaiev
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Welcome page
+  General information about the developers, project, and course, sign in and sign up buttons, ability to switch
+  languages.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Sign In / Sign Up pages
+  Sign In / Sign Up forms.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Main Page (GraphiQL)
+  Functional editor for query editing and prettifying, documentation, variables section, header section, response
+  section with an editor in read-only mode, change Endpoint button.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technical Details
 
-## Learn More
+### The technology stack used on project
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js
+- TypeScript
+- SCSS
+- Vitest for tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project is managed using SCRUM methodology and Jira tools.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### GitHub repository
 
-## Deploy on Vercel
+[link](https://github.com/XeniyaMV/graphiql-app)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[Website]() was deployed on Vercel.
+
+### How to Run Locally
+
+- Clone the repo: `$ git clone https://github.com/XeniyaMV/graphiql-app.git`
+- Go to downloaded folder: `$ cd graphiql`
+- Install dependencies: `$ npm install`
+- Start server: `$ npm run dev`
+- Now you can open in browser to the address: [http://localhost:3000](http://localhost:3000)
+
+## Available Scripts
+
+To work with the project, you can use the following npm scripts:
+
+`dev`
+Command to start the local development server for Next.js.
+
+`build`
+Command to build the project using Next.js. This creates optimized files for deployment on a production server.
+
+`start`
+Command to start the project in production mode after it has been built using "build". Typically used for locally
+testing how your application will perform in a production-like environment.
+
+`lint`
+Command to check code style using the built-in linting tool of Next.js. It verifies that the code adheres to certain
+standards.
+
+`lint:fix`
+Command to automatically fix some style errors using the built-in Next.js linter.
+
+`format`
+Command to format code using Prettier. Prettier ensures a standardized and visually appealing code style. Here, it is
+applied to files with extensions .ts, .tsx, and .css in the project, using the configuration from .prettierrc.json.
+
+`prepare`
+Command to run Husky check for tests and code formatting.
+
+`test`
+Command to run tests using Vitest.
+
+`coverage`
+Command to run tests with coverage reporting using Vitest.
