@@ -1,0 +1,18 @@
+@import '../../../sass/abstracts/variables.module';
+
+.link {
+  color: $text-color;
+
+  &:hover, &:active {
+    border-bottom: 2px solid $primary-color;
+    cursor: pointer;
+  }
+
+  &_light {
+    color: $primary-color-xxs;
+
+    &:hover, &:active {
+      border-bottom: 2px solid $primary-color-xxs;
+    }
+  }
+}
