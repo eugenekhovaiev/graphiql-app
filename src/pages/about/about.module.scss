@@ -1,4 +1,5 @@
+@import '@/sass/abstracts/variables.module.scss';
+
 .about {
-  height: 100vh;
-  background-color: red;
+  background-color: $primary-color-xxs;
 }
