@@ -16,6 +16,14 @@
     height: 100%;
   }
 
+  &__rssLogo {
+    width: 88px;
+    height: auto;
+    @include media-m {
+      width: 65px;
+    }
+  }
+
   &__sectionWrapper {
     display: flex;
     align-items: center;
@@ -24,6 +32,11 @@
 
   &__copyright {
     font-size: 25px;
+  }
+
+  &__ghLogo {
+    width: 25px;
+    height: auto;
   }
 
   &__ghText {
