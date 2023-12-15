@@ -1,4 +1,5 @@
 import styles from './aboutCourse.module.scss';
+import buttonStyles from '../ui/Button/button.module.scss';
 import ContainerLayout from '../ContainerLayout';
 import Link from 'next/link';
 import LINKS from '@/consts/LINKS';
@@ -29,7 +30,11 @@ function AboutCourse(): JSX.Element {
             TypeScript.
           </p>
 
-          <Link target="_blank" href={LINKS.RSSCHOOL_REACT}>
+          <Link
+            className={buttonStyles.button}
+            target="_blank"
+            href={LINKS.RSSCHOOL_REACT}
+          >
             Learn more
           </Link>
         </div>
