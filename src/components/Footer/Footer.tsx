@@ -15,6 +15,7 @@ function Footer(): JSX.Element {
               src={rssLogo}
               className={styles.footer__rssLogo}
               alt="Rolling Scopes School logo"
+              priority
             />
           </Link>
           <div className={styles.footer__sectionWrapper}>
