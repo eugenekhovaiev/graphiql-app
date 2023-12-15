@@ -1,6 +1,7 @@
 import styles from './aboutCourse.module.scss';
 import ContainerLayout from '../ContainerLayout';
 import Link from 'next/link';
+import LINKS from '@/consts/LINKS';
 
 function AboutCourse(): JSX.Element {
   return (
@@ -28,7 +29,7 @@ function AboutCourse(): JSX.Element {
             TypeScript.
           </p>
 
-          <Link target="_blank" href="https://rs.school/react/">
+          <Link target="_blank" href={LINKS.RSSCHOOL_REACT}>
             Learn more
           </Link>
         </div>
