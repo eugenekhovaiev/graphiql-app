@@ -1,7 +1,10 @@
 @import '../../../sass/abstracts/variables.module';
+@import '../../../sass/abstracts/mixins.module';
+
 
 .link {
   color: $text-color;
+  @include transition;
 
   &:hover, &:active {
     border-bottom: 2px solid $primary-color;

@@ -9,7 +9,7 @@ function NotFound(): JSX.Element {
       <div className={styles.notFound}>
         <h1 className={styles.notFound__title}>404</h1>
         <h2 className={styles.notFound__subtitle}>Page couldn’t be found</h2>
-        <p>
+        <p className={styles.notFound__text}>
           The requested page either doesn’t exist or you don’t have access to
           it.
         </p>
