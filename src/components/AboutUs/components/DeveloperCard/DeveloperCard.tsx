@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import styles from './developerCard.module.scss';
 import Link from 'next/link';
+import cardPlaceholder from '../../../../../public/card-placeholder.svg';
+import logoGitHub from '../../../../../public/logo-github-blue.svg';
 
 interface Props {
   name: string;
@@ -18,12 +20,10 @@ function DeveloperCard({
   imageUrl,
 }: Props): JSX.Element {
   return (
-    <div className={styles.card}>
+    <article className={styles.card}>
       <Image
-        src={imageUrl || '/card-placeholder.svg'}
+        src={imageUrl || cardPlaceholder}
         className={styles.card__image}
-        width={250}
-        height={250}
         alt="photo"
         priority
       />
@@ -35,9 +35,7 @@ function DeveloperCard({
           className={styles.card__subtitle}
         >
           <Image
-            src="./logo-github-blue.svg"
-            width={25}
-            height={26}
+            src={logoGitHub}
             className={styles.card__ghLogo}
             alt="GitHub logo"
           />
@@ -45,7 +43,7 @@ function DeveloperCard({
         </Link>
         <p className={styles.card__description}>{description}</p>
       </div>
-    </div>
+    </article>
   );
 }
 
