@@ -1,6 +1,8 @@
-.start-screen {
+@import '@/sass/abstracts/mixins.module.scss';
+
+.startScreen {
   &__wrapper {
-    padding: 2rem 0;
+    padding: 3.2rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,76 +11,76 @@
   &__description {
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
+    row-gap: 3.2rem;
   }
 
   &__title {
-    font-size: 2rem;
+    font-size: 3.2rem;
   }
 
-  &__helper-text {
-    font-size: 1.3rem;
+  &__helperText {
+    font-size: 2rem;
     font-weight: 300;
   }
 
-  &__image-container {
+  &__imageContainer {
     width: 40%;
     display: flex;
     justify-content: center;
   }
 
-  @media screen and (max-width: 1200px) {
-    &__image-container {
+  @include media-xl {
+    &__imageContainer {
       width: 30%;
     }
   }
 
-  @media screen and (max-width: 992px) {
+  @include media-l {
     &__title {
-      font-size: 1.5rem;
+      font-size: 2.4rem;
     }
 
-    &__helper-text{
-      font-size: 1rem;
+    &__helperText {
+      font-size: 1.6rem;
     }
 
-    &__image-container {
+    &__imageContainer {
       width: 25%;
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @include media-m {
     &__wrapper {
-      padding: 1rem;
+      padding: 3rem 0;
       flex-direction: column-reverse;
-      row-gap: 1rem;
+      row-gap: 1.6rem;
     }
 
     &__description {
-      row-gap: 1rem;
+      row-gap: 1.6rem;
     }
 
     &__title {
-      font-size: 1.2rem;
+      font-size: 1.8rem;
       text-align: center;
     }
 
-    &__helper-text {
-      font-size: 0.9rem;
+    &__helperText {
+      font-size: 1.4rem;
       text-align: center;
     }
 
-    &__image-container {
+    &__imageContainer {
       width: 15%;
     }
   }
 
-  @media screen and (max-width: 576px) {
+  @include media-s {
     &__title {
-      font-size: 1rem;
+      font-size: 1.6rem;
     }
 
-    &__image-container {
+    &__imageContainer {
       width: 80px;
     }
   }

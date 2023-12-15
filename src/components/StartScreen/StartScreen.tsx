@@ -4,20 +4,20 @@ import ContainerLayout from '../ContainerLayout';
 
 function StartScreen(): JSX.Element {
   return (
-    <section className={styles['start-screen']}>
+    <section className={styles.startScreen}>
       <ContainerLayout>
-        <div className={styles['start-screen__wrapper']}>
-          <div className={styles['start-screen__description']}>
-            <h1 className={styles['start-screen__title']}>
+        <div className={styles.startScreen__wrapper}>
+          <div className={styles.startScreen__description}>
+            <h1 className={styles.startScreen__title}>
               Your playground for GraphQL requests
             </h1>
-            <p className={styles['start-screen__helper-text']}>
+            <p className={styles.startScreen__helperText}>
               Craft queries effortlessly with our user-friendly interface
             </p>
           </div>
-          <div className={styles['start-screen__image-container']}>
+          <div className={styles.startScreen__imageContainer}>
             <Image
-              className={styles['start-screen__image']}
+              className={styles.startScreen__image}
               src={'/qraph-ql.svg'}
               width={200}
               height={203}
