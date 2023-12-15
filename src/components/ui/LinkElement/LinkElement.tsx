@@ -2,17 +2,17 @@ import Link from 'next/link';
 import styles from './linkElement.module.scss';
 
 interface IProps {
-  type?: 'light';
+  styleType?: 'light';
   title: string;
   href: string;
 }
 
-function LinkElement({ type, title, href }: IProps): JSX.Element {
+function LinkElement({ styleType, title, href }: IProps): JSX.Element {
   return (
     <Link
       className={`
       ${styles.link}
-      ${type === 'light' && styles.link_light}
+      ${styleType === 'light' && styles.link_light}
       `}
       href={href}
     >
