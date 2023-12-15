@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import ContainerLayout from '../ContainerLayout';
+import rssLogo from '../../../public/logo-rs-school.svg';
+import ghLogo from '../../../public/logo-github.svg';
 import styles from './footer.module.scss';
 
 function Footer(): JSX.Element {
@@ -10,10 +12,10 @@ function Footer(): JSX.Element {
         <div className={styles.footer__contentWrapper}>
           <Link href="https://rs.school/" target="_blank">
             <Image
-              src="./logo-rs-school.svg"
-              width={88}
-              height={36}
+              src={rssLogo}
+              className={styles.footer__rssLogo}
               alt="Rolling Scopes School logo"
+              priority
             />
           </Link>
           <div className={styles.footer__sectionWrapper}>
@@ -26,9 +28,7 @@ function Footer(): JSX.Element {
             className={styles.footer__sectionWrapper}
           >
             <Image
-              src="./logo-github.svg"
-              width={25}
-              height={25}
+              src={ghLogo}
               className={styles.footer__ghLogo}
               alt="GitHub logo"
             />

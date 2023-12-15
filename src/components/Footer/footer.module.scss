@@ -8,6 +8,9 @@
   font-weight: 200;
   color: $primary-color-xxs;
   background-color: $primary-color-s;
+  @include media-m {
+    font-size: 1.4rem;
+  }
 
   &__contentWrapper {
     display: flex;
@@ -18,22 +21,28 @@
 
   &__rssLogo {
     width: 88px;
-    height: 36px;
+    height: auto;
+    @include media-m {
+      width: 65px;
+    }
   }
 
   &__sectionWrapper {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 1rem;
   }
 
   &__copyright {
-    font-size: 25px;
+    font-size: 2.5rem;
+    @include media-m {
+      font-size: 2rem;
+    }
   }
 
   &__ghLogo {
     width: 25px;
-    height: 25px;
+    height: auto;
   }
 
   &__ghText {
