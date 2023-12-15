@@ -1,6 +1,7 @@
 import styles from './startScreen.module.scss';
 import Image from 'next/image';
 import ContainerLayout from '../ContainerLayout';
+import graphQLSvg from '../../../public/qraph-ql.svg';
 
 function StartScreen(): JSX.Element {
   return (
@@ -18,9 +19,7 @@ function StartScreen(): JSX.Element {
           <div className={styles.startScreen__imageContainer}>
             <Image
               className={styles.startScreen__image}
-              src={'/qraph-ql.svg'}
-              width={200}
-              height={203}
+              src={graphQLSvg}
               alt="image"
               priority
             />

@@ -29,6 +29,11 @@
     justify-content: center;
   }
 
+  &__image {
+    width: 20rem;
+    height: auto;
+  }
+
   @include media-xl {
     &__imageContainer {
       width: 30%;
@@ -46,6 +51,10 @@
 
     &__imageContainer {
       width: 25%;
+    }
+
+    &__image {
+      width: 15rem;
     }
   }
 
@@ -71,6 +80,10 @@
 
     &__imageContainer {
       width: 15%;
+    }
+
+    &__image {
+      width: 8rem;
     }
   }
 
