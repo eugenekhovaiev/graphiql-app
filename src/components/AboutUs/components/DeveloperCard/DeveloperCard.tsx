@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import styles from './developerCard.module.scss';
 import Link from 'next/link';
-import cardPlaceholder from '../../../../../public/card-placeholder.svg';
 import logoGitHub from '../../../../../public/logo-github-blue.svg';
 
 interface Props {
@@ -22,8 +21,10 @@ function DeveloperCard({
   return (
     <article className={styles.card}>
       <Image
-        src={imageUrl || cardPlaceholder}
+        src={imageUrl || '/card-placeholder.svg'}
         className={styles.card__image}
+        width={250}
+        height={250}
         alt="photo"
         priority
       />
