@@ -1,0 +1,50 @@
+:export {
+  textColor: #26192b;
+  primaryColor: #554689;
+  primaryColorS: #7a8c9a;
+  primaryColorXS: #bac7fb;
+  primaryColorXXS: #ffffff;
+  secondaryColor: #824271;
+  secondaryColorS: #e1c2eb;
+  secondaryColorXS: #f0ecf0;
+}
+
+:export {
+  textColor: #26192b;
+  primaryColor: #554689;
+  primaryColorS: #7a8c9a;
+  primaryColorXS: #bac7fb;
+  primaryColorXXS: #ffffff;
+  secondaryColor: #824271;
+  secondaryColorS: #e1c2eb;
+  secondaryColorXS: #f0ecf0;
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 4.8rem 0;
+  text-align: center;
+}
+.notFound__title {
+  font-size: 6.4rem;
+  color: #824271;
+}
+.notFound__subtitle {
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+@media screen and (max-width: 576px) {
+  .notFound__subtitle {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 576px) {
+  .notFound__text {
+    font-size: 1.6rem;
+  }
+}
+
+/*# sourceMappingURL=not-found.module.css.map */
