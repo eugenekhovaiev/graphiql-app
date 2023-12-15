@@ -13,7 +13,7 @@ function NotFound(): JSX.Element {
           The requested page either doesn’t exist or you don’t have access to
           it.
         </p>
-        <Link href="./" className={linkStyles.button}>
+        <Link href="/" className={linkStyles.button}>
           Take me Home
         </Link>
       </div>
