@@ -4,13 +4,18 @@ import ContainerLayout from '../ContainerLayout';
 import rssLogo from '../../../public/logo-rs-school.svg';
 import ghLogo from '../../../public/logo-github.svg';
 import styles from './footer.module.scss';
+import LINKS from '@/consts/LINKS';
 
 function Footer(): JSX.Element {
   return (
     <footer className={styles.footer}>
       <ContainerLayout>
         <div className={styles.footer__contentWrapper}>
-          <Link href="https://rs.school/" target="_blank">
+          <Link
+            className={`${styles.footer__sectionWrapper} ${styles.footer__sectionWrapper_alignLeft}`}
+            href={LINKS.RSSCHOOL_REACT}
+            target="_blank"
+          >
             <Image
               src={rssLogo}
               className={styles.footer__rssLogo}
@@ -18,14 +23,16 @@ function Footer(): JSX.Element {
               priority
             />
           </Link>
-          <div className={styles.footer__sectionWrapper}>
+          <div
+            className={`${styles.footer__sectionWrapper} ${styles.footer__sectionWrapper_alignCenter}`}
+          >
             <span className={styles.footer__copyright}>&copy;</span>
             <span>2023</span>
           </div>
           <Link
-            href="https://github.com/XeniyaMV/graphiql-app"
+            href={LINKS.GITHUB_REPO}
             target="_blank"
-            className={styles.footer__sectionWrapper}
+            className={`${styles.footer__sectionWrapper} ${styles.footer__sectionWrapper_alignRight}`}
           >
             <Image
               src={ghLogo}

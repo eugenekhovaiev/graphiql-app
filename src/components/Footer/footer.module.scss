@@ -28,9 +28,22 @@
   }
 
   &__sectionWrapper {
+    width: 20%;
     display: flex;
     align-items: center;
     gap: 1rem;
+
+    &_alignLeft {
+      justify-content: flex-start;
+    }
+
+    &_alignCenter {
+      justify-content: center;
+    }
+
+    &_alignRight {
+      justify-content: flex-end;
+    }
   }
 
   &__copyright {
