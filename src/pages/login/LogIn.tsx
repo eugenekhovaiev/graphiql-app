@@ -1,24 +1,15 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/navigation';
-import { auth } from '@/api/firebaseConfig';
-import { browserLocalPersistence, setPersistence } from 'firebase/auth';
 import { AuthFormData } from '@/types';
+import loginUser from '@/api/loginUser';
 
 function LogIn(): JSX.Element {
-  const [loginUser] = useSignInWithEmailAndPassword(auth);
   const router = useRouter();
 
   const { register, handleSubmit } = useForm<AuthFormData>();
-  const onSubmit: SubmitHandler<AuthFormData> = ({ email, password }) => {
-    try {
-      setPersistence(auth, browserLocalPersistence).then(() => {
-        loginUser(email, password);
-      });
-      router.push('/');
-    } catch (e) {
-      console.error(e);
-    }
+  const onSubmit: SubmitHandler<AuthFormData> = (data: AuthFormData): void => {
+    loginUser(data);
+    router.push('/');
   };
 
   return (
