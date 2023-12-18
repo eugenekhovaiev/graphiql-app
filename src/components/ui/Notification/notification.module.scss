@@ -1,4 +1,5 @@
 @import "@/sass/abstracts/variables.module";
+@import "@/sass/abstracts/mixins.module";
 
 .notification {
   display: flex;
@@ -23,5 +24,9 @@
   &__text {
     font-size: 1.8rem;
     font-weight: 300;
+
+    @include media-s {
+      font-size: 1.6rem;
+    }
   }
 }
