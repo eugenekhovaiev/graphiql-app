@@ -1,7 +1,7 @@
-import { initializeApp, getApp, getApps } from 'firebase/app';
+import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
-export const firebase = {
+export const firebaseConfig = {
   apiKey: 'AIzaSyAx7c_WKRpxIHzLIdS8O4JpmWWmwg0pcN8',
   authDomain: 'graphiql-a1fc6.firebaseapp.com',
   projectId: 'graphiql-a1fc6',
@@ -11,7 +11,6 @@ export const firebase = {
   measurementId: 'G-BRDLG8T29K',
 };
 
-const app = getApps().length ? getApp() : initializeApp(firebase);
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
 export { app, auth };

@@ -1,15 +1,15 @@
-'use client';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/api/firebase';
+import { auth } from '@/api/firebaseConfig';
 import { useRouter } from 'next/navigation';
+import { onAuthStateChanged } from '@firebase/auth';
 
 function Editor(): JSX.Element {
-  const [user] = useAuthState(auth);
   const router = useRouter();
 
-  if (!user) {
-    router.push('/signup');
-  }
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      router.push('/login');
+    }
+  });
 
   return <div>Redactor will be here</div>;
 }

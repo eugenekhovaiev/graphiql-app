@@ -2,7 +2,7 @@ import styles from './header.module.scss';
 import ContainerLayout from '../ContainerLayout';
 import Link from 'next/link';
 import { signOut } from 'firebase/auth';
-import { auth } from '@/api/firebase';
+import { auth } from '@/api/firebaseConfig';
 
 function Header(): JSX.Element {
   // todo: fix error when write the path in url

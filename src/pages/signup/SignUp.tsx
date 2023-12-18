@@ -3,7 +3,7 @@ import {
   useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
 } from 'react-firebase-hooks/auth';
-import { auth } from '@/api/firebase';
+import { auth } from '@/api/firebaseConfig';
 import { useRouter } from 'next/navigation';
 
 function SignUp(): JSX.Element {
