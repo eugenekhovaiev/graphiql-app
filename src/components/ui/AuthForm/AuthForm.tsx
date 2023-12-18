@@ -7,6 +7,7 @@ import styles from './authForm.module.scss';
 import ContainerLayout from '@/components/ContainerLayout';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import Notification from '@/components/ui/Notification/Notification';
 
 interface Props {
   isSignUp?: boolean;
@@ -65,6 +66,8 @@ function AuthForm({ isSignUp = false }: Props): JSX.Element {
           {subtitle}
           <Link href={linkHref}>{linkText}</Link>
         </div>
+        <Notification text="Account has successfully created" />
+        <Notification text="Something went wrong" isError />
       </div>
     </ContainerLayout>
   );

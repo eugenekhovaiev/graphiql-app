@@ -1,0 +1,27 @@
+@import "@/sass/abstracts/variables.module";
+
+.notification {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: $success-color-light;
+  border: 1px solid $success-color;
+  border-radius: 1rem;
+
+  &_error {
+    background-color: $error-color-light;
+    border: 1px solid $error-color;
+  }
+
+  &__icon {
+    width: 3rem;
+    height: auto;
+  }
+
+  &__text {
+    font-size: 1.8rem;
+    font-weight: 300;
+  }
+}
