@@ -1,8 +1,7 @@
 import styles from './header.module.scss';
 import ContainerLayout from '../ContainerLayout';
 import Link from 'next/link';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/api/firebaseConfig';
+import signOutUser from '@/api/signOutUser';
 
 function Header(): JSX.Element {
   return (
@@ -11,7 +10,7 @@ function Header(): JSX.Element {
         <div className={styles.header__wrapper}>
           <Link href="/">Main</Link>
           <Link href="/login">Log In</Link>
-          <Link href="/" onClick={() => signOut(auth)}>
+          <Link href="/" onClick={signOutUser}>
             Log Out
           </Link>
           <Link href="/signup">Sign Up</Link>
