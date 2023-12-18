@@ -5,11 +5,11 @@ import { signOut } from 'firebase/auth';
 import { auth } from '@/api/firebaseConfig';
 
 function Header(): JSX.Element {
-  // todo: fix error when write the path in url
   return (
     <div className={styles.header}>
       <ContainerLayout>
         <div className={styles.header__wrapper}>
+          <Link href="/">Main</Link>
           <Link href="/login">Log In</Link>
           <Link href="/" onClick={() => signOut(auth)}>
             Log Out

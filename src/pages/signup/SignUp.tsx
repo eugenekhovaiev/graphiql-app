@@ -1,41 +1,37 @@
-import { FormEvent, useRef } from 'react';
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
 } from 'react-firebase-hooks/auth';
 import { auth } from '@/api/firebaseConfig';
 import { useRouter } from 'next/navigation';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { AuthFormData } from '@/types';
+import { browserLocalPersistence, setPersistence } from 'firebase/auth';
 
 function SignUp(): JSX.Element {
-  const formRef = useRef<HTMLFormElement>(null);
   const [createUser] = useCreateUserWithEmailAndPassword(auth);
   const [loginUser] = useSignInWithEmailAndPassword(auth);
+
   const router = useRouter();
-  const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    event.preventDefault();
-    if (formRef.current) {
-      const formData = new FormData(formRef.current);
-      const email = formData.get('email') as string;
-      const password = formData.get('password') as string;
-      try {
-        const userData = await createUser(email, password);
-        // todo: check if ok
+  const { register, handleSubmit } = useForm<AuthFormData>();
+  const onSubmit: SubmitHandler<AuthFormData> = ({ email, password }) => {
+    try {
+      createUser(email, password);
+      setPersistence(auth, browserLocalPersistence).then(() => {
         loginUser(email, password);
-        console.log({ userData });
-        router.push('/');
-      } catch (e) {
-        console.error(e);
-      }
+      });
+      router.push('/');
+    } catch (e) {
+      console.error(e);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} ref={formRef}>
-      <input type="email" name="email" />
-      <input type="password" name="password" />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input type="email" {...register('email')} />
+      <input type="password" {...register('password')} />
       <button type="submit">Sign Up</button>
+      <button type="reset">Reset</button>
     </form>
   );
 }
