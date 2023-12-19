@@ -2,10 +2,13 @@
 @import "@/sass/abstracts/mixins.module";
 
 .notification {
+  position: absolute;
+  top: 2.5rem;
+  right: .5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: 100%;
+  width: 36rem;
   padding: 1rem;
   background-color: $success-color-light;
   border: 1px solid $success-color;
@@ -27,6 +30,16 @@
 
     @include media-s {
       font-size: 1.6rem;
+    }
+  }
+
+  &__link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .3rem;
+
+    &:hover {
+      color: $primary-color;
     }
   }
 }
