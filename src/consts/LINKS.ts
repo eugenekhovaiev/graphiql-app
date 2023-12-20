@@ -4,6 +4,7 @@ enum LINKS {
   HOME = '/',
   LOGIN = '/login',
   SIGNUP = '/signup',
+  EDITOR = '/editor',
 }
 
 export default LINKS;

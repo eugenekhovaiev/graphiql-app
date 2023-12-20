@@ -12,9 +12,21 @@
   }
 
   &_light {
+    display: flex;
+    align-items: center;
+    padding: 0;
+
     color: $primary-color-xxs;
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid transparent;
+
+    @include transition;
 
     &:hover, &:active {
+      cursor: pointer;
       border-bottom: 2px solid $primary-color-xxs;
     }
   }

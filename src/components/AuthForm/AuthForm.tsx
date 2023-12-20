@@ -38,9 +38,12 @@ function AuthForm({
     try {
       const response = await onFormSubmit(data);
       if (response === RESPONSE_STATUS.SUCCESS) {
-        router.push(LINKS.HOME);
         isSignUp && setSuccessMessage(NOTIFICATION.SIGNUP_SUCCESS);
         !isSignUp && setSuccessMessage(NOTIFICATION.LOGIN_SUCCESS);
+        setTimeout(() => {
+          setErrorMessage(null);
+          router.push(LINKS.HOME);
+        }, 1500);
       }
     } catch (e) {
       isSignUp &&
@@ -49,6 +52,9 @@ function AuthForm({
       !isSignUp &&
         e === ERROR_CODES.USER_DOESNT_EXIST &&
         setErrorMessage(NOTIFICATION.USER_DOESNT_EXIST);
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 2000);
     }
   };
 

@@ -1,13 +1,14 @@
 import { auth } from '@/api/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from '@firebase/auth';
+import LINKS from '@/consts/LINKS';
 
 function Editor(): JSX.Element {
   const router = useRouter();
 
   onAuthStateChanged(auth, (user) => {
     if (!user) {
-      router.push('/login');
+      router.push(LINKS.LOGIN);
     }
   });
 
