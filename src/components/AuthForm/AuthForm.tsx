@@ -12,18 +12,23 @@ import { useState } from 'react';
 
 interface Props {
   isSignUp?: boolean;
+  title: string;
+  subtitle: string;
+  linkTitle: string;
+  linkHref: string;
 }
 
-function AuthForm({ isSignUp = false }: Props): JSX.Element {
+function AuthForm({
+  isSignUp = false,
+  title,
+  subtitle,
+  linkTitle,
+  linkHref,
+}: Props): JSX.Element {
   const { register, handleSubmit } = useForm<AuthFormData>();
   // const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-
-  const title = isSignUp ? 'Sign Up' : 'Log In';
-  const subtitle = isSignUp ? 'Already a user?' : 'Need an account?';
-  const linkHref = isSignUp ? 'login' : 'signup';
-  const linkText = isSignUp ? 'Log In' : 'Sign Up';
 
   const onSubmit: SubmitHandler<AuthFormData> = (data: AuthFormData) => {
     isSignUp
@@ -70,15 +75,15 @@ function AuthForm({ isSignUp = false }: Props): JSX.Element {
         </form>
         <div className={styles.form__subtitle}>
           {subtitle}
-          <Link href={linkHref}>{linkText}</Link>
+          <Link href={linkHref}>{linkTitle}</Link>
         </div>
         {successMessage && <Notification text={successMessage} />}
         {errorMessage && (
           <Notification
             text={errorMessage}
             isError
-            linkHref={isSignUp ? '/login' : '/signup'}
-            linkTitle={isSignUp ? 'log in.' : 'create one.'}
+            linkHref={linkHref}
+            linkTitle={linkTitle}
           />
         )}
       </div>

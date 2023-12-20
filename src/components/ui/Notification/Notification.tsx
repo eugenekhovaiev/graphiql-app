@@ -34,12 +34,14 @@ function Notification({
           src={isError ? errorIcon : successIcon}
           alt="notification"
         />
-        <p className={styles.notification__text}>{text}</p>
-        {linkHref && linkTitle && (
-          <Link className={styles.notification__link} href={linkHref}>
-            {linkTitle}
-          </Link>
-        )}
+        <p className={styles.notification__text}>
+          {text}
+          {linkHref && linkTitle && (
+            <Link className={styles.notification__link} href={linkHref}>
+              {linkTitle.toLowerCase()}
+            </Link>
+          )}
+        </p>
       </div>
     );
   }
