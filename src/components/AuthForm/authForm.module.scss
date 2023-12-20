@@ -55,6 +55,7 @@
       cursor: pointer;
     }
     &:focus {
+      outline: none;
       background-color: $secondary-color-s;
     }
     &_error {
