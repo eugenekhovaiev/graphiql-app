@@ -11,16 +11,15 @@ function createUser({
   setErrorMessage,
 }: AuthFormProps): void {
   try {
-    createUserWithEmailAndPassword(auth, data.email, data.password).then(
-      function () {
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then(() => {
         setSuccessMessage && setSuccessMessage(NOTIFICATION.SIGNUP_SUCCESS);
         loginUser({ data, setErrorMessage });
-      },
-      function (error) {
+      })
+      .catch((error) => {
         error.code === ERROR_CODES.USER_ALREADY_EXISTS &&
           setErrorMessage(NOTIFICATION.USER_ALREADY_EXISTS);
-      }
-    );
+      });
   } catch (e) {
     console.error(e);
   }

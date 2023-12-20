@@ -15,15 +15,14 @@ function loginUser({
 }: AuthFormProps): void {
   try {
     setPersistence(auth, browserLocalPersistence).then(() => {
-      signInWithEmailAndPassword(auth, data.email, data.password).then(
-        function () {
+      signInWithEmailAndPassword(auth, data.email, data.password)
+        .then(() => {
           setSuccessMessage && setSuccessMessage(NOTIFICATION.LOGIN_SUCCESS);
-        },
-        function (error) {
+        })
+        .catch((error) => {
           error.code === ERROR_CODES.USER_DOESNT_EXIST &&
             setErrorMessage(NOTIFICATION.USER_DOESNT_EXIST);
-        }
-      );
+        });
     });
   } catch (e) {
     console.error(e);
