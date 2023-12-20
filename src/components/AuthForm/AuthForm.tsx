@@ -1,12 +1,14 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { AuthFormData, AuthFormProps } from '@/types';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import styles from './authForm.module.scss';
 import ContainerLayout from '@/components/ContainerLayout';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import Notification from '@/components/ui/Notification/Notification';
 import { useState } from 'react';
+import LINKS from '@/consts/LINKS';
+import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 
 interface Props {
   isSignUp?: boolean;
@@ -14,7 +16,7 @@ interface Props {
     data,
     setSuccessMessage,
     setErrorMessage,
-  }: AuthFormProps) => void;
+  }: AuthFormProps) => Promise<string>;
   title: string;
   subtitle: string;
   linkTitle: string;
@@ -30,13 +32,19 @@ function AuthForm({
   linkHref,
 }: Props): JSX.Element {
   const { register, handleSubmit } = useForm<AuthFormData>();
-  // const router = useRouter();
+  const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const onSubmit: SubmitHandler<AuthFormData> = (data: AuthFormData) => {
-    onFormSubmit({ data, setSuccessMessage, setErrorMessage });
-    // router.push('/');
+  const onSubmit: SubmitHandler<AuthFormData> = async (data: AuthFormData) => {
+    try {
+      const response = await onFormSubmit({
+        data,
+        setSuccessMessage,
+        setErrorMessage,
+      });
+      response === RESPONSE_STATUS.SUCCESS && router.push(LINKS.HOME);
+    } catch (e) {}
   };
 
   return (
