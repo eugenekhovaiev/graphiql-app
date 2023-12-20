@@ -1,8 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { AuthFormData } from '@/types';
+import { AuthFormData, AuthFormProps } from '@/types';
 // import { useRouter } from 'next/navigation';
-import createUser from '@/api/createUser';
-import loginUser from '@/api/loginUser';
 import styles from './authForm.module.scss';
 import ContainerLayout from '@/components/ContainerLayout';
 import Link from 'next/link';
@@ -12,6 +10,11 @@ import { useState } from 'react';
 
 interface Props {
   isSignUp?: boolean;
+  onFormSubmit: ({
+    data,
+    setSuccessMessage,
+    setErrorMessage,
+  }: AuthFormProps) => void;
   title: string;
   subtitle: string;
   linkTitle: string;
@@ -20,6 +23,7 @@ interface Props {
 
 function AuthForm({
   isSignUp = false,
+  onFormSubmit,
   title,
   subtitle,
   linkTitle,
@@ -31,9 +35,7 @@ function AuthForm({
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<AuthFormData> = (data: AuthFormData) => {
-    isSignUp
-      ? createUser({ data, setSuccessMessage, setErrorMessage })
-      : loginUser({ data, setSuccessMessage, setErrorMessage });
+    onFormSubmit({ data, setSuccessMessage, setErrorMessage });
     // router.push('/');
   };
 
@@ -52,7 +54,7 @@ function AuthForm({
             />
           </div>
           <div className={styles.form__field}>
-            <label className={styles.form__label}>Email</label>
+            <label className={styles.form__label}>Password</label>
             <input
               className={styles.form__input}
               type="password"
