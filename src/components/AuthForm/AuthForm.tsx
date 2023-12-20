@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { AuthFormData, AuthFormProps } from '@/types';
+import { AuthFormData } from '@/types';
 import { useRouter } from 'next/navigation';
 import styles from './authForm.module.scss';
 import ContainerLayout from '@/components/ContainerLayout';
@@ -9,14 +9,12 @@ import Notification from '@/components/ui/Notification/Notification';
 import { useState } from 'react';
 import LINKS from '@/consts/LINKS';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
+import NOTIFICATION from '@/consts/NOTIFICATION';
+import ERROR_CODES from '@/consts/AUTH_ERROR_CODES';
 
 interface Props {
   isSignUp?: boolean;
-  onFormSubmit: ({
-    data,
-    setSuccessMessage,
-    setErrorMessage,
-  }: AuthFormProps) => Promise<string>;
+  onFormSubmit: (data: AuthFormData) => Promise<string>;
   title: string;
   subtitle: string;
   linkTitle: string;
@@ -38,13 +36,20 @@ function AuthForm({
 
   const onSubmit: SubmitHandler<AuthFormData> = async (data: AuthFormData) => {
     try {
-      const response = await onFormSubmit({
-        data,
-        setSuccessMessage,
-        setErrorMessage,
-      });
-      response === RESPONSE_STATUS.SUCCESS && router.push(LINKS.HOME);
-    } catch (e) {}
+      const response = await onFormSubmit(data);
+      if (response === RESPONSE_STATUS.SUCCESS) {
+        router.push(LINKS.HOME);
+        isSignUp && setSuccessMessage(NOTIFICATION.SIGNUP_SUCCESS);
+        !isSignUp && setSuccessMessage(NOTIFICATION.LOGIN_SUCCESS);
+      }
+    } catch (e) {
+      isSignUp &&
+        e === ERROR_CODES.USER_ALREADY_EXISTS &&
+        setErrorMessage(NOTIFICATION.USER_ALREADY_EXISTS);
+      !isSignUp &&
+        e === ERROR_CODES.USER_DOESNT_EXIST &&
+        setErrorMessage(NOTIFICATION.USER_DOESNT_EXIST);
+    }
   };
 
   return (
