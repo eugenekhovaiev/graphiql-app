@@ -28,16 +28,23 @@ function Header(): JSX.Element {
   };
 
   const onLogOutClick = async (): Promise<void> => {
-    try {
-      const response = await signOutUser();
-      if (response === RESPONSE_STATUS.SUCCESS) {
-        setSuccessMessage(NOTIFICATION.LOGOUT_SUCCESS);
-        setTimeout(() => {
-          setSuccessMessage(null);
-          router.push(LINKS.HOME);
-        }, 2000);
-      }
-    } catch (e) {}
+    if (auth.currentUser) {
+      try {
+        const response = await signOutUser();
+        if (response === RESPONSE_STATUS.SUCCESS) {
+          setSuccessMessage(NOTIFICATION.LOGOUT_SUCCESS);
+          setTimeout(() => {
+            setSuccessMessage(null);
+            router.push(LINKS.HOME);
+          }, 2000);
+        }
+      } catch (e) {}
+    } else {
+      setErrorMessage(NOTIFICATION.USER_ARE_NOT_AUTHORIZED);
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 2000);
+    }
   };
 
   return (

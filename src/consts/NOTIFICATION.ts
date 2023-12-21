@@ -5,6 +5,7 @@ enum NOTIFICATION {
   LOGIN_SUCCESS = "You've been successfully logged in",
   LOGOUT_SUCCESS = "You've been successfully logged out",
   USER_ALREADY_LOGGED_IN = "You've already logged in, enjoy GraphiQL",
+  USER_ARE_NOT_AUTHORIZED = 'You are not authorized yet',
 }
 
 export default NOTIFICATION;
