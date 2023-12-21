@@ -9,8 +9,8 @@ interface Props<T extends FieldValues> {
   registeredName: Path<T>;
   type?: HTMLInputTypeAttribute;
   register?: UseFormRegister<T>;
-  endDecorationUrl?: string;
-  handleDecorationClick?: () => void;
+  endIcon?: string;
+  handleEndIconClick?: () => void;
 }
 
 function InputField<T extends FieldValues>({
@@ -19,8 +19,8 @@ function InputField<T extends FieldValues>({
   placeholder,
   register,
   registeredName,
-  endDecorationUrl,
-  handleDecorationClick,
+  endIcon,
+  handleEndIconClick,
 }: Props<T>): JSX.Element {
   return (
     <div className={styles.inputField}>
@@ -35,12 +35,12 @@ function InputField<T extends FieldValues>({
           {...(register && register(registeredName))}
           placeholder={placeholder}
         />
-        {endDecorationUrl && (
+        {endIcon && (
           <Image
             className={styles.inputField__textFieldIcon}
-            src={endDecorationUrl}
+            src={endIcon}
             alt="decoration icon"
-            onClick={handleDecorationClick}
+            onClick={handleEndIconClick}
             tabIndex={0}
           />
         )}

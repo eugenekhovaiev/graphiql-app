@@ -81,8 +81,8 @@ function AuthForm({
             register={register}
             registeredName="password"
             placeholder="Password"
-            endDecorationUrl={isPasswordVisible ? viewIcon : viewHideIcon}
-            handleDecorationClick={() => setPasswordVisible(!isPasswordVisible)}
+            endIcon={isPasswordVisible ? viewIcon : viewHideIcon}
+            handleEndIconClick={() => setPasswordVisible(!isPasswordVisible)}
           />
           {isSignUp && (
             <InputField
@@ -91,11 +91,9 @@ function AuthForm({
               register={register}
               registeredName="confirmPassword"
               placeholder="Password"
-              endDecorationUrl={
-                isConfirmPasswordVisible ? viewIcon : viewHideIcon
-              }
-              handleDecorationClick={() =>
-                setConfirmPasswordVisible(!isPasswordVisible)
+              endIcon={isConfirmPasswordVisible ? viewIcon : viewHideIcon}
+              handleEndIconClick={() =>
+                setConfirmPasswordVisible(!isConfirmPasswordVisible)
               }
             />
           )}
