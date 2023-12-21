@@ -2,7 +2,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { AuthFormData } from '@/types';
 import { useRouter } from 'next/navigation';
 import styles from './authForm.module.scss';
-import ContainerLayout from '@/components/ContainerLayout';
 import Button from '@/components/ui/Button';
 import Notification from '@/components/ui/Notification/Notification';
 import { useState } from 'react';
@@ -64,56 +63,54 @@ function AuthForm({
   };
 
   return (
-    <ContainerLayout>
-      <div className={styles.form__wrapper}>
-        <h1 className={styles.form__title}>{title}</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <div className={styles.form__wrapper}>
+      <h1 className={styles.form__title}>{title}</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <InputField
+          label="Email"
+          type="email"
+          register={register}
+          registeredName="email"
+          placeholder="Email"
+        />
+        <InputField
+          label="Password"
+          type={isPasswordVisible ? 'text' : 'password'}
+          register={register}
+          registeredName="password"
+          placeholder="Password"
+          endIcon={isPasswordVisible ? viewIcon : viewHideIcon}
+          handleEndIconClick={() => setPasswordVisible(!isPasswordVisible)}
+        />
+        {isSignUp && (
           <InputField
-            label="Email"
-            type="email"
+            label="Confirm Password"
+            type={isConfirmPasswordVisible ? 'text' : 'password'}
             register={register}
-            registeredName="email"
-            placeholder="Email"
-          />
-          <InputField
-            label="Password"
-            type={isPasswordVisible ? 'text' : 'password'}
-            register={register}
-            registeredName="password"
+            registeredName="confirmPassword"
             placeholder="Password"
-            endIcon={isPasswordVisible ? viewIcon : viewHideIcon}
-            handleEndIconClick={() => setPasswordVisible(!isPasswordVisible)}
-          />
-          {isSignUp && (
-            <InputField
-              label="Confirm Password"
-              type={isConfirmPasswordVisible ? 'text' : 'password'}
-              register={register}
-              registeredName="confirmPassword"
-              placeholder="Password"
-              endIcon={isConfirmPasswordVisible ? viewIcon : viewHideIcon}
-              handleEndIconClick={() =>
-                setConfirmPasswordVisible(!isConfirmPasswordVisible)
-              }
-            />
-          )}
-          <Button title={title} isSubmit styleType="long" />
-        </form>
-        <div className={styles.form__subtitle}>
-          {subtitle}
-          <LinkElement href={linkHref} title={linkTitle} />
-        </div>
-        {successMessage && <Notification text={successMessage} />}
-        {errorMessage && (
-          <Notification
-            text={errorMessage}
-            isError
-            linkHref={linkHref}
-            linkTitle={linkTitle}
+            endIcon={isConfirmPasswordVisible ? viewIcon : viewHideIcon}
+            handleEndIconClick={() =>
+              setConfirmPasswordVisible(!isConfirmPasswordVisible)
+            }
           />
         )}
+        <Button title={title} isSubmit styleType="long" />
+      </form>
+      <div className={styles.form__subtitle}>
+        {subtitle}
+        <LinkElement href={linkHref} title={linkTitle} />
       </div>
-    </ContainerLayout>
+      {successMessage && <Notification text={successMessage} />}
+      {errorMessage && (
+        <Notification
+          text={errorMessage}
+          isError
+          linkHref={linkHref}
+          linkTitle={linkTitle}
+        />
+      )}
+    </div>
   );
 }
 

@@ -5,6 +5,7 @@ import loginUser from '@/api/loginUser';
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from '@firebase/auth';
 import { auth } from '@/api/firebaseConfig';
+import ContainerLayout from '@/components/ContainerLayout';
 
 function LogIn(): JSX.Element {
   const router = useRouter();
@@ -16,13 +17,17 @@ function LogIn(): JSX.Element {
   });
 
   return (
-    <AuthForm
-      onFormSubmit={loginUser}
-      title={FORM.LOGIN_TITLE}
-      subtitle={FORM.LOGIN_SUBTITLE}
-      linkTitle={FORM.SIGNUP_TITLE}
-      linkHref={LINKS.SIGNUP}
-    />
+    <main>
+      <ContainerLayout>
+        <AuthForm
+          onFormSubmit={loginUser}
+          title={FORM.LOGIN_TITLE}
+          subtitle={FORM.LOGIN_SUBTITLE}
+          linkTitle={FORM.SIGNUP_TITLE}
+          linkHref={LINKS.SIGNUP}
+        />
+      </ContainerLayout>
+    </main>
   );
 }
 
