@@ -4,6 +4,9 @@
 
 .link {
   color: $text-color;
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid transparent;
+
   @include transition;
 
   &:hover, &:active {

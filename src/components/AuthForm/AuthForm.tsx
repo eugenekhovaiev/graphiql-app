@@ -3,7 +3,6 @@ import { AuthFormData } from '@/types';
 import { useRouter } from 'next/navigation';
 import styles from './authForm.module.scss';
 import ContainerLayout from '@/components/ContainerLayout';
-import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import Notification from '@/components/ui/Notification/Notification';
 import { useState } from 'react';
@@ -14,6 +13,7 @@ import ERROR_CODES from '@/consts/AUTH_ERROR_CODES';
 import InputField from '../InputField/InputField';
 import viewHideIcon from '../../../public/view-hide.svg';
 import viewIcon from '../../../public/view.svg';
+import LinkElement from '../ui/LinkElement';
 
 interface Props {
   isSignUp?: boolean;
@@ -110,7 +110,7 @@ function AuthForm({
         </form>
         <div className={styles.form__subtitle}>
           {subtitle}
-          <Link href={linkHref}>{linkTitle}</Link>
+          <LinkElement href={linkHref} title={linkTitle} />
         </div>
         {successMessage && <Notification text={successMessage} />}
         {errorMessage && (
