@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Main from '@/pages/Main';
+import Main from '@/pages/';
 import RootLayout from '@/components/RootLayout';
 
 describe('Main Page', () => {
