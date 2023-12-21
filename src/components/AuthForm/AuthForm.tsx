@@ -11,6 +11,7 @@ import LINKS from '@/consts/LINKS';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 import ERROR_CODES from '@/consts/AUTH_ERROR_CODES';
+import InputField from '../InputField/InputField';
 
 interface Props {
   isSignUp?: boolean;
@@ -46,6 +47,7 @@ function AuthForm({
         }, 1500);
       }
     } catch (e) {
+      console.log(e);
       isSignUp &&
         e === ERROR_CODES.USER_ALREADY_EXISTS &&
         setErrorMessage(NOTIFICATION.USER_ALREADY_EXISTS);
@@ -63,34 +65,28 @@ function AuthForm({
       <div className={styles.form__wrapper}>
         <h1 className={styles.form__title}>{title}</h1>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <div className={styles.form__field}>
-            <label className={styles.form__label}>Email</label>
-            <input
-              className={styles.form__input}
-              type="email"
-              {...register('email')}
-              placeholder="Email"
-            />
-          </div>
-          <div className={styles.form__field}>
-            <label className={styles.form__label}>Password</label>
-            <input
-              className={styles.form__input}
+          <InputField
+            label="Email"
+            type="email"
+            register={register}
+            registeredName="email"
+            placeholder="Email"
+          />
+          <InputField
+            label="Password"
+            type="password"
+            register={register}
+            registeredName="password"
+            placeholder="Password"
+          />
+          {isSignUp && (
+            <InputField
+              label="Confirm Password"
               type="password"
-              {...register('password')}
+              register={register}
+              registeredName="confirmPassword"
               placeholder="Password"
             />
-          </div>
-          {isSignUp && (
-            <div className={styles.form__field}>
-              <label className={styles.form__label}>Confirm Password</label>
-              <input
-                className={styles.form__input}
-                type="password"
-                {...register('confirmPassword')}
-                placeholder="Password"
-              />
-            </div>
           )}
           <Button title={title} isSubmit styleType="long" />
         </form>
