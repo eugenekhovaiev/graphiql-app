@@ -1,0 +1,66 @@
+@import '../../sass/abstracts/variables.module';
+@import '../../sass/abstracts/mixins.module';
+
+.footer {
+  width: 100%;
+  height: 100px;
+  font-size: 1.8rem;
+  font-weight: 200;
+  color: $primary-color-xxs;
+  background-color: $primary-color-s;
+  @include media-m {
+    font-size: 1.4rem;
+  }
+
+  &__contentWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__rssLogo {
+    width: 88px;
+    height: auto;
+    @include media-m {
+      width: 65px;
+    }
+  }
+
+  &__sectionWrapper {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &_alignLeft {
+      justify-content: flex-start;
+    }
+
+    &_alignCenter {
+      justify-content: center;
+    }
+
+    &_alignRight {
+      justify-content: flex-end;
+    }
+  }
+
+  &__copyright {
+    font-size: 2.5rem;
+    @include media-m {
+      font-size: 2rem;
+    }
+  }
+
+  &__ghLogo {
+    width: 25px;
+    height: auto;
+  }
+
+  &__ghText {
+    @include media-l {
+      display: none;
+    }
+  }
+}

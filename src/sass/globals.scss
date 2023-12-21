@@ -1,0 +1,11 @@
+@import './abstracts/variables.module.scss';
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.8rem;
+  color: $text-color;
+  background-color: $primary-color-xxs;
+}
