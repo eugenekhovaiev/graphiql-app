@@ -17,7 +17,7 @@ function loginUser(data: AuthFormData): Promise<string> {
             resolve(RESPONSE_STATUS.SUCCESS);
           })
           .catch((e: FirebaseError) => {
-            reject(e);
+            reject(e.code);
           });
       })
       .catch(() => {

@@ -51,9 +51,11 @@ function AuthForm({
       isSignUp &&
         e === ERROR_CODES.USER_ALREADY_EXISTS &&
         setErrorMessage(NOTIFICATION.USER_ALREADY_EXISTS);
-      !isSignUp &&
+      if (!isSignUp) {
+        debugger; // eslint-disable-line no-debugger
         e === ERROR_CODES.USER_DOESNT_EXIST &&
-        setErrorMessage(NOTIFICATION.USER_DOESNT_EXIST);
+          setErrorMessage(NOTIFICATION.USER_DOESNT_EXIST);
+      }
 
       setTimeout(() => {
         setErrorMessage(null);
