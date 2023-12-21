@@ -34,7 +34,7 @@ function AuthForm({
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-
+  const [isNotificationLink, setNotificationLink] = useState<boolean>(false);
   const onSubmit: SubmitHandler<AuthFormData> = async (data: AuthFormData) => {
     try {
       const response = await onFormSubmit(data);
@@ -48,13 +48,22 @@ function AuthForm({
         }, 2000);
       }
     } catch (e) {
-      isSignUp &&
-        e === ERROR_CODES.USER_ALREADY_EXISTS &&
+      if (isSignUp && e === ERROR_CODES.USER_ALREADY_EXISTS) {
+        setNotificationLink(true);
         setErrorMessage(NOTIFICATION.USER_ALREADY_EXISTS);
-      if (!isSignUp) {
-        debugger; // eslint-disable-line no-debugger
-        e === ERROR_CODES.USER_DOESNT_EXIST &&
-          setErrorMessage(NOTIFICATION.USER_DOESNT_EXIST);
+        setTimeout(() => {
+          setNotificationLink(false);
+        }, 2000);
+      }
+      if (!isSignUp && e === ERROR_CODES.USER_DOESNT_EXIST) {
+        setNotificationLink(true);
+        setErrorMessage(NOTIFICATION.USER_DOESNT_EXIST);
+        setTimeout(() => {
+          setNotificationLink(false);
+        }, 2000);
+      }
+      if (!isSignUp && e === ERROR_CODES.WRONG_PASSWORD) {
+        setErrorMessage(NOTIFICATION.WRONG_PASSWORD);
       }
 
       setTimeout(() => {
@@ -108,8 +117,9 @@ function AuthForm({
           <Notification
             text={errorMessage}
             isError
-            linkHref={linkHref}
-            linkTitle={linkTitle}
+            isLink={isNotificationLink}
+            linkHref={linkHref && linkHref}
+            linkTitle={linkTitle && linkTitle}
           />
         )}
       </div>

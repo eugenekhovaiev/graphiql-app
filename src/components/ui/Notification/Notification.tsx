@@ -7,6 +7,7 @@ import Link from 'next/link';
 interface Props {
   isError?: boolean;
   text: string;
+  isLink?: boolean;
   linkHref?: string;
   linkTitle?: string;
 }
@@ -14,6 +15,7 @@ interface Props {
 function Notification({
   isError = false,
   text,
+  isLink,
   linkHref,
   linkTitle,
 }: Props): JSX.Element | undefined {
@@ -30,9 +32,9 @@ function Notification({
       />
       <p className={styles.notification__text}>
         {text}
-        {linkHref && linkTitle && (
-          <Link className={styles.notification__link} href={linkHref}>
-            {linkTitle.toLowerCase()}
+        {isLink && (
+          <Link className={styles.notification__link} href={linkHref!}>
+            {linkTitle?.toLowerCase()}
           </Link>
         )}
       </p>
