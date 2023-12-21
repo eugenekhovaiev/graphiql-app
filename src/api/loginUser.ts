@@ -17,11 +17,10 @@ function loginUser(data: AuthFormData): Promise<string> {
             resolve(RESPONSE_STATUS.SUCCESS);
           })
           .catch((e: FirebaseError) => {
-            reject(e.code);
+            reject(e);
           });
       })
-      .catch((e) => {
-        console.error(e);
+      .catch(() => {
         reject(RESPONSE_STATUS.FAIL);
       });
   });

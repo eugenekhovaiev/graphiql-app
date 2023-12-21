@@ -1,3 +1,4 @@
+'use client';
 import styles from './header.module.scss';
 import buttonStyles from '@/components/ui/LinkElement/linkElement.module.scss';
 import ContainerLayout from '../ContainerLayout';
@@ -9,10 +10,23 @@ import LINKS from '@/consts/LINKS';
 import { useRouter } from 'next/navigation';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import NOTIFICATION from '@/consts/NOTIFICATION';
+import { auth } from '@/api/firebaseConfig';
 
 function Header(): JSX.Element {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
+  const onLinkClick = (isSignUp: boolean = false): void => {
+    if (auth.currentUser) {
+      setErrorMessage(NOTIFICATION.USER_ALREADY_LOGGED_IN);
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 2000);
+    } else {
+      router.push(isSignUp ? LINKS.SIGNUP : LINKS.LOGIN);
+    }
+  };
+
   const onLogOutClick = async (): Promise<void> => {
     try {
       const response = await signOutUser();
@@ -21,10 +35,11 @@ function Header(): JSX.Element {
         setTimeout(() => {
           setSuccessMessage(null);
           router.push(LINKS.HOME);
-        }, 1500);
+        }, 2000);
       }
     } catch (e) {}
   };
+
   return (
     <div className={styles.header}>
       <ContainerLayout>
@@ -32,20 +47,27 @@ function Header(): JSX.Element {
           <Link className={buttonStyles.link_light} href={LINKS.HOME}>
             Main
           </Link>
-          <Link className={buttonStyles.link_light} href={LINKS.LOGIN}>
+          <button
+            className={buttonStyles.link_light}
+            onClick={() => onLinkClick()}
+          >
             Log In
-          </Link>
+          </button>
           <button className={buttonStyles.link_light} onClick={onLogOutClick}>
             Log Out
           </button>
-          <Link className={buttonStyles.link_light} href={LINKS.SIGNUP}>
+          <button
+            className={buttonStyles.link_light}
+            onClick={() => onLinkClick(true)}
+          >
             Sign Up
-          </Link>
+          </button>
           <Link className={buttonStyles.link_light} href={LINKS.EDITOR}>
             Editor
           </Link>
         </div>
         {successMessage && <Notification text={successMessage} />}
+        {errorMessage && <Notification text={errorMessage} isError />}
       </ContainerLayout>
     </div>
   );

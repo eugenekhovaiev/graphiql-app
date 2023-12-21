@@ -1,3 +1,4 @@
+'use client';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { AuthFormData } from '@/types';
 import { useRouter } from 'next/navigation';
@@ -40,10 +41,11 @@ function AuthForm({
       if (response === RESPONSE_STATUS.SUCCESS) {
         isSignUp && setSuccessMessage(NOTIFICATION.SIGNUP_SUCCESS);
         !isSignUp && setSuccessMessage(NOTIFICATION.LOGIN_SUCCESS);
+
         setTimeout(() => {
           setErrorMessage(null);
           router.push(LINKS.HOME);
-        }, 1500);
+        }, 2000);
       }
     } catch (e) {
       isSignUp &&
@@ -52,6 +54,7 @@ function AuthForm({
       !isSignUp &&
         e === ERROR_CODES.USER_DOESNT_EXIST &&
         setErrorMessage(NOTIFICATION.USER_DOESNT_EXIST);
+
       setTimeout(() => {
         setErrorMessage(null);
       }, 2000);
