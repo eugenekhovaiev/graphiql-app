@@ -59,7 +59,6 @@ function AuthForm({
         }, 1500);
       }
     } catch (e) {
-      console.log(e);
       isSignUp &&
         e === ERROR_CODES.USER_ALREADY_EXISTS &&
         setErrorMessage(NOTIFICATION.USER_ALREADY_EXISTS);
