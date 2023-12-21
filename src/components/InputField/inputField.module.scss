@@ -19,7 +19,7 @@
     border-radius: .5rem;
     @include transition;
 
-    &_focus {
+    &:focus-within{
       background-color: $secondary-color-s;
     }
 

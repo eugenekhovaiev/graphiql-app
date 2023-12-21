@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute, useState } from 'react';
+import { HTMLInputTypeAttribute } from 'react';
 import styles from './inputField.module.scss';
 import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 import Image from 'next/image';
@@ -22,26 +22,18 @@ function InputField<T extends FieldValues>({
   endDecorationUrl,
   handleDecorationClick,
 }: Props<T>): JSX.Element {
-  const [isFocus, setFocus] = useState(false);
-
   return (
     <div className={styles.inputField}>
       <label htmlFor={registeredName} className={styles.inputField__label}>
         {label}
       </label>
-      <div
-        className={styles.inputField__textFieldContainer.concat(
-          isFocus ? ` ${styles.inputField__textFieldContainer_focus}` : ''
-        )}
-      >
+      <div className={styles.inputField__textFieldContainer}>
         <input
           id={registeredName}
           className={styles.inputField__textField}
           type={type || 'text'}
           {...(register && register(registeredName))}
           placeholder={placeholder}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
         />
         {endDecorationUrl && (
           <Image
@@ -49,6 +41,7 @@ function InputField<T extends FieldValues>({
             src={endDecorationUrl}
             alt="decoration icon"
             onClick={handleDecorationClick}
+            tabIndex={0}
           />
         )}
       </div>
