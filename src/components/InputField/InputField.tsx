@@ -27,17 +27,17 @@ function InputField<T extends FieldValues>({
       <label htmlFor={registeredName} className={styles.inputField__label}>
         {label}
       </label>
-      <div className={styles.inputField__textFieldContainer}>
+      <div className={styles.inputField__container}>
         <input
           id={registeredName}
-          className={styles.inputField__textField}
+          className={styles.inputField__input}
           type={type || 'text'}
           {...(register && register(registeredName))}
           placeholder={placeholder}
         />
         {endIcon && (
           <Image
-            className={styles.inputField__textFieldIcon}
+            className={styles.inputField__icon}
             src={endIcon}
             alt="decoration icon"
             onClick={handleEndIconClick}
