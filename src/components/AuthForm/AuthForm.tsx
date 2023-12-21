@@ -36,16 +36,8 @@ function AuthForm({
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [isPasswordVisible, setPasswordVisibility] = useState(false);
-  const [isConfirmationPasswordVisible, setConfirmationPasswordVisibility] =
-    useState(false);
-
-  const handlePasswordVisibility = (): void => {
-    setPasswordVisibility(!isPasswordVisible);
-  };
-  const handleConfirmationPasswordVisibility = (): void => {
-    setConfirmationPasswordVisibility(!isConfirmationPasswordVisible);
-  };
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   const onSubmit: SubmitHandler<AuthFormData> = async (data: AuthFormData) => {
     try {
@@ -90,19 +82,21 @@ function AuthForm({
             registeredName="password"
             placeholder="Password"
             endDecorationUrl={isPasswordVisible ? viewIcon : viewHideIcon}
-            handleDecorationClick={handlePasswordVisibility}
+            handleDecorationClick={() => setPasswordVisible(!isPasswordVisible)}
           />
           {isSignUp && (
             <InputField
               label="Confirm Password"
-              type={isConfirmationPasswordVisible ? 'text' : 'password'}
+              type={isConfirmPasswordVisible ? 'text' : 'password'}
               register={register}
               registeredName="confirmPassword"
               placeholder="Password"
               endDecorationUrl={
-                isConfirmationPasswordVisible ? viewIcon : viewHideIcon
+                isConfirmPasswordVisible ? viewIcon : viewHideIcon
               }
-              handleDecorationClick={handleConfirmationPasswordVisibility}
+              handleDecorationClick={() =>
+                setConfirmPasswordVisible(!isPasswordVisible)
+              }
             />
           )}
           <Button title={title} isSubmit styleType="long" />
