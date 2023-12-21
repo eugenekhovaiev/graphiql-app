@@ -10,21 +10,44 @@
     margin-left: .1rem;
   }
 
-  &__textField {
+  &__textFieldContainer {
     width: 100%;
-    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border: 1px solid $secondary-color;
     border-radius: .5rem;
+    @include transition;
+
+    &_focus {
+      background-color: $secondary-color-s;
+    }
+
+    &_error {
+      border: 1px solid $error-color;
+    }
+  }
+
+  
+  &__textField {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    background-color: transparent;
+    border: 0;
 
     &:hover {
       cursor: pointer;
     }
     &:focus {
       outline: none;
-      background-color: $secondary-color-s;
     }
-    &_error {
-      border: 1px solid $error-color;
-    }
+  }
+
+  &__textFieldIcon {
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
   }
 }

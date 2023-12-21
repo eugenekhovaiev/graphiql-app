@@ -12,6 +12,8 @@ import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 import ERROR_CODES from '@/consts/AUTH_ERROR_CODES';
 import InputField from '../InputField/InputField';
+import viewHideIcon from '../../../public/view-hide.svg';
+import viewIcon from '../../../public/view.svg';
 
 interface Props {
   isSignUp?: boolean;
@@ -34,6 +36,16 @@ function AuthForm({
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [isPasswordVisible, setPasswordVisibility] = useState(false);
+  const [isConfirmationPasswordVisible, setConfirmationPasswordVisibility] =
+    useState(false);
+
+  const handlePasswordVisibility = (): void => {
+    setPasswordVisibility(!isPasswordVisible);
+  };
+  const handleConfirmationPasswordVisibility = (): void => {
+    setConfirmationPasswordVisibility(!isConfirmationPasswordVisible);
+  };
 
   const onSubmit: SubmitHandler<AuthFormData> = async (data: AuthFormData) => {
     try {
@@ -74,18 +86,24 @@ function AuthForm({
           />
           <InputField
             label="Password"
-            type="password"
+            type={isPasswordVisible ? 'text' : 'password'}
             register={register}
             registeredName="password"
             placeholder="Password"
+            endDecorationUrl={isPasswordVisible ? viewIcon : viewHideIcon}
+            handleDecorationClick={handlePasswordVisibility}
           />
           {isSignUp && (
             <InputField
               label="Confirm Password"
-              type="password"
+              type={isConfirmationPasswordVisible ? 'text' : 'password'}
               register={register}
               registeredName="confirmPassword"
               placeholder="Password"
+              endDecorationUrl={
+                isConfirmationPasswordVisible ? viewIcon : viewHideIcon
+              }
+              handleDecorationClick={handleConfirmationPasswordVisibility}
             />
           )}
           <Button title={title} isSubmit styleType="long" />
