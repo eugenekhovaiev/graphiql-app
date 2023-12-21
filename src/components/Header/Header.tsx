@@ -11,39 +11,33 @@ import { useRouter } from 'next/navigation';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 import { auth } from '@/api/firebaseConfig';
+import showNotification from '@/utils/showNotification';
 
 function Header(): JSX.Element {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
   const onLinkClick = (isSignUp: boolean = false): void => {
-    if (auth.currentUser) {
-      setErrorMessage(NOTIFICATION.USER_ALREADY_LOGGED_IN);
-      setTimeout(() => {
-        setErrorMessage(null);
-      }, 2000);
-    } else {
-      router.push(isSignUp ? LINKS.SIGNUP : LINKS.LOGIN);
-    }
+    auth.currentUser
+      ? showNotification(NOTIFICATION.USER_ALREADY_LOGGED_IN, setErrorMessage)
+      : router.push(isSignUp ? LINKS.SIGNUP : LINKS.LOGIN);
   };
 
   const onLogOutClick = async (): Promise<void> => {
     if (auth.currentUser) {
       try {
         const response = await signOutUser();
-        if (response === RESPONSE_STATUS.SUCCESS) {
-          setSuccessMessage(NOTIFICATION.LOGOUT_SUCCESS);
-          setTimeout(() => {
-            setSuccessMessage(null);
-            router.push(LINKS.HOME);
-          }, 2000);
-        }
+        response === RESPONSE_STATUS.SUCCESS &&
+          showNotification(
+            NOTIFICATION.LOGOUT_SUCCESS,
+            setSuccessMessage,
+            undefined,
+            router,
+            LINKS.HOME
+          );
       } catch (e) {}
     } else {
-      setErrorMessage(NOTIFICATION.USER_ARE_NOT_AUTHORIZED);
-      setTimeout(() => {
-        setErrorMessage(null);
-      }, 2000);
+      showNotification(NOTIFICATION.USER_ARE_NOT_AUTHORIZED, setErrorMessage);
     }
   };
 

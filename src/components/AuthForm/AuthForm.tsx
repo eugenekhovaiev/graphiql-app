@@ -12,6 +12,7 @@ import LINKS from '@/consts/LINKS';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 import ERROR_CODES from '@/consts/AUTH_ERROR_CODES';
+import showNotification from '@/utils/showNotification';
 
 interface Props {
   isSignUp?: boolean;
@@ -39,36 +40,43 @@ function AuthForm({
     try {
       const response = await onFormSubmit(data);
       if (response === RESPONSE_STATUS.SUCCESS) {
-        isSignUp && setSuccessMessage(NOTIFICATION.SIGNUP_SUCCESS);
-        !isSignUp && setSuccessMessage(NOTIFICATION.LOGIN_SUCCESS);
-
-        setTimeout(() => {
-          setErrorMessage(null);
-          router.push(LINKS.HOME);
-        }, 2000);
+        isSignUp &&
+          showNotification(
+            NOTIFICATION.SIGNUP_SUCCESS,
+            setSuccessMessage,
+            undefined,
+            router,
+            LINKS.HOME
+          );
+        !isSignUp &&
+          showNotification(
+            NOTIFICATION.LOGIN_SUCCESS,
+            setSuccessMessage,
+            undefined,
+            router,
+            LINKS.HOME
+          );
       }
     } catch (e) {
-      if (isSignUp && e === ERROR_CODES.USER_ALREADY_EXISTS) {
-        setNotificationLink(true);
-        setErrorMessage(NOTIFICATION.USER_ALREADY_EXISTS);
-        setTimeout(() => {
-          setNotificationLink(false);
-        }, 2000);
-      }
-      if (!isSignUp && e === ERROR_CODES.USER_DOESNT_EXIST) {
-        setNotificationLink(true);
-        setErrorMessage(NOTIFICATION.USER_DOESNT_EXIST);
-        setTimeout(() => {
-          setNotificationLink(false);
-        }, 2000);
-      }
-      if (!isSignUp && e === ERROR_CODES.WRONG_PASSWORD) {
-        setErrorMessage(NOTIFICATION.WRONG_PASSWORD);
-      }
+      isSignUp &&
+        e === ERROR_CODES.USER_ALREADY_EXISTS &&
+        showNotification(
+          NOTIFICATION.USER_ALREADY_EXISTS,
+          setErrorMessage,
+          setNotificationLink
+        );
 
-      setTimeout(() => {
-        setErrorMessage(null);
-      }, 2000);
+      !isSignUp &&
+        e === ERROR_CODES.USER_DOESNT_EXIST &&
+        showNotification(
+          NOTIFICATION.USER_DOESNT_EXIST,
+          setErrorMessage,
+          setNotificationLink
+        );
+
+      !isSignUp &&
+        e === ERROR_CODES.WRONG_PASSWORD &&
+        showNotification(NOTIFICATION.WRONG_PASSWORD, setErrorMessage);
     }
   };
 
