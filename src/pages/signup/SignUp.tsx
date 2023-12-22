@@ -1,42 +1,23 @@
-import { FormEvent, useRef } from 'react';
-import {
-  useCreateUserWithEmailAndPassword,
-  useSignInWithEmailAndPassword,
-} from 'react-firebase-hooks/auth';
-import { auth } from '@/api/firebaseConfig';
-import { useRouter } from 'next/navigation';
+import AuthForm from '@/components/AuthForm';
+import FORM from '@/consts/FORM';
+import LINKS from '@/consts/LINKS';
+import createUser from '@/api/createUser';
+import ContainerLayout from '@/components/ContainerLayout';
 
 function SignUp(): JSX.Element {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [createUser] = useCreateUserWithEmailAndPassword(auth);
-  const [loginUser] = useSignInWithEmailAndPassword(auth);
-  const router = useRouter();
-  const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    event.preventDefault();
-    if (formRef.current) {
-      const formData = new FormData(formRef.current);
-      const email = formData.get('email') as string;
-      const password = formData.get('password') as string;
-      try {
-        const userData = await createUser(email, password);
-        // todo: check if ok
-        loginUser(email, password);
-        console.log({ userData });
-        router.push('/');
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit} ref={formRef}>
-      <input type="email" name="email" />
-      <input type="password" name="password" />
-      <button type="submit">Sign Up</button>
-    </form>
+    <main>
+      <ContainerLayout>
+        <AuthForm
+          isSignUp
+          onFormSubmit={createUser}
+          title={FORM.SIGNUP_TITLE}
+          subtitle={FORM.SIGNUP_SUBTITLE}
+          linkTitle={FORM.LOGIN_TITLE}
+          linkHref={LINKS.LOGIN}
+        />
+      </ContainerLayout>
+    </main>
   );
 }
 

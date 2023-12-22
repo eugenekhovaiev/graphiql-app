@@ -1,40 +1,22 @@
-import { FormEvent, useRef } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { useRouter } from 'next/navigation';
-import { auth } from '@/api/firebaseConfig';
-import { browserLocalPersistence, setPersistence } from 'firebase/auth';
+import AuthForm from '@/components/AuthForm';
+import FORM from '@/consts/FORM';
+import LINKS from '@/consts/LINKS';
+import loginUser from '@/api/loginUser';
+import ContainerLayout from '@/components/ContainerLayout';
 
 function LogIn(): JSX.Element {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [loginUser] = useSignInWithEmailAndPassword(auth);
-  const router = useRouter();
-
-  const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    event.preventDefault();
-    if (formRef.current) {
-      const formData = new FormData(formRef.current);
-      const email = formData.get('email') as string;
-      const password = formData.get('password') as string;
-
-      try {
-        setPersistence(auth, browserLocalPersistence).then(() => {
-          loginUser(email, password);
-        });
-        router.push('/');
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit} ref={formRef}>
-      <input type="email" name="email" />
-      <input type="password" name="password" />
-      <button type="submit">Log In</button>
-    </form>
+    <main>
+      <ContainerLayout>
+        <AuthForm
+          onFormSubmit={loginUser}
+          title={FORM.LOGIN_TITLE}
+          subtitle={FORM.LOGIN_SUBTITLE}
+          linkTitle={FORM.SIGNUP_TITLE}
+          linkHref={LINKS.SIGNUP}
+        />
+      </ContainerLayout>
+    </main>
   );
 }
 

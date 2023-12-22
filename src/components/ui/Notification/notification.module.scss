@@ -1,0 +1,51 @@
+@import "@/sass/abstracts/variables.module";
+@import "@/sass/abstracts/mixins.module";
+
+.notification {
+  position: absolute;
+  top: 2.5rem;
+  right: .5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 42rem;
+  padding: 1rem;
+  background-color: $success-color-light;
+  border: 1px solid $success-color;
+  border-radius: 1rem;
+
+  @include media-s {
+    top: 4.5rem;
+    width: 25rem;
+    font-size: 1.6rem;
+  }
+
+  &_error {
+    background-color: $error-color-light;
+    border: 1px solid $error-color;
+  }
+
+  &__icon {
+    width: 3rem;
+    height: auto;
+  }
+
+  &__text {
+    font-size: 1.8rem;
+    font-weight: 300;
+
+    @include media-s {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .3rem;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
