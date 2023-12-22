@@ -1,6 +1,6 @@
-# Editor App
+# GraphiQL App
 
-Welcome to the Editor App project developed by the team from [Rolling Scopes School](https://rs.school/). This app is
+Welcome to the GraphiQL App project developed by the team from [Rolling Scopes School](https://rs.school/). This app is
 a GraphQL playground/IDE with additional features such as authentication, authorization, and the ability to work with
 any user-specified open GraphQL endpoint.
 
