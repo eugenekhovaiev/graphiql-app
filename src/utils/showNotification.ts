@@ -3,7 +3,7 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 function showNotification(
   message: string | null,
   setMessage: (message: string | null) => void,
-  setLink?: (isLink: boolean) => void,
+  setLink?: (hasLink: boolean) => void,
   router?: AppRouterInstance,
   link?: string
 ): void {

@@ -5,14 +5,14 @@ interface Props {
   title: string;
   styleType?: 'secondary' | 'long';
   callback?: () => void;
-  isSubmit?: boolean;
+  type: 'button' | 'submit' | 'reset';
 }
 
 function Button({
   styleType,
   title,
   callback,
-  isSubmit = false,
+  type = 'button',
 }: Props): JSX.Element {
   return (
     <button
@@ -21,7 +21,7 @@ function Button({
       ${styleType === 'secondary' && styles.button_secondary}
       ${styleType === 'long' && styles.button_long}
       `}
-      type={isSubmit ? 'submit' : undefined}
+      type={type}
       onClick={callback}
     >
       {title}

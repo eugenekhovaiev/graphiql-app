@@ -118,7 +118,7 @@ function AuthForm({
             }
           />
         )}
-        <Button title={title} isSubmit styleType="long" />
+        <Button title={title} type="submit" styleType="long" />
       </form>
       <div className={styles.form__subtitle}>
         {subtitle}
@@ -129,7 +129,7 @@ function AuthForm({
         <Notification
           text={errorMessage}
           isError
-          isLink={isNotificationLink}
+          hasLink={isNotificationLink}
           linkHref={linkHref && linkHref}
           linkTitle={linkTitle && linkTitle}
         />
