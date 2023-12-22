@@ -59,7 +59,7 @@ function AuthForm({
             setSuccessMessage,
             undefined,
             router,
-            LINKS.HOME
+            LINKS.EDITOR
           );
         !isSignUp &&
           showNotification(
@@ -67,7 +67,7 @@ function AuthForm({
             setSuccessMessage,
             undefined,
             router,
-            LINKS.HOME
+            LINKS.EDITOR
           );
       }
     } catch (e) {
@@ -103,7 +103,7 @@ function AuthForm({
           register={register}
           registeredName="email"
           placeholder="Email"
-          hasError={errors.email ? true : false}
+          hasError={!!errors.email}
           helperText={errors.email?.message}
         />
         <InputField
@@ -114,7 +114,7 @@ function AuthForm({
           placeholder="Password"
           endIcon={isPasswordVisible ? viewIcon : viewHideIcon}
           handleEndIconClick={() => setPasswordVisible(!isPasswordVisible)}
-          hasError={errors.password ? true : false}
+          hasError={!!errors.password}
           helperText={errors.password?.message}
         />
         {isSignUp && (
@@ -128,7 +128,7 @@ function AuthForm({
             handleEndIconClick={() =>
               setConfirmPasswordVisible(!isConfirmPasswordVisible)
             }
-            hasError={errors.confirmPassword ? true : false}
+            hasError={!!errors.confirmPassword}
             helperText={errors.confirmPassword?.message}
           />
         )}
