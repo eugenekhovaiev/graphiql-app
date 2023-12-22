@@ -1,3 +1,4 @@
+'use client';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { AuthFormData } from '@/types';
 import { useRouter } from 'next/navigation';
@@ -9,6 +10,7 @@ import LINKS from '@/consts/LINKS';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 import ERROR_CODES from '@/consts/AUTH_ERROR_CODES';
+import showNotification from '@/utils/showNotification';
 import InputField from '../InputField/InputField';
 import viewHideIcon from '../../../public/view-hide.svg';
 import viewIcon from '../../../public/view.svg';
@@ -37,28 +39,49 @@ function AuthForm({
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [isNotificationLink, setNotificationLink] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<AuthFormData> = async (data: AuthFormData) => {
     try {
       const response = await onFormSubmit(data);
       if (response === RESPONSE_STATUS.SUCCESS) {
-        isSignUp && setSuccessMessage(NOTIFICATION.SIGNUP_SUCCESS);
-        !isSignUp && setSuccessMessage(NOTIFICATION.LOGIN_SUCCESS);
-        setTimeout(() => {
-          setErrorMessage(null);
-          router.push(LINKS.HOME);
-        }, 1500);
+        isSignUp &&
+          showNotification(
+            NOTIFICATION.SIGNUP_SUCCESS,
+            setSuccessMessage,
+            undefined,
+            router,
+            LINKS.HOME
+          );
+        !isSignUp &&
+          showNotification(
+            NOTIFICATION.LOGIN_SUCCESS,
+            setSuccessMessage,
+            undefined,
+            router,
+            LINKS.HOME
+          );
       }
     } catch (e) {
       isSignUp &&
         e === ERROR_CODES.USER_ALREADY_EXISTS &&
-        setErrorMessage(NOTIFICATION.USER_ALREADY_EXISTS);
+        showNotification(
+          NOTIFICATION.USER_ALREADY_EXISTS,
+          setErrorMessage,
+          setNotificationLink
+        );
+
       !isSignUp &&
         e === ERROR_CODES.USER_DOESNT_EXIST &&
-        setErrorMessage(NOTIFICATION.USER_DOESNT_EXIST);
-      setTimeout(() => {
-        setErrorMessage(null);
-      }, 2000);
+        showNotification(
+          NOTIFICATION.USER_DOESNT_EXIST,
+          setErrorMessage,
+          setNotificationLink
+        );
+
+      !isSignUp &&
+        e === ERROR_CODES.WRONG_PASSWORD &&
+        showNotification(NOTIFICATION.WRONG_PASSWORD, setErrorMessage);
     }
   };
 
@@ -106,8 +129,9 @@ function AuthForm({
         <Notification
           text={errorMessage}
           isError
-          linkHref={linkHref}
-          linkTitle={linkTitle}
+          isLink={isNotificationLink}
+          linkHref={linkHref && linkHref}
+          linkTitle={linkTitle && linkTitle}
         />
       )}
     </div>

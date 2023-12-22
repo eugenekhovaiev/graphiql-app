@@ -1,16 +1,17 @@
 import { signOut } from 'firebase/auth';
 import { auth } from '@/api/firebaseConfig';
-import NOTIFICATION from '@/consts/NOTIFICATION';
+import STATUS_CODES from '@/consts/STATUS_CODES';
 
-function signOutUser(
-  setSuccessMessage: (successMessage: string | null) => void
-): void {
-  try {
-    signOut(auth);
-    setSuccessMessage(NOTIFICATION.LOGOUT_SUCCESS);
-  } catch (e) {
-    console.error(e);
-  }
+function signOutUser(): Promise<string> {
+  return new Promise((resolve, reject) => {
+    signOut(auth)
+      .then(() => {
+        resolve(STATUS_CODES.SUCCESS);
+      })
+      .catch(() => {
+        reject(STATUS_CODES.FAIL);
+      });
+  });
 }
 
 export default signOutUser;

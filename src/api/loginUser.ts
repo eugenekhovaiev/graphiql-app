@@ -20,8 +20,7 @@ function loginUser(data: AuthFormData): Promise<string> {
             reject(e.code);
           });
       })
-      .catch((e) => {
-        console.error(e);
+      .catch(() => {
         reject(RESPONSE_STATUS.FAIL);
       });
   });

@@ -14,9 +14,6 @@ function createUser(data: AuthFormData): Promise<string> {
       })
       .catch((error: FirebaseError) => {
         reject(error.code);
-      })
-      .catch((error: FirebaseError) => {
-        reject(error.code);
       });
   });
 }
