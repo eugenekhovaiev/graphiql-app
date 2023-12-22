@@ -20,11 +20,13 @@ const schema = yup.object().shape({
       'Password must include at least one special character'
     ),
 
-  confirmPassword: yup
-    .string()
-    .test('match', 'Passwords must match', function (value) {
-      return this.parent.password === value;
-    }),
+  confirmPassword: yup.string().when({
+    is: (exists: string | undefined) => !!exists,
+    then: (rule) =>
+      rule.test('match', 'Passwords must match', function (value) {
+        return this.parent.password === value;
+      }),
+  }),
 });
 
 export default schema;
