@@ -102,6 +102,7 @@ function AuthForm({
           type="email"
           register={register}
           registeredName="email"
+          autoComplete="email"
           placeholder="Email"
           hasError={!!errors.email}
           helperText={errors.email?.message}
@@ -111,6 +112,7 @@ function AuthForm({
           type={isPasswordVisible ? 'text' : 'password'}
           register={register}
           registeredName="password"
+          autoComplete={isSignUp ? 'new-password' : 'current-password'}
           placeholder="Password"
           endIcon={isPasswordVisible ? viewIcon : viewHideIcon}
           handleEndIconClick={() => setPasswordVisible(!isPasswordVisible)}
@@ -123,6 +125,7 @@ function AuthForm({
             type={isConfirmPasswordVisible ? 'text' : 'password'}
             register={register}
             registeredName="confirmPassword"
+            autoComplete="new-password"
             placeholder="Password"
             endIcon={isConfirmPasswordVisible ? viewIcon : viewHideIcon}
             handleEndIconClick={() =>

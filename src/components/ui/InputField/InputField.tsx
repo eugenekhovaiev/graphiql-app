@@ -7,6 +7,7 @@ interface Props<T extends FieldValues> {
   label: string;
   placeholder: string;
   registeredName: Path<T>;
+  autoComplete: 'on' | 'off' | 'email' | 'new-password' | 'current-password';
   type?: HTMLInputTypeAttribute;
   register?: UseFormRegister<T>;
   endIcon?: string;
@@ -21,6 +22,7 @@ function InputField<T extends FieldValues>({
   placeholder,
   register,
   registeredName,
+  autoComplete,
   endIcon,
   handleEndIconClick,
   hasError,
@@ -42,6 +44,7 @@ function InputField<T extends FieldValues>({
           type={type || 'text'}
           {...(register && register(registeredName))}
           placeholder={placeholder}
+          autoComplete={autoComplete}
         />
         {endIcon && (
           <Image
