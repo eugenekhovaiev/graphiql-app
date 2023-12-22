@@ -1,20 +1,20 @@
 'use client';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { AuthFormData } from '@/types';
 import { useRouter } from 'next/navigation';
+import { AuthFormData } from '@/types';
 import styles from './authForm.module.scss';
 import Button from '@/components/ui/Button';
-import Notification from '@/components/ui/Notification/Notification';
-import { useState } from 'react';
+import Notification from '@/components/ui/Notification';
+import InputField from '@/components/ui/InputField';
+import LinkElement from '@/components/ui/LinkElement';
 import LINKS from '@/consts/LINKS';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 import ERROR_CODES from '@/consts/AUTH_ERROR_CODES';
 import showNotification from '@/utils/showNotification';
-import InputField from '../InputField/InputField';
 import viewHideIcon from '../../../public/view-hide.svg';
 import viewIcon from '../../../public/view.svg';
-import LinkElement from '../ui/LinkElement';
 
 interface Props {
   isSignUp?: boolean;
