@@ -6,7 +6,12 @@ describe('Button component', () => {
   it('renders the Button with necessary props', () => {
     const mockCallBack = vi.fn();
     render(
-      <Button title="Click me" callback={mockCallBack} styleType="secondary" />
+      <Button
+        title="Click me"
+        callback={mockCallBack}
+        styleType="secondary"
+        type={'button'}
+      />
     );
     const buttonElement = screen.getByRole('button', { name: 'Click me' });
     expect(buttonElement).toBeInTheDocument();
@@ -14,7 +19,7 @@ describe('Button component', () => {
 
   it('calls the callback function', async () => {
     const mockCallBack = vi.fn();
-    render(<Button title="Click me" callback={mockCallBack} />);
+    render(<Button title="Click me" callback={mockCallBack} type="button" />);
     const buttonElement = screen.getByRole('button', { name: 'Click me' });
     await userEvent.click(buttonElement);
     expect(mockCallBack).toHaveBeenCalled();
