@@ -1,4 +1,4 @@
-import AuthForm from '@/components/AuthForm/AuthForm';
+import AuthForm from '@/components/AuthForm';
 import FORM from '@/consts/FORM';
 import LINKS from '@/consts/LINKS';
 import createUser from '@/api/createUser';

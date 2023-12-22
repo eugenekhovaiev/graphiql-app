@@ -11,6 +11,8 @@ interface Props<T extends FieldValues> {
   register?: UseFormRegister<T>;
   endIcon?: string;
   handleEndIconClick?: () => void;
+  hasError?: boolean;
+  helperText?: string;
 }
 
 function InputField<T extends FieldValues>({
@@ -21,13 +23,19 @@ function InputField<T extends FieldValues>({
   registeredName,
   endIcon,
   handleEndIconClick,
+  hasError,
+  helperText,
 }: Props<T>): JSX.Element {
   return (
     <div className={styles.inputField}>
       <label htmlFor={registeredName} className={styles.inputField__label}>
         {label}
       </label>
-      <div className={styles.inputField__container}>
+      <div
+        className={`${styles.inputField__container} ${
+          hasError && styles.inputField__container_error
+        }`}
+      >
         <input
           id={registeredName}
           className={styles.inputField__input}
@@ -45,6 +53,9 @@ function InputField<T extends FieldValues>({
           />
         )}
       </div>
+      {hasError && (
+        <p className={styles.inputField__helperText}>{helperText}</p>
+      )}
     </div>
   );
 }

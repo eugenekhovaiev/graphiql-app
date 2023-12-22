@@ -55,4 +55,10 @@
     height: 3rem;
     margin: 0 1rem;
   }
+
+  &__helperText {
+    font-size: 1.6rem;
+    color: $error-color;
+    text-align: justify;
+  }
 }
