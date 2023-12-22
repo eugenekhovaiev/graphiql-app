@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { AuthFormData } from '@/types';
 import styles from './authForm.module.scss';
 import Button from '@/components/ui/Button';
@@ -13,6 +14,7 @@ import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 import ERROR_CODES from '@/consts/AUTH_ERROR_CODES';
 import showNotification from '@/utils/showNotification';
+import schema from '@/utils/authFormValidationSchema';
 import viewHideIcon from '../../../public/view-hide.svg';
 import viewIcon from '../../../public/view.svg';
 
@@ -33,7 +35,13 @@ function AuthForm({
   linkTitle,
   linkHref,
 }: Props): JSX.Element {
-  const { register, handleSubmit } = useForm<AuthFormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AuthFormData>({
+    resolver: yupResolver(schema),
+  });
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -95,6 +103,8 @@ function AuthForm({
           register={register}
           registeredName="email"
           placeholder="Email"
+          hasError={errors.email ? true : false}
+          helperText={errors.email?.message}
         />
         <InputField
           label="Password"
@@ -104,6 +114,8 @@ function AuthForm({
           placeholder="Password"
           endIcon={isPasswordVisible ? viewIcon : viewHideIcon}
           handleEndIconClick={() => setPasswordVisible(!isPasswordVisible)}
+          hasError={errors.password ? true : false}
+          helperText={errors.password?.message}
         />
         {isSignUp && (
           <InputField
@@ -116,6 +128,8 @@ function AuthForm({
             handleEndIconClick={() =>
               setConfirmPasswordVisible(!isConfirmPasswordVisible)
             }
+            hasError={errors.confirmPassword ? true : false}
+            helperText={errors.confirmPassword?.message}
           />
         )}
         <Button title={title} isSubmit styleType="long" />
