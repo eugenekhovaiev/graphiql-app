@@ -9,7 +9,7 @@ function AboutCourse(): JSX.Element {
     <section className={styles.aboutCourse}>
       <ContainerLayout>
         <div className={styles.aboutCourse__wrapper}>
-          <h1 className={styles.aboutCourse__title}>React Course</h1>
+          <h2 className={styles.aboutCourse__title}>React Course</h2>
           <p className={styles.aboutCourse__description}>
             <span className={styles.textHighlight}>RS School</span>, established
             by The Rolling Scopes developer community in 2013, is a
