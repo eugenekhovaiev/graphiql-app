@@ -20,7 +20,7 @@ function Footer(): JSX.Element {
               src={rssLogo}
               className={styles.footer__rssLogo}
               alt="Rolling Scopes School logo"
-              priority
+              priority={false}
             />
           </Link>
           <div
