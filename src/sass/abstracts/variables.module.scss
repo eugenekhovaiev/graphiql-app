@@ -8,6 +8,7 @@ $primary-color-xxs: #ffffff;
 $secondary-color: #824271;
 $secondary-color-s: #e1c2eb;
 $secondary-color-xs: #f0ecf0;
+$secondary-color-xxs: #f1f2f4;
 
 $error-color: #cc0000;
 $error-color-light: #ffcccc;
@@ -18,14 +19,3 @@ $screen-width-s: 576px;
 $screen-width-m: 768px;
 $screen-width-l: 992px;
 $screen-width-xl: 1200px;
-
-:export {
-  textColor: $text-color;
-  primaryColor: $primary-color;
-  primaryColorS: $primary-color-s;
-  primaryColorXS: $primary-color-xs;
-  primaryColorXXS: $primary-color-xxs;
-  secondaryColor: $secondary-color;
-  secondaryColorS: $secondary-color-s;
-  secondaryColorXS: $secondary-color-xs;
-}

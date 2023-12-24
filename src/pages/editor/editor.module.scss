@@ -1,4 +1,44 @@
 @import "@/sass/abstracts/variables.module";
 
 .editor {
+  display: flex;
+  font-size: 1.5rem;
+  // todo: этот цвет очень похож на primary-color-s, но он немного темнее и смотрится лучше в тексте, нужно добавить в variables
+  color: #6a758d;
+
+  &__mainBlockWrapper {
+    display: flex;
+    width: 100%;
+    margin: 1rem 1rem 1rem 0;
+    background-color: $secondary-color-xxs;
+    border-radius: 1.2rem;
+  }
+
+  &__leftBlockWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: $primary-color-xxs;
+    border-radius: 1.2rem;
+    margin: .8rem;
+  }
+
+  &__bottomBlockWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .8rem;
+    border-top: 1px solid $secondary-color-xxs;
+    border-radius: 0 0 1.2rem 1.2rem;
+  }
+
+  &__bottomBlockLinksWrapper {
+    display: flex;
+    gap: .8rem;
+  }
+
+  &__arrow {
+    width: 1.5rem;
+    height: auto;
+  }
 }

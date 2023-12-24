@@ -1,25 +1,3 @@
-:export {
-  textColor: #26192b;
-  primaryColor: #554689;
-  primaryColorS: #7a8c9a;
-  primaryColorXS: #bac7fb;
-  primaryColorXXS: #ffffff;
-  secondaryColor: #824271;
-  secondaryColorS: #e1c2eb;
-  secondaryColorXS: #f0ecf0;
-}
-
-:export {
-  textColor: #26192b;
-  primaryColor: #554689;
-  primaryColorS: #7a8c9a;
-  primaryColorXS: #bac7fb;
-  primaryColorXXS: #ffffff;
-  secondaryColor: #824271;
-  secondaryColorS: #e1c2eb;
-  secondaryColorXS: #f0ecf0;
-}
-
 .notFound {
   display: flex;
   flex-direction: column;
