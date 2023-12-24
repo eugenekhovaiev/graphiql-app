@@ -12,9 +12,11 @@
   border: 1px solid $primary-color;
   border-radius: 1rem;
   @include transition;
+
   @include media-l {
     font-size: 1.6rem;
   }
+
   @include media-s {
     font-size: 1.4rem;
   }

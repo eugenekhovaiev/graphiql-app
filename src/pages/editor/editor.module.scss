@@ -2,6 +2,7 @@
 
 .editor {
   display: flex;
+  flex: 1;
   font-size: 1.5rem;
   // todo: этот цвет очень похож на primary-color-s, но он немного темнее и смотрится лучше в тексте, нужно добавить в variables
   color: #6a758d;

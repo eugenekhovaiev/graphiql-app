@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import Button from '@/components/ui/Button';
 
-describe('Button component', () => {
-  it('renders the Button with necessary props', () => {
+describe('Divider component', () => {
+  it('renders the Divider with necessary props', () => {
     const mockCallBack = vi.fn();
     render(
       <Button

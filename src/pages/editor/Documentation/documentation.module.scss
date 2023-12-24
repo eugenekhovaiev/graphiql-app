@@ -1,6 +1,50 @@
+@import "@/sass/abstracts/variables.module";
+@import "@/sass/abstracts/mixins.module";
+
 .documentation {
+  display: flex;
+  flex: 1;
+  gap: .8rem;
   width: 6rem;
-  height: 100%;
-  writing-mode: vertical-lr;
-  text-orientation: upright;
+  padding: .8rem;
+  @include transition;
+  // todo: подумать, как сделать транзишн при закрытии инфо
+
+  &_withInfo {
+    width: 36rem;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.4rem;
+    height: 4.4rem;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: .4rem;
+    @include transition;
+
+    &_active {
+      background-color: transparent;
+      border: 2px solid $secondary-color-xs;
+    }
+
+    &:hover {
+      background-color: $secondary-color-xxs;
+      cursor: pointer;
+    }
+  }
+
+  &__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-image: url("../../../../public/book-icon.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &_active {
+      background-image: url("../../../../public/book-icon-dark.svg");
+    }
+  }
 }
