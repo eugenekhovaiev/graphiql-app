@@ -1,15 +1,15 @@
 import styles from './editor.module.scss';
-import ResponseViewer from 'src/pages/editor/ResponseViewer';
-import QueryEditor from '@/pages/editor/QueryEditor';
-import VariablesEditor from 'src/pages/editor/VariablesEditor';
-import HeadersEditor from '@/pages/editor/HeadersEditor';
-import Documentation from '@/pages/editor/Documentation';
+import ResponseViewer from 'src/components/editorPageComponents/ResponseViewer';
+import QueryEditor from 'src/components/editorPageComponents/QueryEditor';
+import VariablesEditor from 'src/components/editorPageComponents/VariablesEditor';
+import HeadersEditor from 'src/components/editorPageComponents/HeadersEditor';
+import Documentation from 'src/components/editorPageComponents/Documentation';
 import arrowUp from '../../../public/arrow-up.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import LINKS from '@/consts/LINKS';
 import { auth } from '@/api/firebaseConfig';
-import EndpointInput from '@/pages/editor/EndpointInput';
+import EndpointInput from 'src/components/editorPageComponents/EndpointInput';
 
 function Editor(): JSX.Element {
   const router = useRouter();

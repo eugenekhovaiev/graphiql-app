@@ -1,5 +1,5 @@
-@import '@/sass/abstracts/variables.module.scss';
-@import '@/sass/abstracts/mixins.module.scss';
+@import '@/sass/abstracts/variables.module';
+@import '@/sass/abstracts/mixins.module';
 
 .card {
   width: 30%;
@@ -16,7 +16,7 @@
   &__image {
     width: 25rem;
     height: 25rem;
-    
+
     border-radius: 0.8rem;
     border: 0.1rem solid $primary-color;
   }
@@ -60,9 +60,9 @@
     }
 
     &::-webkit-scrollbar-track {
-      background: transparent; 
+      background: transparent;
     }
-    
+
     &::-webkit-scrollbar-thumb {
       background: transparent;
     }

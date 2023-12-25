@@ -1,6 +1,6 @@
 import styles from './documentation.module.scss';
 import { useState } from 'react';
-import DocumentationInfo from '@/pages/editor/Documentation/DocumentationInfo';
+import DocumentationInfo from '@/components/editorPageComponents/Documentation/DocumentationInfo';
 import Divider from '@/components/ui/Divider';
 
 function Documentation(): JSX.Element {
