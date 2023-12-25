@@ -23,12 +23,8 @@ function Documentation(): JSX.Element {
           }`}
         />
       </button>
-      {isSideMenuOpen && (
-        <>
-          <Divider />
-          <DocumentationInfo />
-        </>
-      )}
+      {isSideMenuOpen && <Divider />}
+      <DocumentationInfo isOpen={isSideMenuOpen} />
     </aside>
   );
 }

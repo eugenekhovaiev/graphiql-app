@@ -4,14 +4,14 @@
 .documentation {
   display: flex;
   flex: 1;
-  gap: .8rem;
+  gap: 0;
   width: 6rem;
   padding: .8rem;
   @include transition;
-  // todo: подумать, как сделать транзишн при закрытии инфо
 
   &_withInfo {
     width: 36rem;
+    gap: .8rem;
   }
 
   &__button {

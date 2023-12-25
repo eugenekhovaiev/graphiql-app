@@ -4,12 +4,17 @@
 .documentationInfo {
   display: flex;
   flex-direction: column;
-
-  width: 30rem;
+  width: 0;
   height: 100%;
-  padding: 1.6rem;
-
+  padding: 0;
+  overflow: hidden;
   background-color: $primary-color-xxs;
+  @include transition;
+
+  &_open {
+    width: 30rem;
+    padding: 1.6rem;
+  }
 
   &__title {
 
