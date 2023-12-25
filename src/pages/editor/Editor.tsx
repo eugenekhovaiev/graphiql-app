@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import LINKS from '@/consts/LINKS';
 import { auth } from '@/api/firebaseConfig';
+import EndpointInput from '@/pages/editor/EndpointInput';
 
 function Editor(): JSX.Element {
   const router = useRouter();
@@ -20,22 +21,25 @@ function Editor(): JSX.Element {
   return (
     <main className={styles.editor}>
       <Documentation />
-      <div className={styles.editor__mainBlockWrapper}>
-        <div className={styles.editor__leftBlockWrapper}>
-          <QueryEditor />
-          <div className={styles.editor__bottomBlockWrapper}>
-            <div className={styles.editor__bottomBlockLinksWrapper}>
-              <VariablesEditor />
-              <HeadersEditor />
+      <div className={styles.editor__mainBlockWithInput}>
+        <EndpointInput />
+        <div className={styles.editor__mainBlockWrapper}>
+          <div className={styles.editor__leftBlockWrapper}>
+            <QueryEditor />
+            <div className={styles.editor__bottomBlockWrapper}>
+              <div className={styles.editor__bottomBlockLinksWrapper}>
+                <VariablesEditor />
+                <HeadersEditor />
+              </div>
+              <Image
+                className={styles.editor__arrow}
+                src={arrowUp}
+                alt="expand arrow"
+              />
             </div>
-            <Image
-              className={styles.editor__arrow}
-              src={arrowUp}
-              alt="expand arrow"
-            />
           </div>
+          <ResponseViewer />
         </div>
-        <ResponseViewer />
       </div>
     </main>
   );
