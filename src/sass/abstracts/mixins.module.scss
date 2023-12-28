@@ -1,0 +1,31 @@
+@import './variables.module';
+
+@mixin media-xl {
+  @media screen and (max-width: $screen-width-xl) {
+    @content;
+  }
+}
+
+@mixin media-l {
+  @media screen and (max-width: $screen-width-l) {
+    @content;
+  }
+}
+
+@mixin media-m {
+  @media screen and (max-width: $screen-width-m) {
+    @content;
+  }
+}
+
+@mixin media-s {
+  @media screen and (max-width: $screen-width-s) {
+    @content;
+  }
+}
+
+@mixin transition {
+  transition: color, background-color, border;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in;
+}

@@ -1,0 +1,64 @@
+@import "@/sass/abstracts/variables.module";
+@import "@/sass/abstracts/mixins.module";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 40rem;
+  padding: 2rem;
+  border: 1px solid $primary-color-s;
+  border-radius: 1rem;
+
+  @include media-s {
+    width: 100%;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 7rem 0;
+    font-weight: 300;
+
+    @include media-s {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 300;
+    text-align: center;
+    @include media-s {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__subtitle {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 300;
+    text-align: center;
+
+    @include media-s {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__validationError {
+    font-size: 1.6rem;
+    font-weight: 200;
+    color: $error-color;
+  }
+
+  ::placeholder {
+    font-size: 1.8rem;
+    font-weight: 200;
+    color: $secondary-color-s;
+  }
+}

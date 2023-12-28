@@ -1,20 +1,23 @@
+@import "../../sass/abstracts/variables.module";
+
 .container {
   margin: 0 auto;
   max-width: 1140px;
+  height: 100%;
 
-  @media screen and (max-width: 1199px) {
+  @media screen and (max-width: $screen-width-xl) {
     max-width: 960px;
   }
 
-  @media screen and (max-width: 991px) {
+  @media screen and (max-width: $screen-width-l) {
     max-width: 720px;
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: $screen-width-m) {
     max-width: 540px;
   }
 
-  @media screen and (max-width: 575px) {
-    width: auto;
+  @media screen and (max-width: $screen-width-s) {
+    width: 90%;
   }
 }

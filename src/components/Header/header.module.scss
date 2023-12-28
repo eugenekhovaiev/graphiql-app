@@ -1,7 +1,7 @@
 @import '@/sass/abstracts/variables.module.scss';
 // TODO переделать на БЄМ
 .header {
-  padding-top: 2rem;
+// <<<<<<< HEAD
   padding: 2rem 2rem 0 2rem;
   height: 6.75rem;
   position: sticky;
@@ -273,5 +273,14 @@
         right: 0;
       }
     }
+// =======
+//   background-color: $primary-color-s;
+
+//   &__wrapper {
+//     display: flex;
+//     justify-content: center;
+//     gap: 3rem;
+//     color: $primary-color-xxs;
+// >>>>>>> sprint-3
   }
 }
