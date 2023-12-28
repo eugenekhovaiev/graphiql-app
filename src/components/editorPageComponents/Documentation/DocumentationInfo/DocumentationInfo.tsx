@@ -4,7 +4,7 @@ interface Props {
   isOpen: boolean;
 }
 
-function DocumentationInfo({ isOpen }: Props): JSX.Element {
+function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
   return (
     <div
       className={`${styles.documentationInfo} ${
