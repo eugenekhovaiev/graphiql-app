@@ -1,16 +1,16 @@
-@import "@/sass/abstracts/variables.module";
-@import "@/sass/abstracts/mixins.module";
+@import '@/sass/abstracts/variables.module';
+@import '@/sass/abstracts/mixins.module';
 
 .documentation {
   display: flex;
   gap: 0;
   width: 6rem;
-  padding: .4rem .8rem;
+  padding: 0.4rem 0.8rem;
   @include transition;
 
   &_withInfo {
     width: 36rem;
-    gap: .8rem;
+    gap: 0.8rem;
   }
 
   &__button {
@@ -21,7 +21,7 @@
     height: 4.4rem;
     background-color: transparent;
     border: 1px solid transparent;
-    border-radius: .4rem;
+    border-radius: 0.4rem;
     @include transition;
 
     &_active {
@@ -38,12 +38,12 @@
   &__icon {
     width: 2.5rem;
     height: 2.5rem;
-    background-image: url("../../../../public/book-icon.svg");
+    background-image: url('../../../../public/book-icon.svg');
     background-repeat: no-repeat;
     background-size: cover;
 
     &_active {
-      background-image: url("../../../../public/book-icon-dark.svg");
+      background-image: url('../../../../public/book-icon-dark.svg');
     }
   }
 }

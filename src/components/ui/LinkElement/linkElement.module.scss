@@ -1,7 +1,6 @@
 @import '../../../sass/abstracts/variables.module';
 @import '../../../sass/abstracts/mixins.module';
 
-
 .link {
   color: $text-color;
   padding: 1rem 1.5rem;
@@ -9,7 +8,8 @@
 
   @include transition;
 
-  &:hover, &:active {
+  &:hover,
+  &:active {
     border-bottom: 2px solid $primary-color;
     cursor: pointer;
   }
@@ -28,7 +28,8 @@
 
     @include transition;
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
       cursor: pointer;
       border-bottom: 2px solid $primary-color-xxs;
     }
