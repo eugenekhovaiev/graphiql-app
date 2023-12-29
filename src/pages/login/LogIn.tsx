@@ -1,7 +1,7 @@
 import AuthForm from '@/components/AuthForm';
 import FORM from '@/consts/FORM';
 import LINKS from '@/consts/LINKS';
-import loginUser from '@/api/loginUser';
+import loginUser from '@/api/firebase/loginUser';
 import ContainerLayout from '@/components/ContainerLayout';
 
 function LogIn(): JSX.Element {

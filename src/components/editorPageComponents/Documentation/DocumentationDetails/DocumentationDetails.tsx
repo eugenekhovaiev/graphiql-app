@@ -1,6 +1,10 @@
-import { Field } from '@/components/editorPageComponents/Documentation/DocumentationInfo/DocumentationInfo';
+import { GQLSchemaField } from '@/types';
 
-function DocumentationDetails({ name, description, type }: Field): JSX.Element {
+function DocumentationDetails({
+  name,
+  description,
+  type,
+}: GQLSchemaField): JSX.Element {
   console.log(type.name);
   return (
     <>

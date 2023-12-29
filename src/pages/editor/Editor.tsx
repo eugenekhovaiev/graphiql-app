@@ -8,7 +8,7 @@ import arrowUp from '../../../public/arrow-up.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import LINKS from '@/consts/LINKS';
-import { auth } from '@/api/firebaseConfig';
+import { auth } from '@/api/firebase/firebaseConfig';
 import EndpointInput from 'src/components/editorPageComponents/EndpointInput';
 
 function Editor(): JSX.Element {

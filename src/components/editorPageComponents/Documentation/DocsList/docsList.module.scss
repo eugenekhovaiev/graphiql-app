@@ -1,0 +1,12 @@
+@import "../../../../sass/abstracts/variables.module";
+
+.docsList {
+  &__item {
+    color: $primary-color;
+    text-transform: capitalize;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

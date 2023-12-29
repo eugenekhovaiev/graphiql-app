@@ -2,70 +2,38 @@
 import styles from './documentationInfo.module.scss';
 import { useEffect, useState } from 'react';
 import DocumentationDetails from '@/components/editorPageComponents/Documentation/DocumentationDetails/DocumentationDetails';
+import DocsList from '@/components/editorPageComponents/Documentation/DocsList/DocsList';
+import ArrowBack from '@/components/ui/ArrowBack';
+import { GQLSchemaField, GQLSchemaType } from '@/types';
+import getSchemaTypes from '@/api/GQL/getSchemaTypes';
 
 interface Props {
   isOpen: boolean;
 }
 
-export interface Field {
-  name: string;
-  description: string | null;
-  type: {
-    name: string | null;
-  };
-}
-
-interface SchemaType {
-  name: string;
-  fields?: Field[];
-}
-
 function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
-  const [schemaTypes, setSchemaTypes] = useState<null | SchemaType[]>();
-  const [rootList, setRootList] = useState<null | Field[]>();
-  const [currentField, setCurrentField] = useState<null | Field>(null);
-  const endpoint = 'https://swapi-graphql.netlify.app/.netlify/functions/index';
-  const INTROSPECTION_QUERY = `
-  query IntrospectionQuery {
-    __schema {
-      types {
-        name
-        fields {
-          name
-          description
-          type {
-            name
-          }
-        }
-      }
-    }
-  }
-`;
+  const [GQLSchema, setGQLSchema] = useState<null | GQLSchemaType[]>();
+  const [rootList, setRootList] = useState<undefined | GQLSchemaField[]>(
+    undefined
+  );
+  const [currentItem, setCurrentItem] = useState<null | GQLSchemaField>(null);
+  const [isListVisible, setListVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    async function fetchData(): Promise<void> {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ query: INTROSPECTION_QUERY }),
-      });
-      const data = await response.json();
-      const schemaTypes: SchemaType[] = data.data.__schema.types;
-      setSchemaTypes(schemaTypes);
-
-      schemaTypes.forEach((type: SchemaType) => {
+    async function setGQLData(): Promise<void> {
+      const schemaTypes = await getSchemaTypes();
+      setGQLSchema(schemaTypes);
+      schemaTypes.forEach((type: GQLSchemaType) => {
         if (type.name === 'Root' || type.name === 'Query') {
           setRootList(type.fields);
         }
       });
     }
 
-    fetchData();
+    setGQLData();
   }, []);
 
-  console.log(schemaTypes);
+  console.log(GQLSchema);
 
   return (
     <div
@@ -73,30 +41,24 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
         isOpen && styles.documentationInfo_open
       }`}
     >
-      {rootList && !currentField && (
+      {isListVisible && <ArrowBack clickHandler={setListVisible} />}
+      {rootList && !currentItem && (
         <>
           <h1>Docs</h1>
           <p>
             A GraphQL schema provides a root type for each kind of operation.
           </p>
-          <ul>
-            {rootList.map((field) => (
-              <li
-                className={styles.documentationInfo__link}
-                key={field.name}
-                onClick={() => setCurrentField(field)}
-              >
-                {field.name}
-              </li>
-            ))}
-          </ul>
+          <i onClick={() => setListVisible((prev) => !prev)}>Root Types</i>
+          {isListVisible && (
+            <DocsList list={rootList} setCurrentItem={setCurrentItem} />
+          )}
         </>
       )}
-      {currentField && (
+      {currentItem && (
         <DocumentationDetails
-          name={currentField.name}
-          description={currentField.description}
-          type={currentField.type}
+          name={currentItem.name}
+          description={currentItem.description}
+          type={currentItem.type}
         />
       )}
     </div>
