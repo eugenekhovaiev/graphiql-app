@@ -1,8 +1,10 @@
 import { GQLSchemaType } from '@/types';
-import { GQL_ENDPOINT, INTROSPECTION_QUERY } from '@/api/GQL/GQLConfig';
+import { INTROSPECTION_QUERY } from '@/api/GQL/GQLConfig';
 
-export default async function getSchemaTypes(): Promise<GQLSchemaType[]> {
-  const response = await fetch(GQL_ENDPOINT, {
+export default async function getSchemaTypes(
+  endpoint: string
+): Promise<GQLSchemaType[]> {
+  const response = await fetch(endpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

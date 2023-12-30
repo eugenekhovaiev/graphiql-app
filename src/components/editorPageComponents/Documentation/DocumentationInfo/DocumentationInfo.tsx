@@ -1,11 +1,12 @@
 'use client';
 import styles from './documentationInfo.module.scss';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import DocumentationDetails from '@/components/editorPageComponents/Documentation/DocumentationDetails/DocumentationDetails';
 import DocsList from '@/components/editorPageComponents/Documentation/DocsList/DocsList';
 import ArrowBack from '@/components/ui/ArrowBack';
 import { GQLSchemaField, GQLSchemaType } from '@/types';
 import getSchemaTypes from '@/api/GQL/getSchemaTypes';
+import { EndpointContext } from '@/pages/editor/Editor';
 
 interface Props {
   isOpen: boolean;
@@ -18,20 +19,27 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
   );
   const [currentItem, setCurrentItem] = useState<null | GQLSchemaField>(null);
   const [isListVisible, setListVisible] = useState<boolean>(false);
-
+  const { endpoint } = useContext(EndpointContext);
+  let storageEndpoint;
+  if (typeof window !== 'undefined') {
+    storageEndpoint = localStorage.getItem('endpoint');
+  }
+  const fetchEndpoint = endpoint || storageEndpoint;
   useEffect(() => {
     async function setGQLData(): Promise<void> {
-      const schemaTypes = await getSchemaTypes();
-      setGQLSchema(schemaTypes);
-      schemaTypes.forEach((type: GQLSchemaType) => {
-        if (type.name === 'Root' || type.name === 'Query') {
-          setRootList(type.fields);
-        }
-      });
+      if (fetchEndpoint) {
+        const schemaTypes = await getSchemaTypes(fetchEndpoint);
+        setGQLSchema(schemaTypes);
+        schemaTypes.forEach((type: GQLSchemaType) => {
+          if (type.name === 'Root' || type.name === 'Query') {
+            setRootList(type.fields);
+          }
+        });
+      }
     }
 
     setGQLData();
-  }, []);
+  }, [endpoint]);
 
   console.log(GQLSchema);
 
