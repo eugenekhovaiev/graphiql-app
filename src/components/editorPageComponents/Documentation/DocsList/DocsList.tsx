@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './docsList.module.scss';
-import { GQLSchemaField } from '@/types';
+import { GQLField } from '@/types';
 
 interface Props {
-  list: null | GQLSchemaField[];
-  setCurrentItem: (currentItem: GQLSchemaField) => void;
+  list: null | GQLField[];
+  setCurrentItem: (currentItem: GQLField) => void;
 }
 
 function DocsList({ list, setCurrentItem }: Props): JSX.Element {

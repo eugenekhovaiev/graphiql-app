@@ -1,10 +1,10 @@
-import { GQLSchemaField } from '@/types';
+import { GQLField } from '@/types';
 
 function DocumentationDetails({
   name,
   description,
   type,
-}: GQLSchemaField): JSX.Element {
+}: GQLField): JSX.Element {
   console.log(type.name);
   return (
     <>

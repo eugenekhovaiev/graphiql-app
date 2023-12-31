@@ -4,12 +4,12 @@ export interface AuthFormData {
   confirmPassword?: string;
 }
 
-export interface GQLSchemaType {
+export interface GQLType {
   name: string;
-  fields?: GQLSchemaField[];
+  fields?: GQLField[];
 }
 
-export interface GQLSchemaField {
+export interface GQLField {
   name: string;
   description: string | null;
   type: {
