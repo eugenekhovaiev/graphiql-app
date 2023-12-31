@@ -1,12 +1,12 @@
 'use client';
 import styles from './documentationInfo.module.scss';
 import { useContext, useEffect, useState } from 'react';
-import DocumentationDetails from '@/components/editorPageComponents/Documentation/DocumentationDetails/DocumentationDetails';
 import DocsList from '@/components/editorPageComponents/Documentation/DocsList/DocsList';
 import ArrowBack from '@/components/ui/ArrowBack';
 import { GQLField, GQLType } from '@/types';
 import getSchemaTypes from '@/api/GQL/getSchemaTypes';
 import { EndpointContext } from '@/pages/editor/Editor';
+import DocumentationDetails from '@/components/editorPageComponents/Documentation/DocumentationDetails/DocumentationDetails';
 
 interface Props {
   isOpen: boolean;
@@ -18,7 +18,10 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
   const [queryFields, setQueryFields] = useState<null | GQLField[]>(null);
 
   const [currentItem, setCurrentItem] = useState<null | GQLField>(null);
-  const [isListVisible, setListVisible] = useState<boolean>(false);
+  const [currentList, setCurrentList] = useState<null | GQLType[] | GQLField[]>(
+    null
+  );
+  const [prevList, setPrevList] = useState<null | GQLType[] | GQLField[]>(null);
 
   const { endpoint } = useContext(EndpointContext);
   let storageEndpoint;
@@ -27,11 +30,20 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
   }
   const fetchEndpoint = endpoint || storageEndpoint;
 
+  function editLists(types: GQLType[] | GQLField[]): void {
+    currentList && setPrevList(currentList);
+    setCurrentList(types);
+  }
+
+  useEffect(() => {
+    currentList === prevList && setPrevList(null);
+  }, [currentList]);
+
   useEffect(() => {
     async function setGQLData(): Promise<void> {
       if (fetchEndpoint) {
         const schemaTypes = await getSchemaTypes(fetchEndpoint);
-        setAllTypes(schemaTypes);
+        setAllTypes(schemaTypes.filter((type) => /^(?!__).*$/.test(type.name)));
 
         schemaTypes.forEach((type: GQLType) => {
           if (type.fields && type.name === 'Root') {
@@ -47,38 +59,65 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
     setGQLData();
   }, [endpoint]);
 
-  console.log(allTypes);
-
   return (
     <div
       className={`${styles.documentationInfo} ${
         isOpen && styles.documentationInfo_open
       }`}
     >
-      <ArrowBack clickHandler={setListVisible} />
-
-      {allTypes && (
-        <i onClick={() => setListVisible((prev) => !prev)}>All Types</i>
-      )}
-      {rootFields && (
-        <i onClick={() => setListVisible((prev) => !prev)}>Root Fields</i>
-      )}
-      {queryFields && (
-        <i onClick={() => setListVisible((prev) => !prev)}>Query Fields</i>
+      {(currentList || currentItem) && (
+        <ArrowBack
+          currentItem={currentItem}
+          prevList={prevList}
+          setCurrentList={setCurrentList}
+          setCurrentItem={setCurrentItem}
+        />
       )}
 
-      {rootFields && !currentItem && (
+      {!currentList && !currentItem && (
         <>
           <h1>Docs</h1>
           <p>
             A GraphQL schema provides a root type for each kind of operation.
           </p>
-          <i onClick={() => setListVisible((prev) => !prev)}>All Types</i>
-          {isListVisible && (
-            <DocsList list={rootFields} setCurrentItem={setCurrentItem} />
+
+          {allTypes && (
+            <li
+              className={styles.documentationInfo__link}
+              onClick={() => editLists(allTypes)}
+            >
+              All Types
+            </li>
+          )}
+          {rootFields && (
+            <li
+              className={styles.documentationInfo__link}
+              onClick={() => editLists(rootFields)}
+            >
+              Root
+            </li>
+          )}
+          {queryFields && (
+            <li
+              className={styles.documentationInfo__link}
+              onClick={() => editLists(queryFields)}
+            >
+              Query
+            </li>
           )}
         </>
       )}
+
+      {currentList && !currentItem && (
+        <DocsList
+          list={currentList}
+          currentList={currentList}
+          setCurrentItem={setCurrentItem}
+          setCurrentList={setCurrentList}
+          setPrevList={setPrevList}
+        />
+      )}
+
       {currentItem && (
         <DocumentationDetails
           name={currentItem.name}

@@ -28,7 +28,8 @@
     }
   }
 
-  &__info {
-
+  &__link {
+    color: $primary-color;
+    list-style-type: none;
   }
 }

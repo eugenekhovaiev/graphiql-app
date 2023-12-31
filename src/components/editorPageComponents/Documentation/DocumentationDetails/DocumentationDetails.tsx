@@ -5,11 +5,11 @@ function DocumentationDetails({
   description,
   type,
 }: GQLField): JSX.Element {
-  console.log(type.name);
   return (
     <>
       <h2>{name}</h2>
       <p>{description}</p>
+      <i>Type: {type.name}</i>
     </>
   );
 }
