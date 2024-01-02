@@ -1,6 +1,7 @@
 import styles from './code.module.scss';
 import { KeyboardEvent, ChangeEvent, useState, useEffect, useRef } from 'react';
 import { Inconsolata } from 'next/font/google';
+import TAB from '@/consts/TAB';
 
 const inconsolata = Inconsolata({ subsets: ['latin'] });
 
@@ -13,7 +14,17 @@ function Code(): JSX.Element {
 
   useEffect(() => {
     codeRef.current && codeRef.current.setSelectionRange(cursor, cursor);
-  }, [cursor]);
+  }, [cursor, code]);
+
+  const setView = (
+    newCode: string,
+    newCursor: number,
+    newRows?: number
+  ): void => {
+    setCode(newCode);
+    setCursor(newCursor);
+    newRows && setRows(newRows);
+  };
 
   const addClosingBracket = (
     event: KeyboardEvent<HTMLTextAreaElement>,
@@ -32,16 +43,13 @@ function Code(): JSX.Element {
         0,
         selectionStart
       )}${openBracket}${closeBracket}${code.slice(selectionStart)}`;
-      setCode(newCode);
-      setCursor(selectionStart + 1);
+      setView(newCode, selectionStart + 1);
     }
   };
 
   const handleCodeChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
-    const { value: newCode } = event.target;
-    const linesBeforeCursor = newCode.split('\n');
-    setRows(linesBeforeCursor.length);
-    setCode(newCode);
+    const { value: newCode, selectionStart } = event.target;
+    setView(newCode, selectionStart, newCode.split('\n').length);
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>): void => {
@@ -65,18 +73,20 @@ function Code(): JSX.Element {
 
           if (
             /[{\[(]/.test(lastNonWhitespace) &&
-            codeBeforeEnter.slice(-1) !== '\n'
+            /^[ ]*[}\])]/.test(codeAfterEnter)
           ) {
-            if (/^[ ]*[}\])]/.test(codeAfterEnter)) {
-              event.preventDefault();
-              const newCode = `${codeBeforeEnter}\n\n${codeAfterEnter}`;
-              setCode(newCode);
-              setCursor(selectionStart + 1);
-              setRows(newCode.split('\n').length);
-            } else {
-            }
+            event.preventDefault();
+            const newCode = `${codeBeforeEnter}\n\n${codeAfterEnter}`;
+            setView(newCode, selectionStart + 1, newCode.split('\n').length);
           }
         }
+        break;
+      case 'Tab':
+        event.preventDefault();
+        const newCode = `${code.slice(0, selectionStart)}${TAB}${code.slice(
+          selectionStart
+        )}`;
+        setView(newCode, selectionStart + TAB.length);
         break;
     }
   };
