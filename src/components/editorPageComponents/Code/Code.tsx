@@ -15,9 +15,31 @@ function Code(): JSX.Element {
     codeRef.current && codeRef.current.setSelectionRange(cursor, cursor);
   }, [cursor]);
 
+  const addClosingBracket = (
+    event: KeyboardEvent<HTMLTextAreaElement>,
+    selectionStart: number,
+    selectionEnd: number,
+    openBracket: string,
+    closeBracket: string
+  ): void => {
+    if (
+      selectionStart === selectionEnd &&
+      (code[selectionStart] === undefined ||
+        /[\s}\])]/.test(code[selectionStart]))
+    ) {
+      event.preventDefault();
+      const newCode = `${code.slice(
+        0,
+        selectionStart
+      )}${openBracket}${closeBracket}${code.slice(selectionStart)}`;
+      setCode(newCode);
+      setCursor(selectionStart + 1);
+    }
+  };
+
   const handleCodeChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
-    const { value: newCode, selectionStart } = event.target;
-    const linesBeforeCursor = newCode.slice(0, selectionStart).split('\n');
+    const { value: newCode } = event.target;
+    const linesBeforeCursor = newCode.split('\n');
     setRows(linesBeforeCursor.length);
     setCode(newCode);
   };
@@ -25,19 +47,37 @@ function Code(): JSX.Element {
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>): void => {
     const key = event.key;
     const { selectionStart, selectionEnd } = event.currentTarget;
-    if (key === '{') {
-      if (
-        selectionStart === selectionEnd &&
-        (code[selectionStart] === undefined ||
-          /[\s\n]/.test(code[selectionStart]))
-      ) {
-        event.preventDefault();
-        const newCode = `${code.slice(0, selectionStart)}{}${code.slice(
-          selectionStart
-        )}`;
-        setCode(newCode);
-        setCursor(selectionStart + 1);
-      }
+    switch (key) {
+      case '{':
+        addClosingBracket(event, selectionStart, selectionEnd, '{', '}');
+        break;
+      case '(':
+        addClosingBracket(event, selectionStart, selectionEnd, '(', ')');
+        break;
+      case '[':
+        addClosingBracket(event, selectionStart, selectionEnd, '[', ']');
+        break;
+      case 'Enter':
+        if (selectionStart === selectionEnd) {
+          const codeBeforeEnter = code.slice(0, selectionStart);
+          const codeAfterEnter = code.slice(selectionStart);
+          const lastNonWhitespace = codeBeforeEnter.trimEnd().slice(-1);
+
+          if (
+            /[{\[(]/.test(lastNonWhitespace) &&
+            codeBeforeEnter.slice(-1) !== '\n'
+          ) {
+            if (/^[ ]*[}\])]/.test(codeAfterEnter)) {
+              event.preventDefault();
+              const newCode = `${codeBeforeEnter}\n\n${codeAfterEnter}`;
+              setCode(newCode);
+              setCursor(selectionStart + 1);
+              setRows(newCode.split('\n').length);
+            } else {
+            }
+          }
+        }
+        break;
     }
   };
   return (
