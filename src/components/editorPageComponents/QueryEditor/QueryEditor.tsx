@@ -1,10 +1,13 @@
 import styles from './queryEditor.module.scss';
 import Code from '../Code';
+import { useState } from 'react';
 
 function QueryEditor(): JSX.Element {
+  const [code, setCode] = useState('');
+
   return (
     <section className={styles.queryEditor}>
-      <Code />
+      <Code value={code} setValue={setCode} />
       <div className={styles.queryEditor__sidebar}>
         <button className={styles.queryEditor__sidebarButton}>
           <div
