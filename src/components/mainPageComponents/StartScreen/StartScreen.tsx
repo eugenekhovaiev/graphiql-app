@@ -1,7 +1,7 @@
 import styles from './startScreen.module.scss';
 import Image from 'next/image';
-import ContainerLayout from '../ContainerLayout';
-import graphQLSvg from '../../../public/qraph-ql.svg';
+import ContainerLayout from '../../ContainerLayout';
+import graphQLSvg from '../../../../public/qraph-ql.svg';
 
 function StartScreen(): JSX.Element {
   return (

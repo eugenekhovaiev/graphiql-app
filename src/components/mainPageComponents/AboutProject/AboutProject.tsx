@@ -1,5 +1,5 @@
 import styles from './aboutProject.module.scss';
-import ContainerLayout from '../ContainerLayout';
+import ContainerLayout from '../../ContainerLayout';
 
 function AboutProject(): JSX.Element {
   return (

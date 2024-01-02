@@ -1,0 +1,33 @@
+@import "@/sass/abstracts/variables.module";
+@import "@/sass/abstracts/mixins.module";
+
+.endpoint {
+  display: flex;
+  gap: .8rem;
+
+  &__input {
+    flex: 1;
+    border: 1px solid $secondary-color-xs;
+    border-radius: .9rem;
+    padding: .5rem 1rem;
+    font-weight: 300;
+    color: $secondary-color;
+    background-color: transparent;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:-webkit-autofill {
+      border-radius: .5rem;
+    }
+
+    @include media-s {
+      width: 16rem;
+    }
+  }
+}

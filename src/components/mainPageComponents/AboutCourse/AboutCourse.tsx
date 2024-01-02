@@ -1,6 +1,6 @@
 import styles from './aboutCourse.module.scss';
-import buttonStyles from '../ui/Button/button.module.scss';
-import ContainerLayout from '../ContainerLayout';
+import buttonStyles from '../../ui/Button/button.module.scss';
+import ContainerLayout from '../../ContainerLayout';
 import Link from 'next/link';
 import LINKS from '@/consts/LINKS';
 

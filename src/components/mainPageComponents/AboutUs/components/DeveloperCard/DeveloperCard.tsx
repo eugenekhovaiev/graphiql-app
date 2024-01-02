@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styles from './developerCard.module.scss';
 import Link from 'next/link';
-import logoGitHub from '../../../../../public/logo-github-blue.svg';
+import logoGitHub from '../../../../../../public/logo-github-blue.svg';
 
 interface Props {
   name: string;

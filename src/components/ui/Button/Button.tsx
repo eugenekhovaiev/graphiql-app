@@ -3,7 +3,7 @@ import styles from './button.module.scss';
 
 interface Props {
   title: string;
-  styleType?: 'secondary' | 'long';
+  styleType?: 'secondary' | 'long' | 'light';
   callback?: () => void;
   type: 'button' | 'submit' | 'reset';
 }
@@ -20,6 +20,7 @@ function Button({
       ${styles.button}
       ${styleType === 'secondary' && styles.button_secondary}
       ${styleType === 'long' && styles.button_long}
+      ${styleType === 'light' && styles.button_light}
       `}
       type={type}
       onClick={callback}

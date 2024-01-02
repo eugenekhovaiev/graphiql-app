@@ -1,5 +1,5 @@
 import styles from './aboutUs.module.scss';
-import ContainerLayout from '../ContainerLayout';
+import ContainerLayout from '../../ContainerLayout';
 import DeveloperCard from './components/DeveloperCard';
 import DEVELOPERS_INFO_ENG from '@/consts/DEVELOPERS_INFO';
 
