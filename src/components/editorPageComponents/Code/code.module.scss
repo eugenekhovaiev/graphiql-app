@@ -9,6 +9,7 @@
   &__rowNumbers {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
   }
 
   &__rowNumber {

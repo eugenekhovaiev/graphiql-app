@@ -19,7 +19,8 @@ function Code({ value, setValue, readonly }: Props): JSX.Element {
 
   useEffect(() => {
     codeRef.current && codeRef.current.setSelectionRange(cursor, cursor);
-  }, [cursor, code]);
+    value !== undefined && setRows(value.split('\n').length);
+  }, [cursor, code, value]);
 
   const setView = (
     newCode: string,
@@ -110,7 +111,7 @@ function Code({ value, setValue, readonly }: Props): JSX.Element {
       </div>
       <textarea
         className={styles.code__textarea}
-        value={code}
+        value={value !== undefined ? value : code}
         onChange={handleCodeChange}
         onKeyDown={handleKeyDown}
         rows={rows}

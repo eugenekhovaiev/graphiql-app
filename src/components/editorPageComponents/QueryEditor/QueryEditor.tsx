@@ -1,6 +1,7 @@
 import styles from './queryEditor.module.scss';
-import Code from '../Code';
 import { useState } from 'react';
+import Code from '../Code';
+import prettify from '@/utils/prettify';
 
 function QueryEditor(): JSX.Element {
   const [code, setCode] = useState('');
@@ -16,6 +17,9 @@ function QueryEditor(): JSX.Element {
         </button>
         <button
           className={`${styles.queryEditor__sidebarButton} ${styles.queryEditor__sidebarButton_light}`}
+          onClick={(): void => {
+            setCode(prettify(code));
+          }}
         >
           <div
             className={`${styles.queryEditor__icon} ${styles.queryEditor__icon_prettify}`}
