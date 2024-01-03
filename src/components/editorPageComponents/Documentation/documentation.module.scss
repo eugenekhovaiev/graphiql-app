@@ -6,11 +6,23 @@
   gap: 0;
   width: 6rem;
   padding: 0.4rem 0.8rem;
+  background-color: $primary-color-xxs;
   @include transition;
 
   &_withInfo {
     width: 36rem;
     gap: 0.8rem;
+
+    @include media-m {
+      width: 100%;
+      padding: 0.4rem 1.4rem;
+
+      position: absolute;
+      top: 0.8rem;
+      left: 0;
+      right: 0;
+      bottom: 0.8rem;
+    }
   }
 
   &__button {
