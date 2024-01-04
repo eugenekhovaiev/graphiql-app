@@ -1,4 +1,4 @@
-import styles from '@/components/editorPageComponents/Documentation/DocsInfo/docsInfo.module.scss';
+import styles from './docsError.module.scss';
 
 interface Props {
   title: string;
@@ -8,7 +8,7 @@ interface Props {
 function DocsError({ title, message }: Props): JSX.Element {
   return (
     <>
-      <h2>{title}</h2>
+      <h2 className={styles.docsError__title}>{title}</h2>
       <p className={styles.documentationInfo__errorMessage}>{message}</p>
     </>
   );

@@ -8,7 +8,7 @@
   width: 0;
   height: 100%;
   padding: 0;
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: $primary-color-xxs;
   @include transition;
 
@@ -26,11 +26,6 @@
       height: unset;
       // todo: add transition
     }
-  }
-
-  &__link {
-    color: $primary-color;
-    list-style-type: none;
   }
 
   &__errorMessage {
