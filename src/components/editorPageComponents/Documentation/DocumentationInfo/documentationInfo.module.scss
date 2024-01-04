@@ -32,4 +32,9 @@
     color: $primary-color;
     list-style-type: none;
   }
+
+  &__errorMessage {
+    margin-top: 1rem;
+    color: $primary-color-s;
+  }
 }

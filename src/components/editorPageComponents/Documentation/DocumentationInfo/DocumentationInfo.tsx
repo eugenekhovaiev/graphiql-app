@@ -7,6 +7,7 @@ import { GQLField, GQLType } from '@/types';
 import getSchemaTypes from '@/api/GQL/getSchemaTypes';
 import { EndpointContext } from '@/pages/editor/Editor';
 import DocumentationDetails from '@/components/editorPageComponents/Documentation/DocumentationDetails/DocumentationDetails';
+import GQL_SCHEMA from '@/consts/GQL_SCHEMA';
 
 interface Props {
   isOpen: boolean;
@@ -16,13 +17,12 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
   const [allTypes, setAllTypes] = useState<null | GQLType[]>();
   const [rootFields, setRootFields] = useState<null | GQLField[]>(null);
   const [queryFields, setQueryFields] = useState<null | GQLField[]>(null);
-
   const [currentItem, setCurrentItem] = useState<null | GQLField>(null);
   const [currentList, setCurrentList] = useState<null | GQLType[] | GQLField[]>(
     null
   );
   const [prevList, setPrevList] = useState<null | GQLType[] | GQLField[]>(null);
-
+  const [schemaError, setSchemaError] = useState<boolean>(false);
   const { endpoint } = useContext(EndpointContext);
   let storageEndpoint;
   if (typeof window !== 'undefined') {
@@ -43,16 +43,23 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
     async function setGQLData(): Promise<void> {
       if (fetchEndpoint) {
         const schemaTypes = await getSchemaTypes(fetchEndpoint);
-        setAllTypes(schemaTypes.filter((type) => /^(?!__).*$/.test(type.name)));
+        if (schemaTypes) {
+          setSchemaError(false);
+          setAllTypes(
+            schemaTypes.filter((type) => /^(?!__).*$/.test(type.name))
+          );
 
-        schemaTypes.forEach((type: GQLType) => {
-          if (type.fields && type.name === 'Root') {
-            setRootFields(type.fields);
-          }
-          if (type.fields && type.name === 'Query') {
-            setQueryFields(type.fields);
-          }
-        });
+          schemaTypes.forEach((type: GQLType) => {
+            if (type.fields && type.name === 'Root') {
+              setRootFields(type.fields);
+            }
+            if (type.fields && type.name === 'Query') {
+              setQueryFields(type.fields);
+            }
+          });
+        } else {
+          setSchemaError(true);
+        }
       }
     }
 
@@ -65,6 +72,14 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
         isOpen && styles.documentationInfo_open
       }`}
     >
+      {schemaError && (
+        <>
+          <h2>{GQL_SCHEMA.WRONG_URL_TITLE}</h2>
+          <p className={styles.documentationInfo__errorMessage}>
+            {GQL_SCHEMA.WRONG_URL_MESSAGE}
+          </p>
+        </>
+      )}
       {(currentList || currentItem) && (
         <ArrowBack
           currentItem={currentItem}
@@ -74,7 +89,7 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
         />
       )}
 
-      {!currentList && !currentItem && (
+      {!schemaError && !currentList && !currentItem && (
         <>
           <h1>Docs</h1>
           <p>
