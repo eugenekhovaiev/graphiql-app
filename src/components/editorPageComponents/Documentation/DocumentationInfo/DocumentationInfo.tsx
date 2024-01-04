@@ -7,8 +7,8 @@ import { GQLField, GQLType } from '@/types';
 import getSchemaTypes from '@/api/GQL/getSchemaTypes';
 import { EndpointContext } from '@/pages/editor/Editor';
 import DocumentationDetails from '@/components/editorPageComponents/Documentation/DocumentationDetails/DocumentationDetails';
-import GQL_SCHEMA from '@/consts/GQL_SCHEMA';
 import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
+import DocumentationError from '@/components/editorPageComponents/Documentation/DocumentationError/DocumentationError';
 
 interface Props {
   isOpen: boolean;
@@ -73,14 +73,7 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
         isOpen && styles.documentationInfo_open
       }`}
     >
-      {schemaError && (
-        <>
-          <h2>{GQL_SCHEMA.WRONG_URL_TITLE}</h2>
-          <p className={styles.documentationInfo__errorMessage}>
-            {GQL_SCHEMA.WRONG_URL_MESSAGE}
-          </p>
-        </>
-      )}
+      {schemaError && <DocumentationError />}
       {(currentList || currentItem) && (
         <ArrowBack
           currentItem={currentItem}
