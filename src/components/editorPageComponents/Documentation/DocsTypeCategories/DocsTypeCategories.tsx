@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '@/components/editorPageComponents/Documentation/DocsInfo/docsInfo.module.scss';
+import styles from './docsTypeCategories.module.scss';
 import { GQLField, GQLType } from '@/types';
 
 interface Props {
@@ -17,33 +17,35 @@ function DocsTypeCategories({
 }: Props): JSX.Element {
   return (
     <>
-      <h1>Docs</h1>
+      <h1 className={styles.typeCategories__title}>Docs</h1>
       <p>A GraphQL schema provides a root type for each kind of operation.</p>
 
-      {allTypes && (
-        <li
-          className={styles.documentationInfo__link}
-          onClick={() => editLists(allTypes)}
-        >
-          All Types
-        </li>
-      )}
-      {rootFields && (
-        <li
-          className={styles.documentationInfo__link}
-          onClick={() => editLists(rootFields)}
-        >
-          Root
-        </li>
-      )}
-      {queryFields && (
-        <li
-          className={styles.documentationInfo__link}
-          onClick={() => editLists(queryFields)}
-        >
-          Query
-        </li>
-      )}
+      <ul className={styles.typeCategories__list}>
+        {allTypes && (
+          <li
+            className={styles.typeCategories__link}
+            onClick={() => editLists(allTypes)}
+          >
+            All Types
+          </li>
+        )}
+        {rootFields && (
+          <li
+            className={styles.typeCategories__link}
+            onClick={() => editLists(rootFields)}
+          >
+            Root
+          </li>
+        )}
+        {queryFields && (
+          <li
+            className={styles.typeCategories__link}
+            onClick={() => editLists(queryFields)}
+          >
+            Query
+          </li>
+        )}
+      </ul>
     </>
   );
 }
