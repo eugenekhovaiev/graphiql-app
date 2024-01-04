@@ -1,13 +1,15 @@
-import GQL_SCHEMA from '@/consts/GQL_SCHEMA';
 import styles from '@/components/editorPageComponents/Documentation/DocsInfo/docsInfo.module.scss';
 
-function DocsError(): JSX.Element {
+interface Props {
+  title: string;
+  message: string;
+}
+
+function DocsError({ title, message }: Props): JSX.Element {
   return (
     <>
-      <h2>{GQL_SCHEMA.WRONG_URL_TITLE}</h2>
-      <p className={styles.documentationInfo__errorMessage}>
-        {GQL_SCHEMA.WRONG_URL_MESSAGE}
-      </p>
+      <h2>{title}</h2>
+      <p className={styles.documentationInfo__errorMessage}>{message}</p>
     </>
   );
 }

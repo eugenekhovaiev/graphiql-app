@@ -10,6 +10,7 @@ import DocsDetails from '@/components/editorPageComponents/Documentation/DocsDet
 import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
 import DocsError from '@/components/editorPageComponents/Documentation/DocsError/DocsError';
 import DocsTypeCategories from '@/components/editorPageComponents/Documentation/DocsTypeCategories/DocsTypeCategories';
+import GQL_SCHEMA from '@/consts/GQL_SCHEMA';
 
 interface Props {
   isOpen: boolean;
@@ -32,7 +33,7 @@ function DocsInfo({ isOpen = false }: Props): JSX.Element {
   }
   const fetchEndpoint = endpoint || storageEndpoint;
 
-  function editLists(types: GQLType[] | GQLField[]): void {
+  function setCurrentAndPrevLists(types: GQLType[] | GQLField[]): void {
     currentList && setPrevList(currentList);
     setCurrentList(types);
   }
@@ -74,7 +75,12 @@ function DocsInfo({ isOpen = false }: Props): JSX.Element {
         isOpen && styles.documentationInfo_open
       }`}
     >
-      {schemaError && <DocsError />}
+      {schemaError && (
+        <DocsError
+          title={GQL_SCHEMA.WRONG_URL_TITLE}
+          message={GQL_SCHEMA.WRONG_URL_MESSAGE}
+        />
+      )}
       {(currentList || currentItem) && (
         <ArrowBack
           currentItem={currentItem}
@@ -89,7 +95,7 @@ function DocsInfo({ isOpen = false }: Props): JSX.Element {
           allTypes={allTypes as GQLType[]}
           rootFields={rootFields}
           queryFields={queryFields}
-          editLists={editLists}
+          editLists={setCurrentAndPrevLists}
         />
       )}
 
