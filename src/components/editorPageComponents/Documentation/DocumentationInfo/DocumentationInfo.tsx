@@ -8,6 +8,7 @@ import getSchemaTypes from '@/api/GQL/getSchemaTypes';
 import { EndpointContext } from '@/pages/editor/Editor';
 import DocumentationDetails from '@/components/editorPageComponents/Documentation/DocumentationDetails/DocumentationDetails';
 import GQL_SCHEMA from '@/consts/GQL_SCHEMA';
+import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
 
 interface Props {
   isOpen: boolean;
@@ -26,7 +27,7 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
   const { endpoint } = useContext(EndpointContext);
   let storageEndpoint;
   if (typeof window !== 'undefined') {
-    storageEndpoint = localStorage.getItem('endpoint');
+    storageEndpoint = localStorage.getItem(LOCAL_STORAGE_VALUES.ENDPOINT);
   }
   const fetchEndpoint = endpoint || storageEndpoint;
 
