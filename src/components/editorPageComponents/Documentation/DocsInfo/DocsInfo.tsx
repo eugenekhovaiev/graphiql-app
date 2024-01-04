@@ -1,20 +1,21 @@
 'use client';
-import styles from './documentationInfo.module.scss';
+import styles from './docsInfo.module.scss';
 import { useContext, useEffect, useState } from 'react';
 import DocsList from '@/components/editorPageComponents/Documentation/DocsList/DocsList';
 import ArrowBack from '@/components/ui/ArrowBack';
 import { GQLField, GQLType } from '@/types';
 import getSchemaTypes from '@/api/GQL/getSchemaTypes';
 import { EndpointContext } from '@/pages/editor/Editor';
-import DocumentationDetails from '@/components/editorPageComponents/Documentation/DocumentationDetails/DocumentationDetails';
+import DocsDetails from '@/components/editorPageComponents/Documentation/DocsDetails/DocsDetails';
 import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
-import DocumentationError from '@/components/editorPageComponents/Documentation/DocumentationError/DocumentationError';
+import DocsError from '@/components/editorPageComponents/Documentation/DocsError/DocsError';
+import DocsTypeCategories from '@/components/editorPageComponents/Documentation/DocsTypeCategories/DocsTypeCategories';
 
 interface Props {
   isOpen: boolean;
 }
 
-function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
+function DocsInfo({ isOpen = false }: Props): JSX.Element {
   const [allTypes, setAllTypes] = useState<null | GQLType[]>();
   const [rootFields, setRootFields] = useState<null | GQLField[]>(null);
   const [queryFields, setQueryFields] = useState<null | GQLField[]>(null);
@@ -73,7 +74,7 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
         isOpen && styles.documentationInfo_open
       }`}
     >
-      {schemaError && <DocumentationError />}
+      {schemaError && <DocsError />}
       {(currentList || currentItem) && (
         <ArrowBack
           currentItem={currentItem}
@@ -84,37 +85,12 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
       )}
 
       {!schemaError && !currentList && !currentItem && (
-        <>
-          <h1>Docs</h1>
-          <p>
-            A GraphQL schema provides a root type for each kind of operation.
-          </p>
-
-          {allTypes && (
-            <li
-              className={styles.documentationInfo__link}
-              onClick={() => editLists(allTypes)}
-            >
-              All Types
-            </li>
-          )}
-          {rootFields && (
-            <li
-              className={styles.documentationInfo__link}
-              onClick={() => editLists(rootFields)}
-            >
-              Root
-            </li>
-          )}
-          {queryFields && (
-            <li
-              className={styles.documentationInfo__link}
-              onClick={() => editLists(queryFields)}
-            >
-              Query
-            </li>
-          )}
-        </>
+        <DocsTypeCategories
+          allTypes={allTypes as GQLType[]}
+          rootFields={rootFields}
+          queryFields={queryFields}
+          editLists={editLists}
+        />
       )}
 
       {currentList && !currentItem && (
@@ -128,7 +104,7 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
       )}
 
       {currentItem && (
-        <DocumentationDetails
+        <DocsDetails
           name={currentItem.name}
           description={currentItem.description}
           type={currentItem.type}
@@ -138,4 +114,4 @@ function DocumentationInfo({ isOpen = false }: Props): JSX.Element {
   );
 }
 
-export default DocumentationInfo;
+export default DocsInfo;

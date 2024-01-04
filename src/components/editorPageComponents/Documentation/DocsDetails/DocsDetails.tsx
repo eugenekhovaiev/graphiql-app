@@ -1,10 +1,6 @@
 import { GQLField } from '@/types';
 
-function DocumentationDetails({
-  name,
-  description,
-  type,
-}: GQLField): JSX.Element {
+function DocsDetails({ name, description, type }: GQLField): JSX.Element {
   return (
     <>
       <h2>{name}</h2>
@@ -14,4 +10,4 @@ function DocumentationDetails({
   );
 }
 
-export default DocumentationDetails;
+export default DocsDetails;

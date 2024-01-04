@@ -1,7 +1,7 @@
 import GQL_SCHEMA from '@/consts/GQL_SCHEMA';
-import styles from '@/components/editorPageComponents/Documentation/DocumentationInfo/documentationInfo.module.scss';
+import styles from '@/components/editorPageComponents/Documentation/DocsInfo/docsInfo.module.scss';
 
-function DocumentationError(): JSX.Element {
+function DocsError(): JSX.Element {
   return (
     <>
       <h2>{GQL_SCHEMA.WRONG_URL_TITLE}</h2>
@@ -12,4 +12,4 @@ function DocumentationError(): JSX.Element {
   );
 }
 
-export default DocumentationError;
+export default DocsError;
