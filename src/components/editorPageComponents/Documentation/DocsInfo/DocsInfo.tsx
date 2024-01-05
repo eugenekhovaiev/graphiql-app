@@ -44,6 +44,10 @@ function DocsInfo({ isOpen = false }: Props): JSX.Element {
 
   useEffect(() => {
     async function setGQLData(): Promise<void> {
+      setAllTypes(null);
+      setRootFields(null);
+      setQueryFields(null);
+
       if (fetchEndpoint) {
         const schemaTypes = await getSchemaTypes(fetchEndpoint);
         if (schemaTypes) {
@@ -56,7 +60,7 @@ function DocsInfo({ isOpen = false }: Props): JSX.Element {
             if (type.fields && type.name === 'Root') {
               setRootFields(type.fields);
             }
-            if (type.fields && type.name === 'Query') {
+            if (type.fields && type.name.toLowerCase().includes('query')) {
               setQueryFields(type.fields);
             }
           });

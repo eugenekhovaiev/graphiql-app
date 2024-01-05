@@ -17,6 +17,7 @@ export const EndpointContext = createContext({
 });
 
 function Editor(): JSX.Element {
+  const [isSideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
   const [endpoint, setEndpoint] = useState('');
   const router = useRouter();
 
@@ -27,10 +28,16 @@ function Editor(): JSX.Element {
   return (
     <main className={styles.editor}>
       <EndpointContext.Provider value={{ endpoint }}>
-        <Documentation />
+        <Documentation
+          isSideMenuOpen={isSideMenuOpen}
+          setSideMenuOpen={setSideMenuOpen}
+        />
       </EndpointContext.Provider>
       <div className={styles.editor__mainBlockWithInput}>
-        <EndpointInput setEndpoint={setEndpoint} />
+        <EndpointInput
+          setEndpoint={setEndpoint}
+          setSideMenuOpen={setSideMenuOpen}
+        />
         <div className={styles.editor__mainBlockWrapper}>
           <div className={styles.editor__leftBlockWrapper}>
             <QueryEditor />

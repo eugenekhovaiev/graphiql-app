@@ -1,17 +1,24 @@
 'use client';
 import styles from './documentation.module.scss';
-import { useState } from 'react';
 import Divider from '@/components/ui/Divider/';
 import dynamic from 'next/dynamic';
 import Preloader from '@/components/ui/Preloader';
+import { Dispatch, SetStateAction } from 'react';
 
 const DocsInfo = dynamic(() => import('./DocsInfo'), {
   ssr: false,
   loading: () => <Preloader />,
 });
 
-function Documentation(): JSX.Element {
-  const [isSideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
+interface Props {
+  isSideMenuOpen: boolean;
+  setSideMenuOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+function Documentation({
+  isSideMenuOpen,
+  setSideMenuOpen,
+}: Props): JSX.Element {
   return (
     <aside
       className={`${styles.documentation} ${
