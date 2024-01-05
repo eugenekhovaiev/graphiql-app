@@ -1,7 +1,14 @@
+'use client';
 import styles from './documentation.module.scss';
 import { useState } from 'react';
-import DocsInfo from 'src/components/editorPageComponents/Documentation/DocsInfo';
-import Divider from '@/components/ui/Divider';
+import Divider from '@/components/ui/Divider/';
+import dynamic from 'next/dynamic';
+import Preloader from '@/components/ui/Preloader';
+
+const DocsInfo = dynamic(() => import('./DocsInfo'), {
+  ssr: false,
+  loading: () => <Preloader />,
+});
 
 function Documentation(): JSX.Element {
   const [isSideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
@@ -24,7 +31,7 @@ function Documentation(): JSX.Element {
         />
       </button>
       {isSideMenuOpen && <Divider />}
-      <DocsInfo isOpen={isSideMenuOpen} />
+      {isSideMenuOpen && <DocsInfo isOpen={isSideMenuOpen} />}
     </aside>
   );
 }
