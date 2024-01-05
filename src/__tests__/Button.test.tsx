@@ -17,6 +17,34 @@ describe('Button component', () => {
     expect(buttonElement).toBeInTheDocument();
   });
 
+  it('renders the Button with styleType="long"', () => {
+    const mockCallBack = vi.fn();
+    render(
+      <Button
+        title="Click me"
+        callback={mockCallBack}
+        styleType="long"
+        type={'button'}
+      />
+    );
+    const buttonElement = screen.getByRole('button', { name: 'Click me' });
+    expect(buttonElement).toBeInTheDocument();
+  });
+
+  it('renders the Button with styleType="light"', () => {
+    const mockCallBack = vi.fn();
+    render(
+      <Button
+        title="Click me"
+        callback={mockCallBack}
+        styleType="light"
+        type={'button'}
+      />
+    );
+    const buttonElement = screen.getByRole('button', { name: 'Click me' });
+    expect(buttonElement).toBeInTheDocument();
+  });
+
   it('calls the callback function', async () => {
     const mockCallBack = vi.fn();
     render(<Button title="Click me" callback={mockCallBack} type="button" />);
