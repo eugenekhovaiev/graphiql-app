@@ -21,7 +21,7 @@ any user-specified open GraphQL endpoint.
 
   Sign In / Sign Up forms.
 
-- Main Page (GraphiQL)
+- Main Page (Editor)
 
   Functional editor for query editing and prettifying, documentation, variables section, header section, response
   section with an editor in read-only mode, change Endpoint button.
