@@ -4,6 +4,7 @@
 .documentationInfo {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
   width: 0;
   height: 100%;
   padding: 0;
@@ -27,15 +28,8 @@
     }
   }
 
-  &__title {
-
-  }
-
-  &__info {
-
-  }
-
-  &__link {
-
+  &__errorMessage {
+    margin-top: 1rem;
+    color: $primary-color-s;
   }
 }

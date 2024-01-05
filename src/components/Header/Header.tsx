@@ -3,14 +3,14 @@ import styles from './header.module.scss';
 import buttonStyles from '@/components/ui/LinkElement/linkElement.module.scss';
 import ContainerLayout from '../ContainerLayout';
 import Link from 'next/link';
-import signOutUser from '@/api/signOutUser';
+import signOutUser from '@/api/firebase/signOutUser';
 import { useState } from 'react';
 import Notification from '@/components/ui/Notification/Notification';
 import LINKS from '@/consts/LINKS';
 import { useRouter } from 'next/navigation';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import NOTIFICATION from '@/consts/NOTIFICATION';
-import { auth } from '@/api/firebaseConfig';
+import { auth } from '@/api/firebase/firebaseConfig';
 import showNotification from '@/utils/showNotification';
 
 function Header(): JSX.Element {

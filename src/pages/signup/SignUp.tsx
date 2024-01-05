@@ -1,7 +1,7 @@
 import AuthForm from '@/components/AuthForm';
 import FORM from '@/consts/FORM';
 import LINKS from '@/consts/LINKS';
-import createUser from '@/api/createUser';
+import createUser from '@/api/firebase/createUser';
 import ContainerLayout from '@/components/ContainerLayout';
 
 function SignUp(): JSX.Element {
