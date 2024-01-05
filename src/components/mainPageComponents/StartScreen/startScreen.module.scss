@@ -1,0 +1,99 @@
+@import '@/sass/abstracts/mixins.module';
+
+.startScreen {
+  &__wrapper {
+    padding: 7rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3.2rem;
+  }
+
+  &__title {
+    font-size: 3.2rem;
+  }
+
+  &__helperText {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+
+  &__imageContainer {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__image {
+    width: 20rem;
+    height: auto;
+  }
+
+  @include media-xl {
+    &__imageContainer {
+      width: 30%;
+    }
+  }
+
+  @include media-l {
+    &__title {
+      font-size: 2.4rem;
+    }
+
+    &__helperText {
+      font-size: 1.6rem;
+    }
+
+    &__imageContainer {
+      width: 25%;
+    }
+
+    &__image {
+      width: 15rem;
+    }
+  }
+
+  @include media-m {
+    &__wrapper {
+      padding: 3rem 0;
+      flex-direction: column-reverse;
+      row-gap: 1.6rem;
+    }
+
+    &__description {
+      row-gap: 1.6rem;
+    }
+
+    &__title {
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    &__helperText {
+      text-align: center;
+    }
+
+    &__imageContainer {
+      width: 15%;
+    }
+
+    &__image {
+      width: 8rem;
+    }
+  }
+
+  @include media-s {
+    &__title {
+      font-size: 1.8rem;
+    }
+
+    &__imageContainer {
+      width: 80px;
+    }
+  }
+}

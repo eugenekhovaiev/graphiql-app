@@ -49,7 +49,7 @@
     color: inherit;
 
     border: none;
-    background-color: $tranparent-color;
+    background-color: transparent;
 
     cursor: pointer;
   }
@@ -223,7 +223,7 @@
   .header {
     &__menu {
       width: 100vw;
-      right: -100%;
+      right: -100vw;
 
       &_active {
         right: 0;
