@@ -1,5 +1,5 @@
-@import "@/sass/abstracts/variables.module";
-@import "@/sass/abstracts/mixins.module";
+@import '@/sass/abstracts/variables.module';
+@import '@/sass/abstracts/mixins.module';
 
 .inputField {
   display: flex;
@@ -7,7 +7,7 @@
   gap: 1rem;
 
   &__label {
-    margin-left: .1rem;
+    margin-left: 0.1rem;
   }
 
   &__container {
@@ -16,10 +16,10 @@
     justify-content: space-between;
     align-items: center;
     border: 1px solid $secondary-color;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     @include transition;
 
-    &:focus-within{
+    &:focus-within {
       background-color: $secondary-color-s;
     }
 
@@ -45,7 +45,7 @@
     }
 
     &:-webkit-autofill {
-      border-radius: .5rem;
+      border-radius: 0.5rem;
     }
   }
 

@@ -1,5 +1,5 @@
-@import "@/sass/abstracts/variables.module";
-@import "@/sass/abstracts/mixins.module";
+@import '@/sass/abstracts/variables.module';
+@import '@/sass/abstracts/mixins.module';
 
 .documentationInfo {
   display: flex;
@@ -8,34 +8,25 @@
   height: 100%;
   padding: 0;
   overflow: hidden;
+  opacity: 0;
   background-color: $primary-color-xxs;
-  @include transition;
 
   &_open {
     width: 30rem;
     padding: 1.6rem;
+    opacity: 1;
 
     @include media-m {
-      position: absolute;
-      top: 22.7px;
-      bottom: 10rem;
-      left: 7rem;
-      right: 0;
-      width: unset;
-      height: unset;
-      // todo: add transition
+      width: 100%;
     }
   }
 
   &__title {
-
   }
 
   &__info {
-
   }
 
   &__link {
-
   }
 }
