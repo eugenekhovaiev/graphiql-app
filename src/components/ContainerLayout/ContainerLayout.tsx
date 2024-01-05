@@ -8,7 +8,7 @@ interface ContainerProps {
 
 function ContainerLayout(props: ContainerProps): JSX.Element {
   return (
-    <div className={`${styles.container} ${props.className}`}>
+    <div className={`${styles.container} ${props.className || ''}`}>
       {props.children}
     </div>
   );

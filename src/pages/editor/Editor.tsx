@@ -1,13 +1,19 @@
 import { auth } from '@/api/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import LINKS from '@/consts/LINKS';
+import { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function Editor(): JSX.Element {
   const router = useRouter();
 
-  if (!auth.currentUser) {
-    router.push(LINKS.LOGIN);
-  }
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.push(LINKS.LOGIN);
+      }
+    });
+  }, []);
 
   return <div>Redactor will be here</div>;
 }

@@ -1,10 +1,10 @@
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { NextRouter } from 'next/router';
 
 function showNotification(
   message: string | null,
   setMessage: (message: string | null) => void,
   setLink?: (hasLink: boolean) => void,
-  router?: AppRouterInstance,
+  router?: NextRouter,
   link?: string
 ): void {
   setMessage(message);

@@ -16,7 +16,7 @@
   &__image {
     width: 25rem;
     height: 25rem;
-    
+
     border-radius: 0.8rem;
     border: 0.1rem solid $primary-color;
   }
@@ -60,13 +60,12 @@
     }
 
     &::-webkit-scrollbar-track {
-      background: transparent; 
-    }
-    
-    &::-webkit-scrollbar-thumb {
       background: transparent;
     }
 
+    &::-webkit-scrollbar-thumb {
+      background: transparent;
+    }
   }
 
   @include media-xl {

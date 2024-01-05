@@ -14,10 +14,12 @@ $error-color-light: #ffcccc;
 $success-color: #126b29;
 $success-color-light: #d4edda;
 
-$screen-width-s: 576px;
-$screen-width-m: 768px;
-$screen-width-l: 992px;
-$screen-width-xl: 1200px;
+$tranparent-color: rgba(255, 255, 255, 0);
+
+$screen-width-s: 575px;
+$screen-width-m: 767px;
+$screen-width-l: 991px;
+$screen-width-xl: 1199px;
 
 :export {
   textColor: $text-color;
@@ -28,4 +30,5 @@ $screen-width-xl: 1200px;
   secondaryColor: $secondary-color;
   secondaryColorS: $secondary-color-s;
   secondaryColorXS: $secondary-color-xs;
+  tranparentColor: $tranparent-color;
 }
