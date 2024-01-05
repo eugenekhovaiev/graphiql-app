@@ -2,8 +2,11 @@
 import styles from './header.module.scss';
 import linkStyles from '@/components/ui/LinkElement/linkElement.module.scss';
 
+import closeIcon from '/public/close_round_duotone.svg';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import Link from 'next/link';
 import ContainerLayout from '@/components/ContainerLayout';
@@ -23,7 +26,7 @@ import showNotification from '@/utils/showNotification';
 
 function Header(): JSX.Element {
   const [scrollPos, setScrollPos] = useState(0);
-  const [burgerOpen, setBurgerOpen] = useState(false);
+  const [isBurgerOpened, setIsBurgerOpened] = useState(false);
 
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -45,26 +48,24 @@ function Header(): JSX.Element {
 
   const handleBurgerOpen = (): void => {
     document.body.style.overflowY = 'hidden';
-    setBurgerOpen(true);
+    setIsBurgerOpened(true);
   };
 
   const handleBurgerClose = (): void => {
     document.body.style.overflowY = 'visible';
-    setBurgerOpen(false);
+    setIsBurgerOpened(false);
   };
 
   const onLinkClick = (isSignUp: boolean = false): void => {
-    auth.currentUser
-      ? showNotification(NOTIFICATION.USER_ALREADY_LOGGED_IN, setErrorMessage)
-      : router.push(isSignUp ? LINKS.SIGNUP : LINKS.LOGIN);
+    router.push(isSignUp ? LINKS.SIGNUP : LINKS.LOGIN);
 
-    if (burgerOpen) {
+    if (isBurgerOpened) {
       handleBurgerClose();
     }
   };
 
   const onLogOutClick = async (): Promise<void> => {
-    if (auth.currentUser) {
+    if (isLoggedIn) {
       try {
         const response = await signOutUser();
         response === RESPONSE_STATUS.SUCCESS &&
@@ -80,7 +81,7 @@ function Header(): JSX.Element {
       showNotification(NOTIFICATION.USER_ARE_NOT_AUTHORIZED, setErrorMessage);
     }
 
-    if (burgerOpen) {
+    if (isBurgerOpened) {
       handleBurgerClose();
     }
   };
@@ -88,7 +89,7 @@ function Header(): JSX.Element {
   return (
     <header
       className={`${styles.header} ${
-        scrollPos === 0 ? '' : styles['header_scrolling']
+        scrollPos === 0 ? '' : styles.header_scrolling
       }`}
     >
       <ContainerLayout className={styles.header__content}>
@@ -97,14 +98,14 @@ function Header(): JSX.Element {
         </Link>
         <nav
           className={`${styles.header__menu} ${
-            burgerOpen ? styles['header__menu_active'] : ''
+            isBurgerOpened ? styles.header__menu_active : ''
           }`}
         >
           <div className={styles.header__navBar}>
             <LinkElement
               title="About Us"
               className={`${styles.header__link} ${
-                router.pathname === LINKS.HOME ? linkStyles['link_routed'] : ''
+                router.pathname === LINKS.HOME ? linkStyles.link_routed : ''
               }`}
               href={LINKS.HOME}
               onClick={handleBurgerClose}
@@ -113,9 +114,7 @@ function Header(): JSX.Element {
               <LinkElement
                 title="Editor"
                 className={`${styles.header__link} ${
-                  router.pathname === LINKS.EDITOR
-                    ? linkStyles['link_routed']
-                    : ''
+                  router.pathname === LINKS.EDITOR ? linkStyles.link_routed : ''
                 }`}
                 href={LINKS.EDITOR}
                 onClick={handleBurgerClose}
@@ -151,8 +150,8 @@ function Header(): JSX.Element {
               />
             )}
           </div>
-          <div className={styles.header__close} onClick={handleBurgerClose}>
-            <img src="close_round_duotone.svg" alt="close" />
+          <div className={styles.header__closeIcon} onClick={handleBurgerClose}>
+            <Image src={closeIcon} alt="close" />
           </div>
         </nav>
         <div className={styles.header__burger} onClick={handleBurgerOpen}>
@@ -162,7 +161,7 @@ function Header(): JSX.Element {
         </div>
         <div
           className={`${styles.header__overlay} ${
-            burgerOpen ? styles['header__overlay_active'] : ''
+            isBurgerOpened ? styles.header__overlay_active : ''
           }`}
           onClick={handleBurgerClose}
         />

@@ -3,6 +3,7 @@
 
 .header {
   padding: 3.2rem;
+
   position: sticky;
   z-index: 1;
   top: 0;
@@ -44,11 +45,10 @@
   }
 
   &__select {
-    border: none;
-
     font-size: 1.8rem;
     color: inherit;
 
+    border: none;
     background-color: $tranparent-color;
 
     cursor: pointer;
@@ -66,23 +66,43 @@
     flex-direction: column;
     gap: 0.8rem;
 
+    @include transition;
     cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
   }
 
   &__burgerLine {
     width: 3.2rem;
     height: 2px;
+
     background-color: $text-color;
   }
 
-  &__close {
+  &__closeIcon {
     display: none;
+
+    @include transition;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
   }
 
   &_scrolling {
-    background-color: $primary-color-s;
-
     color: $primary-color-xxs;
+
+    background-color: $primary-color-s;
 
     .header__link {
       &::after {
@@ -114,15 +134,14 @@
     &__menu {
       padding: 3.2rem;
 
-      width: 45vw;
-      height: 100vh;
-
-      grid-template-columns: 1fr;
-
       position: fixed;
       top: 0;
       right: -45vw;
       z-index: 100;
+
+      width: 45vw;
+      height: 100vh;
+      grid-template-columns: 1fr;
 
       background-color: $primary-color-xxs;
 
@@ -134,19 +153,20 @@
     }
 
     &__navBar {
-      flex-direction: column;
-
       position: absolute;
       top: 45%;
       left: 50%;
       transform: translate(-50%);
+
+      flex-direction: column;
     }
 
     &__access {
-      text-align: center;
       width: 100%;
       align-items: stretch;
       flex-direction: column;
+
+      text-align: center;
     }
 
     &__select {
@@ -155,12 +175,12 @@
       left: 4.2rem;
     }
 
-    &__close {
-      display: block;
-
+    &__closeIcon {
       position: absolute;
       top: 4.2rem;
       right: 4.2rem;
+
+      display: block;
 
       cursor: pointer;
 
@@ -170,15 +190,17 @@
     }
 
     &__overlay {
-      display: block;
-      opacity: 0;
-      visibility: hidden;
       position: fixed;
       z-index: 10;
       top: 0;
       left: 0;
+
+      display: block;
       width: 100vw;
       height: 100vh;
+      opacity: 0;
+      visibility: hidden;
+
       background-color: rgba(240, 236, 240, 0.5);
 
       @include transition;
