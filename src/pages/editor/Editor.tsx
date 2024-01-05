@@ -10,7 +10,7 @@ function Editor(): JSX.Element {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (!user) {
-        router.push(LINKS.LOGIN);
+        router.push(LINKS.HOME);
       }
     });
   }, []);
