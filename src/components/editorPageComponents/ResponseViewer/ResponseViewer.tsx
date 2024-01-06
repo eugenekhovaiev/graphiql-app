@@ -2,9 +2,13 @@ import Code from '../Code';
 import styles from './responseViewer.module.scss';
 import prettify from '@/utils/prettify';
 
-function ResponseViewer(): JSX.Element {
+interface Props {
+  GQLResponse: string;
+}
+
+function ResponseViewer({ GQLResponse }: Props): JSX.Element {
   const respObj = {
-    value: 'Response section',
+    value: GQLResponse,
   };
   const response = prettify(JSON.stringify(respObj));
   return (
