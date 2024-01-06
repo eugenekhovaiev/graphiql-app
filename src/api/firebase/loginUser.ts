@@ -4,7 +4,7 @@ import {
   setPersistence,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { auth } from '@/api/firebaseConfig';
+import { auth } from '@/api/firebase/firebaseConfig';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import { FirebaseError } from '@firebase/util';
 

@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth';
-import { auth } from '@/api/firebaseConfig';
+import { auth } from '@/api/firebase/firebaseConfig';
 import STATUS_CODES from '@/consts/STATUS_CODES';
 
 function signOutUser(): Promise<string> {

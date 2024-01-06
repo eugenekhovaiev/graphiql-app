@@ -18,8 +18,8 @@ import LINKS from '@/consts/LINKS';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 
-import signOutUser from '@/api/signOutUser';
-import { auth } from '@/api/firebaseConfig';
+import signOutUser from '@/api/firebase/signOutUser';
+import { auth } from '@/api/firebase/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import showNotification from '@/utils/showNotification';
