@@ -12,6 +12,8 @@ import { auth } from '@/api/firebase/firebaseConfig';
 import LINKS from '@/consts/LINKS';
 import Documentation from '@/components/editorPageComponents/Documentation';
 import { onAuthStateChanged } from 'firebase/auth';
+import fetchUserRequest from '@/api/GQL/fetchUserRequest';
+import EDITOR_MESSAGES from '@/consts/EDITOR_MESSAGES';
 
 export const EndpointContext = createContext({
   endpoint: '',
@@ -20,8 +22,10 @@ export const EndpointContext = createContext({
 function Editor(): JSX.Element {
   const [isSideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
   const [endpoint, setEndpoint] = useState('');
-  const [code, setCode] = useState('');
-  const [GQLResponse, setGQLResponse] = useState('');
+  const [GQLRequest, setGQLRequest] = useState('');
+  const [GQLResponse, setGQLResponse] = useState(
+    EDITOR_MESSAGES.RESPONSE_DEFAULT as string
+  );
   const router = useRouter();
 
   useEffect(() => {
@@ -33,40 +37,56 @@ function Editor(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    setGQLResponse('');
-  }, [code]);
+    async function getGQLResponse(): Promise<void> {
+      try {
+        const response = await fetchUserRequest(endpoint, GQLRequest);
+        setGQLResponse(JSON.stringify(response));
+      } catch (error) {
+        console.log('ERROR ATTENTION', error);
+      }
+    }
+
+    getGQLResponse();
+  }, [GQLRequest]);
+
+  useEffect(() => {
+    setGQLResponse(EDITOR_MESSAGES.RESPONSE_DEFAULT);
+  }, [endpoint]);
 
   return (
     <main className={styles.editor}>
-      <EndpointContext.Provider value={{ endpoint }}>
+      <EndpointContext.Provider value={{ endpoint: endpoint }}>
         <Documentation
           isSideMenuOpen={isSideMenuOpen}
           setSideMenuOpen={setSideMenuOpen}
         />
-      </EndpointContext.Provider>
-      <div className={styles.editor__mainBlockWithInput}>
-        <EndpointInput
-          setEndpoint={setEndpoint}
-          setSideMenuOpen={setSideMenuOpen}
-        />
-        <div className={styles.editor__mainBlockWrapper}>
-          <div className={styles.editor__leftBlockWrapper}>
-            <QueryEditor code={code} setCode={setCode} />
-            <div className={styles.editor__bottomBlockWrapper}>
-              <div className={styles.editor__bottomBlockLinksWrapper}>
-                <VariablesEditor />
-                <HeadersEditor />
-              </div>
-              <Image
-                className={styles.editor__arrow}
-                src={arrowUp}
-                alt="expand arrow"
+        <div className={styles.editor__mainBlockWithInput}>
+          <EndpointInput
+            setEndpoint={setEndpoint}
+            setSideMenuOpen={setSideMenuOpen}
+          />
+          <div className={styles.editor__mainBlockWrapper}>
+            <div className={styles.editor__leftBlockWrapper}>
+              <QueryEditor
+                GQLRequest={GQLRequest}
+                setGQLRequest={setGQLRequest}
               />
+              <div className={styles.editor__bottomBlockWrapper}>
+                <div className={styles.editor__bottomBlockLinksWrapper}>
+                  <VariablesEditor />
+                  <HeadersEditor />
+                </div>
+                <Image
+                  className={styles.editor__arrow}
+                  src={arrowUp}
+                  alt="expand arrow"
+                />
+              </div>
             </div>
+            <ResponseViewer GQLResponse={GQLResponse} />
           </div>
-          <ResponseViewer GQLResponse={GQLResponse} />
         </div>
-      </div>
+      </EndpointContext.Provider>
     </main>
   );
 }

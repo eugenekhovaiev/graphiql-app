@@ -10,6 +10,7 @@ function ResponseViewer({ GQLResponse }: Props): JSX.Element {
   const respObj = {
     value: GQLResponse,
   };
+
   const response = prettify(JSON.stringify(respObj));
   return (
     <section className={styles.responseViewer}>
