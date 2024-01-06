@@ -6,14 +6,21 @@ import HeadersEditor from 'src/components/editorPageComponents/HeadersEditor';
 import Documentation from 'src/components/editorPageComponents/Documentation';
 import arrowUp from '../../../public/arrow-up.svg';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import LINKS from '@/consts/LINKS';
-import { auth } from '@/api/firebaseConfig';
 import EndpointInput from 'src/components/editorPageComponents/EndpointInput';
+import { createContext, useState } from 'react';
+import { useRouter } from 'next/router';
+import { auth } from '@/api/firebase/firebaseConfig';
+import LINKS from '@/consts/LINKS';
+
 import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 
+export const EndpointContext = createContext({
+  endpoint: '',
+});
+
 function Editor(): JSX.Element {
+  const [endpoint, setEndpoint] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -26,9 +33,11 @@ function Editor(): JSX.Element {
 
   return (
     <main className={styles.editor}>
-      <Documentation />
+      <EndpointContext.Provider value={{ endpoint }}>
+        <Documentation />
+      </EndpointContext.Provider>
       <div className={styles.editor__mainBlockWithInput}>
-        <EndpointInput />
+        <EndpointInput setEndpoint={setEndpoint} />
         <div className={styles.editor__mainBlockWrapper}>
           <div className={styles.editor__leftBlockWrapper}>
             <QueryEditor />

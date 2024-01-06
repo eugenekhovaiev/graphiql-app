@@ -1,7 +1,7 @@
 import { AuthFormData } from '@/types';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/api/firebaseConfig';
-import loginUser from '@/api/loginUser';
+import { auth } from '@/api/firebase/firebaseConfig';
+import loginUser from '@/api/firebase/loginUser';
 import RESPONSE_STATUS from '@/consts/STATUS_CODES';
 import { FirebaseError } from '@firebase/util';
 

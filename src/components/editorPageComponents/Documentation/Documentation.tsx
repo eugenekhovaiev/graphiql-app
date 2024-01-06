@@ -1,6 +1,6 @@
 import styles from './documentation.module.scss';
 import { useState } from 'react';
-import DocumentationInfo from '@/components/editorPageComponents/Documentation/DocumentationInfo';
+import DocsInfo from 'src/components/editorPageComponents/Documentation/DocsInfo';
 import Divider from '@/components/ui/Divider';
 
 function Documentation(): JSX.Element {
@@ -24,7 +24,7 @@ function Documentation(): JSX.Element {
         />
       </button>
       {isSideMenuOpen && <Divider />}
-      <DocumentationInfo isOpen={isSideMenuOpen} />
+      <DocsInfo isOpen={isSideMenuOpen} />
     </aside>
   );
 }

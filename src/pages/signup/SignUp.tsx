@@ -1,12 +1,12 @@
 import AuthForm from '@/components/AuthForm';
 import FORM from '@/consts/FORM';
 import LINKS from '@/consts/LINKS';
-import createUser from '@/api/createUser';
+import createUser from '@/api/firebase/createUser';
 import ContainerLayout from '@/components/ContainerLayout';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '@/api/firebaseConfig';
+import { auth } from '@/api/firebase/firebaseConfig';
 
 function SignUp(): JSX.Element {
   const router = useRouter();
