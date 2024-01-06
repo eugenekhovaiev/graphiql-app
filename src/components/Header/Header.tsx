@@ -1,6 +1,7 @@
 'use client';
 import styles from './header.module.scss';
 import linkStyles from '@/components/ui/LinkElement/linkElement.module.scss';
+import buttonStyles from '@/components/ui/Button/button.module.scss';
 
 import closeIcon from '/public/close_round_duotone.svg';
 
@@ -129,8 +130,11 @@ function Header(): JSX.Element {
             {!isLoggedIn && (
               <Button
                 title="Log In"
+                className={`${styles.header__button} ${
+                  scrollPos === 0 ? '' : buttonStyles.button_scrolling
+                }`}
                 styleType={
-                  router.pathname === LINKS.LOGIN ? 'link' : 'secondary'
+                  router.pathname === LINKS.LOGIN ? 'routed' : 'secondary'
                 }
                 onClick={() => onLinkClick()}
               />
@@ -138,7 +142,10 @@ function Header(): JSX.Element {
             {!isLoggedIn && (
               <Button
                 title="SignUp"
-                styleType={router.pathname === LINKS.SIGNUP ? 'link' : ''}
+                className={`${styles.header__button} ${
+                  scrollPos === 0 ? '' : buttonStyles.button_scrolling
+                }`}
+                styleType={router.pathname === LINKS.SIGNUP ? 'routed' : ''}
                 onClick={() => onLinkClick(true)}
               />
             )}

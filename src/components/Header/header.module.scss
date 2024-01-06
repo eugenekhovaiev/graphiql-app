@@ -2,7 +2,7 @@
 @import '@/sass/abstracts/mixins.module.scss';
 
 .header {
-  padding: 3.2rem;
+  padding: 2.5rem 3.2rem;
 
   position: sticky;
   z-index: 2;
@@ -51,6 +51,7 @@
     border: none;
     background-color: transparent;
 
+    @include transition;
     cursor: pointer;
   }
 
@@ -104,7 +105,8 @@
 
     background-color: $primary-color-s;
 
-    .header__link {
+    .header__link,
+    .header__button {
       &::after {
         background-color: $primary-color-xxs;
       }
@@ -112,6 +114,10 @@
 
     .header__logo {
       color: $primary-color-xxs;
+    }
+
+    .header__select {
+      background-color: $primary-color-s;
     }
 
     .header__burgerLine {

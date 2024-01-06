@@ -12,6 +12,8 @@
   text-decoration: none;
   color: inherit;
   font-size: 1.8rem;
+  
+  @include transition;
 
   &::after {
     content: '';
