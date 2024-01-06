@@ -1,7 +1,8 @@
 import styles from './queryEditor.module.scss';
 import Code from '../Code';
 import SideBar from '@/components/editorPageComponents/QueryEditor/SideBar/SideBar';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { EndpointContext } from '@/pages/editor/Editor';
 
 interface Props {
   GQLRequest: string;
@@ -9,7 +10,12 @@ interface Props {
 }
 
 function QueryEditor({ GQLRequest, setGQLRequest }: Props): JSX.Element {
+  const context = useContext(EndpointContext);
   const [code, setCode] = useState<string>('');
+
+  useEffect(() => {
+    setCode('');
+  }, [context.endpoint]);
 
   return (
     <section className={styles.queryEditor}>

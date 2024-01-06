@@ -66,34 +66,34 @@ function Editor(): JSX.Element {
           isSideMenuOpen={isSideMenuOpen}
           setSideMenuOpen={setSideMenuOpen}
         />
-      </EndpointContext.Provider>
-      <div className={styles.editor__mainBlockWithInput}>
-        <EndpointInput
-          endpoint={endpoint}
-          setEndpoint={setEndpoint}
-          setSideMenuOpen={setSideMenuOpen}
-        />
-        <div className={styles.editor__mainBlockWrapper}>
-          <div className={styles.editor__leftBlockWrapper}>
-            <QueryEditor
-              GQLRequest={GQLRequest}
-              setGQLRequest={setGQLRequest}
-            />
-            <div className={styles.editor__bottomBlockWrapper}>
-              <div className={styles.editor__bottomBlockLinksWrapper}>
-                <VariablesEditor />
-                <HeadersEditor />
-              </div>
-              <Image
-                className={styles.editor__arrow}
-                src={arrowUp}
-                alt="expand arrow"
+        <div className={styles.editor__mainBlockWithInput}>
+          <EndpointInput
+            endpoint={endpoint}
+            setEndpoint={setEndpoint}
+            setSideMenuOpen={setSideMenuOpen}
+          />
+          <div className={styles.editor__mainBlockWrapper}>
+            <div className={styles.editor__leftBlockWrapper}>
+              <QueryEditor
+                GQLRequest={GQLRequest}
+                setGQLRequest={setGQLRequest}
               />
+              <div className={styles.editor__bottomBlockWrapper}>
+                <div className={styles.editor__bottomBlockLinksWrapper}>
+                  <VariablesEditor />
+                  <HeadersEditor />
+                </div>
+                <Image
+                  className={styles.editor__arrow}
+                  src={arrowUp}
+                  alt="expand arrow"
+                />
+              </div>
             </div>
+            <ResponseViewer GQLResponse={GQLResponse} />
           </div>
-          <ResponseViewer GQLResponse={GQLResponse} />
         </div>
-      </div>
+      </EndpointContext.Provider>
     </main>
   );
 }
