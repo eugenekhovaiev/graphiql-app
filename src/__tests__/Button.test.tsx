@@ -22,7 +22,7 @@ describe('Button component', () => {
     render(
       <Button
         title="Click me"
-        callback={mockCallBack}
+        onClick={mockCallBack}
         styleType="long"
         type={'button'}
       />
@@ -36,7 +36,7 @@ describe('Button component', () => {
     render(
       <Button
         title="Click me"
-        callback={mockCallBack}
+        onClick={mockCallBack}
         styleType="light"
         type={'button'}
       />
