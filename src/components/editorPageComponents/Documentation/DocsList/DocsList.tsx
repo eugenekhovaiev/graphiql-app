@@ -1,15 +1,15 @@
 import React from 'react';
 import styles from './docsList.module.scss';
-import { GQLField, GQLType } from '@/types';
+import { DocsSchemaList, GQLField } from '@/types';
 import DocsError from '@/components/editorPageComponents/Documentation/DocsError';
 import GQL_SCHEMA from '@/consts/GQL_SCHEMA';
 
 interface Props {
-  list: null | GQLType[] | GQLField[];
-  currentList: null | GQLType[] | GQLField[];
+  list: DocsSchemaList;
+  currentList: DocsSchemaList;
   setCurrentItem: (currentItem: GQLField) => void;
-  setCurrentList: (currentList: null | GQLType[] | GQLField[]) => void;
-  setPrevList: (currentList: null | GQLType[] | GQLField[]) => void;
+  setCurrentList: (currentList: DocsSchemaList) => void;
+  setPrevList: (currentList: DocsSchemaList) => void;
 }
 
 function DocsList({

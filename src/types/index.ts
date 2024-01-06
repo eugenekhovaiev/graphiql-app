@@ -16,3 +16,5 @@ export interface GQLField {
     name: string | null;
   };
 }
+
+export type DocsSchemaList = null | GQLType[] | GQLField[];

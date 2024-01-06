@@ -3,7 +3,7 @@ import styles from './docsInfo.module.scss';
 import { useContext, useEffect, useState } from 'react';
 import DocsList from '@/components/editorPageComponents/Documentation/DocsList/DocsList';
 import ArrowBack from '@/components/ui/ArrowBack';
-import { GQLField, GQLType } from '@/types';
+import { DocsSchemaList, GQLField, GQLType } from '@/types';
 import getSchemaTypes from '@/api/GQL/getSchemaTypes';
 import { EndpointContext } from '@/pages/editor/Editor';
 import DocsDetails from '@/components/editorPageComponents/Documentation/DocsDetails/DocsDetails';
@@ -21,10 +21,8 @@ function DocsInfo({ isOpen = false }: Props): JSX.Element {
   const [rootFields, setRootFields] = useState<null | GQLField[]>(null);
   const [queryFields, setQueryFields] = useState<null | GQLField[]>(null);
   const [currentItem, setCurrentItem] = useState<null | GQLField>(null);
-  const [currentList, setCurrentList] = useState<null | GQLType[] | GQLField[]>(
-    null
-  );
-  const [prevList, setPrevList] = useState<null | GQLType[] | GQLField[]>(null);
+  const [currentList, setCurrentList] = useState<DocsSchemaList>(null);
+  const [prevList, setPrevList] = useState<DocsSchemaList>(null);
   const [schemaError, setSchemaError] = useState<boolean>(false);
   const { endpoint } = useContext(EndpointContext);
   let storageEndpoint;
@@ -44,6 +42,10 @@ function DocsInfo({ isOpen = false }: Props): JSX.Element {
 
   useEffect(() => {
     async function setGQLData(): Promise<void> {
+      setAllTypes(null);
+      setRootFields(null);
+      setQueryFields(null);
+
       if (fetchEndpoint) {
         const schemaTypes = await getSchemaTypes(fetchEndpoint);
         if (schemaTypes) {
@@ -56,7 +58,7 @@ function DocsInfo({ isOpen = false }: Props): JSX.Element {
             if (type.fields && type.name === 'Root') {
               setRootFields(type.fields);
             }
-            if (type.fields && type.name === 'Query') {
+            if (type.fields && type.name.toLowerCase().includes('query')) {
               setQueryFields(type.fields);
             }
           });
