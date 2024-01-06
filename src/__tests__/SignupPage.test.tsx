@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import RootLayout from '@/components/RootLayout';
-import LogIn from '@/pages/login/';
+import SignUp from '@/pages/signup/';
 
 vi.mock('next/navigation', async () => {
   const actual = await vi.importActual('next/navigation');
@@ -12,15 +12,15 @@ vi.mock('next/navigation', async () => {
   };
 });
 
-describe('Login Page', () => {
-  it('renders Login Page', () => {
+describe('SignUp Page', () => {
+  it('renders SignUp Page', () => {
     render(
       <RootLayout>
-        <LogIn />
+        <SignUp />
       </RootLayout>
     );
     const titleElement = screen.getByRole('heading', {
-      name: /Log In/i,
+      name: /Sign Up/i,
     });
     expect(titleElement).toBeInTheDocument();
   });
