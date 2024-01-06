@@ -30,7 +30,7 @@ function EndpointInput({ setEndpoint }: Props): JSX.Element {
         title="Change"
         type="button"
         styleType="light"
-        callback={handleSubmit}
+        onClick={handleSubmit}
       />
     </div>
   );
