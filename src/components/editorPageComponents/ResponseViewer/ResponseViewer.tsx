@@ -7,11 +7,7 @@ interface Props {
 }
 
 function ResponseViewer({ GQLResponse }: Props): JSX.Element {
-  const respObj = {
-    value: GQLResponse,
-  };
-
-  const response = prettify(JSON.stringify(respObj));
+  const response = prettify(GQLResponse);
   return (
     <section className={styles.responseViewer}>
       <Code value={response} readonly={true} />
