@@ -2,13 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import arrow from '../../../../public/arrow-left.svg';
 import styles from './arrowBack.module.scss';
-import { GQLField, GQLType } from '@/types';
+import { DocsSchemaList, GQLField } from '@/types';
 
 interface Props {
-  setCurrentList: (currentList: null | GQLType[] | GQLField[]) => void;
+  setCurrentList: (currentList: DocsSchemaList) => void;
   setCurrentItem: (currentItem: null | GQLField) => void;
   currentItem: null | GQLField;
-  prevList: null | GQLType[] | GQLField[];
+  prevList: DocsSchemaList;
 }
 
 function ArrowBack({
