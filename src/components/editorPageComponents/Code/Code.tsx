@@ -19,7 +19,10 @@ function Code({ value, setValue, readonly }: Props): JSX.Element {
 
   useEffect(() => {
     codeRef.current && codeRef.current.setSelectionRange(cursor, cursor);
-    value !== undefined && setRows(value.split('\n').length);
+    if (value !== undefined) {
+      setRows(value.split('\n').length);
+      setCode(value);
+    }
   }, [cursor, code, value]);
 
   const setView = (

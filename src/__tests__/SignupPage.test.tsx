@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import RootLayout from '@/components/RootLayout';
-import NotFound from '@/pages/404/';
+import SignUp from '@/pages/signup';
 
 vi.mock('next/router', async () => {
   const actual = await vi.importActual('next/router');
@@ -12,25 +12,16 @@ vi.mock('next/router', async () => {
   };
 });
 
-describe('404 Page', () => {
-  it('renders 404 page content', () => {
+describe('SignUp Page', () => {
+  it('renders SignUp Page', () => {
     render(
       <RootLayout>
-        <NotFound />
+        <SignUp />
       </RootLayout>
     );
-
     const titleElement = screen.getByRole('heading', {
-      name: /404/i,
+      name: /Sign Up/i,
     });
-    const subtitleElement = screen.getByRole('heading', {
-      name: /Page couldn’t be found/i,
-    });
-    const homeLink = screen.getByRole('link', { name: /Take me Home/i });
-
     expect(titleElement).toBeInTheDocument();
-    expect(subtitleElement).toBeInTheDocument();
-    expect(homeLink).toBeInTheDocument();
-    expect(homeLink).toHaveAttribute('href', '/');
   });
 });

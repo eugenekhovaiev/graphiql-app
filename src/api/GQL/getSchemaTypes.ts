@@ -14,7 +14,5 @@ export default async function getSchemaTypes(
     });
     const data = await response.json();
     return data.data.__schema.types;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 }
