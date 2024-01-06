@@ -14,14 +14,20 @@ import Documentation from '@/components/editorPageComponents/Documentation';
 import { onAuthStateChanged } from 'firebase/auth';
 import fetchUserRequest from '@/api/GQL/fetchUserRequest';
 import EDITOR_MESSAGES from '@/consts/EDITOR_MESSAGES';
+import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
 
 export const EndpointContext = createContext({
   endpoint: '',
 });
 
 function Editor(): JSX.Element {
+  let initialValue;
+  if (typeof window !== 'undefined') {
+    initialValue = localStorage.getItem(LOCAL_STORAGE_VALUES.ENDPOINT);
+  }
+
   const [isSideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
-  const [endpoint, setEndpoint] = useState('');
+  const [endpoint, setEndpoint] = useState(initialValue || '');
   const [GQLRequest, setGQLRequest] = useState('');
   const [GQLResponse, setGQLResponse] = useState(
     EDITOR_MESSAGES.RESPONSE_DEFAULT as string
@@ -55,38 +61,39 @@ function Editor(): JSX.Element {
 
   return (
     <main className={styles.editor}>
-      <EndpointContext.Provider value={{ endpoint: endpoint }}>
+      <EndpointContext.Provider value={{ endpoint }}>
         <Documentation
           isSideMenuOpen={isSideMenuOpen}
           setSideMenuOpen={setSideMenuOpen}
         />
-        <div className={styles.editor__mainBlockWithInput}>
-          <EndpointInput
-            setEndpoint={setEndpoint}
-            setSideMenuOpen={setSideMenuOpen}
-          />
-          <div className={styles.editor__mainBlockWrapper}>
-            <div className={styles.editor__leftBlockWrapper}>
-              <QueryEditor
-                GQLRequest={GQLRequest}
-                setGQLRequest={setGQLRequest}
-              />
-              <div className={styles.editor__bottomBlockWrapper}>
-                <div className={styles.editor__bottomBlockLinksWrapper}>
-                  <VariablesEditor />
-                  <HeadersEditor />
-                </div>
-                <Image
-                  className={styles.editor__arrow}
-                  src={arrowUp}
-                  alt="expand arrow"
-                />
-              </div>
-            </div>
-            <ResponseViewer GQLResponse={GQLResponse} />
-          </div>
-        </div>
       </EndpointContext.Provider>
+      <div className={styles.editor__mainBlockWithInput}>
+        <EndpointInput
+          endpoint={endpoint}
+          setEndpoint={setEndpoint}
+          setSideMenuOpen={setSideMenuOpen}
+        />
+        <div className={styles.editor__mainBlockWrapper}>
+          <div className={styles.editor__leftBlockWrapper}>
+            <QueryEditor
+              GQLRequest={GQLRequest}
+              setGQLRequest={setGQLRequest}
+            />
+            <div className={styles.editor__bottomBlockWrapper}>
+              <div className={styles.editor__bottomBlockLinksWrapper}>
+                <VariablesEditor />
+                <HeadersEditor />
+              </div>
+              <Image
+                className={styles.editor__arrow}
+                src={arrowUp}
+                alt="expand arrow"
+              />
+            </div>
+          </div>
+          <ResponseViewer GQLResponse={GQLResponse} />
+        </div>
+      </div>
     </main>
   );
 }

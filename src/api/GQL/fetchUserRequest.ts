@@ -5,7 +5,6 @@ export default async function fetchUserRequest(
   query: string
 ): Promise<GQLType[] | Error> {
   try {
-    console.log('endpoint', endpoint);
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {

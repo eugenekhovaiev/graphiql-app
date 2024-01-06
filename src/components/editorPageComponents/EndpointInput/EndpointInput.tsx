@@ -7,16 +7,17 @@ import NOTIFICATION from '@/consts/NOTIFICATION';
 import showNotification from '@/utils/showNotification';
 
 interface Props {
+  endpoint: string;
   setEndpoint: (endpoint: string) => void;
   setSideMenuOpen: (isSideMenuOpen: boolean) => void;
 }
 
-function EndpointInput({ setEndpoint, setSideMenuOpen }: Props): JSX.Element {
-  let initialValue;
-  if (typeof window !== 'undefined') {
-    initialValue = localStorage.getItem(LOCAL_STORAGE_VALUES.ENDPOINT);
-  }
-  const [value, setValue] = useState<string>(initialValue || '');
+function EndpointInput({
+  endpoint,
+  setEndpoint,
+  setSideMenuOpen,
+}: Props): JSX.Element {
+  const [value, setValue] = useState<string>(endpoint);
   const [isNotification, setNotification] = useState<null | string>(null);
 
   function handleSubmit(): void {
