@@ -10,13 +10,19 @@ import { useRouter } from 'next/navigation';
 import LINKS from '@/consts/LINKS';
 import { auth } from '@/api/firebaseConfig';
 import EndpointInput from 'src/components/editorPageComponents/EndpointInput';
+import { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function Editor(): JSX.Element {
   const router = useRouter();
 
-  if (!auth.currentUser) {
-    router.push(LINKS.LOGIN);
-  }
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.push(LINKS.HOME);
+      }
+    });
+  }, []);
 
   return (
     <main className={styles.editor}>

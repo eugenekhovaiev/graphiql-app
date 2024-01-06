@@ -3,27 +3,28 @@ import styles from './button.module.scss';
 
 interface Props {
   title: string;
-  styleType?: 'secondary' | 'long' | 'light';
-  callback?: () => void;
-  type: 'button' | 'submit' | 'reset';
+  type?: 'button' | 'submit' | 'reset';
+  styleType?: 'secondary' | 'long' | 'link' | 'light' | '';
+  className?: string;
+  onClick?: () => void;
 }
 
 function Button({
   styleType,
   title,
-  callback,
+  className,
+  onClick,
   type = 'button',
 }: Props): JSX.Element {
   return (
     <button
-      className={`
-      ${styles.button}
-      ${styleType === 'secondary' && styles.button_secondary}
-      ${styleType === 'long' && styles.button_long}
-      ${styleType === 'light' && styles.button_light}
-      `}
+      className={`${styles.button} ${
+        styleType === 'secondary' ? styles.button_secondary : ''
+      } ${styleType === 'long' ? styles.button_long : ''} ${
+        styleType === 'link' ? styles.button_linklike : ''
+      } ${styleType === 'light' ? styles.button_light : ''} ${className || ''}`}
       type={type}
-      onClick={callback}
+      onClick={onClick}
     >
       {title}
     </button>

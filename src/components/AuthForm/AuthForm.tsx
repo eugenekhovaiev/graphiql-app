@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AuthFormData } from '@/types';
 import styles from './authForm.module.scss';
@@ -135,7 +135,7 @@ function AuthForm({
             helperText={errors.confirmPassword?.message}
           />
         )}
-        <Button title={title} type="submit" styleType="long" />
+        <Button title={title} type="submit" />
       </form>
       <div className={styles.form__subtitle}>
         {subtitle}

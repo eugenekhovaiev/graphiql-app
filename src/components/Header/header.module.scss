@@ -1,12 +1,233 @@
 @import '@/sass/abstracts/variables.module.scss';
+@import '@/sass/abstracts/mixins.module.scss';
 
 .header {
-  background-color: $primary-color-s;
+  padding: 3.2rem;
 
-  &__wrapper {
-    display: flex;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+
+  background-color: $primary-color-xxs;
+  border-bottom: 1px solid $primary-color;
+
+  @include transition;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     justify-content: center;
-    gap: 3rem;
+    align-items: center;
+  }
+
+  &__logo {
+    padding: 1rem 0;
+
+    justify-self: start;
+
+    text-decoration: none;
+    color: $secondary-color;
+    font-size: 2rem;
+
+    @include transition;
+  }
+
+  &__menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__navBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+
+  &__select {
+    font-size: 1.8rem;
+    color: inherit;
+
+    border: none;
+    background-color: transparent;
+
+    cursor: pointer;
+  }
+
+  &__access {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.6rem;
+  }
+
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    @include transition;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  &__burgerLine {
+    width: 3.2rem;
+    height: 2px;
+
+    background-color: $text-color;
+  }
+
+  &__closeIcon {
+    display: none;
+
+    @include transition;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  &_scrolling {
     color: $primary-color-xxs;
+
+    background-color: $primary-color-s;
+
+    .header__link {
+      &::after {
+        background-color: $primary-color-xxs;
+      }
+    }
+
+    .header__logo {
+      color: $primary-color-xxs;
+    }
+
+    .header__burgerLine {
+      background-color: $primary-color-xxs;
+    }
+  }
+}
+
+@include media-l {
+  .header {
+    &__content {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__burger {
+      display: flex;
+      justify-self: end;
+    }
+
+    &__menu {
+      padding: 3.2rem;
+
+      position: fixed;
+      top: 0;
+      right: -45vw;
+      z-index: 100;
+
+      width: 45vw;
+      height: 100vh;
+      grid-template-columns: 1fr;
+
+      background-color: $primary-color-xxs;
+
+      @include transition;
+
+      &_active {
+        right: 0;
+      }
+    }
+
+    &__navBar {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%);
+
+      flex-direction: column;
+    }
+
+    &__access {
+      width: 100%;
+      align-items: stretch;
+      flex-direction: column;
+
+      text-align: center;
+    }
+
+    &__select {
+      position: absolute;
+      top: 4.2rem;
+      left: 4.2rem;
+    }
+
+    &__closeIcon {
+      position: absolute;
+      top: 4.2rem;
+      right: 4.2rem;
+
+      display: block;
+
+      cursor: pointer;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    &__overlay {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      opacity: 0;
+      visibility: hidden;
+
+      background-color: rgba(240, 236, 240, 0.5);
+
+      @include transition;
+
+      &_active {
+        opacity: 100;
+        visibility: visible;
+      }
+    }
+
+    &_scrolling {
+      .header__menu {
+        background-color: $primary-color-s;
+      }
+    }
+  }
+}
+
+@include media-m {
+  .header {
+    &__menu {
+      width: 100vw;
+      right: -100vw;
+
+      &_active {
+        right: 0;
+      }
+    }
   }
 }
