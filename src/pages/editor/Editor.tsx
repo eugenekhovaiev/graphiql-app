@@ -31,7 +31,7 @@ function Editor(): JSX.Element {
   const [endpoint, setEndpoint] = useState(initialValue || '');
   const [GQLRequest, setGQLRequest] = useState('');
   const [GQLResponse, setGQLResponse] = useState(
-    EDITOR_MESSAGES.RESPONSE_DEFAULT as string
+    EDITOR_MESSAGES.RESPONSE_DEFAULT
   );
   const router = useRouter();
 

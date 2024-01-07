@@ -1,0 +1,20 @@
+{
+  "en": {
+    "title": "React Course",
+    "descriptionStart": "RS School",
+    "description": {
+      "p1": ", established by The Rolling Scopes developer community in 2013, is a community-based education program. As part of this program, the React Course offers a cost-free and online learning experience in English, providing access to open-source learning materials and the opportunity to receive an electronic certificate upon successful completion.",
+      "p2": "This course is specifically designed for students who have completed RS School Stage #2 during the 2022Q3 session, as well as new students with practical expertise and knowledge in JavaScript and TypeScript."
+    },
+    "button": "Learn more"
+  },
+  "ru": {
+    "title": "Курс React",
+    "descriptionStart": "RS School",
+    "description": {
+      "p1": ", основана сообществом разработчиков The Rolling Scopes в 2013 году, представляет собой образовательную программу на базе сообщества. В рамках этой программы, курс React предлагает бесплатное онлайн-обучение на английском языке, предоставляя доступ к учебным материалам с открытым исходным кодом и возможность получить электронный сертификат после успешного завершения.",
+      "p2": "Данный курс специально разработан для студентов, завершивших второй этап RS School в третьем квартале 2022 года, а также для новых студентов, обладающих практическим опытом и знаниями в области JavaScript и TypeScript."
+    },
+    "button": "Узнать больше"
+  }
+}

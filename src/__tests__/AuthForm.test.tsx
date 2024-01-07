@@ -105,7 +105,7 @@ describe('AuthForm Component', () => {
     await waitFor(() => {
       expect(screen.getByAltText('notification')).toBeInTheDocument();
       expect(
-        screen.getByText(NOTIFICATION.LOGIN_SUCCESS.trim())
+        screen.getByText(NOTIFICATION.en.LOGIN_SUCCESS.trim())
       ).toBeInTheDocument();
     });
   });
@@ -136,7 +136,7 @@ describe('AuthForm Component', () => {
     await waitFor(() => {
       expect(screen.getByAltText('notification')).toBeInTheDocument();
       expect(
-        screen.getByText(NOTIFICATION.SIGNUP_SUCCESS.trim())
+        screen.getByText(NOTIFICATION.en.SIGNUP_SUCCESS.trim())
       ).toBeInTheDocument();
     });
   });
@@ -165,7 +165,7 @@ describe('AuthForm Component', () => {
       });
       expect(screen.getByAltText('notification')).toBeInTheDocument();
       expect(
-        screen.getByText(NOTIFICATION.USER_DOESNT_EXIST.trim())
+        screen.getByText(NOTIFICATION.en.USER_DOESNT_EXIST.trim())
       ).toBeInTheDocument();
     });
   });
@@ -200,7 +200,7 @@ describe('AuthForm Component', () => {
       });
       expect(screen.getByAltText('notification')).toBeInTheDocument();
       expect(
-        screen.getByText(NOTIFICATION.USER_ALREADY_EXISTS.trim())
+        screen.getByText(NOTIFICATION.en.USER_ALREADY_EXISTS.trim())
       ).toBeInTheDocument();
     });
   });
@@ -232,7 +232,7 @@ describe('AuthForm Component', () => {
       });
       expect(screen.getByAltText('notification')).toBeInTheDocument();
       expect(
-        screen.getByText(NOTIFICATION.WRONG_PASSWORD.trim())
+        screen.getByText(NOTIFICATION.en.WRONG_PASSWORD.trim())
       ).toBeInTheDocument();
     });
   });

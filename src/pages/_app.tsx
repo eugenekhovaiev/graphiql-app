@@ -6,6 +6,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Inter } from 'next/font/google';
 import RootLayout from '@/components/RootLayout';
+import { LanguageProvider } from '@/utils/contexts/LangContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,9 +24,11 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
         <title>GraphiQL App</title>
         <meta name="description" content="Our app description" />
       </Head>
-      <RootLayout>
-        <Component {...pageProps} />
-      </RootLayout>
+      <LanguageProvider>
+        <RootLayout>
+          <Component {...pageProps} />
+        </RootLayout>
+      </LanguageProvider>
     </>
   );
 }

@@ -1,0 +1,30 @@
+{
+  "en": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Password"
+    },
+    "confirmPassword": {
+      "label": "Confirm Password",
+      "placeholder": "Password"
+    }
+  },
+  "ru": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Email"
+    },
+    "password": {
+      "label": "Пароль",
+      "placeholder": "Пароль"
+    },
+    "confirmPassword": {
+      "label": "Подтвердите пароль",
+      "placeholder": "Пароль"
+    }
+  }
+}

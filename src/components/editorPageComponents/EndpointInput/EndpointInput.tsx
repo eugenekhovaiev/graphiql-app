@@ -1,10 +1,12 @@
 import styles from './endpointInput.module.scss';
+import TEXT_CONTENT_LOCALIZATION from './TEXT_CONTENT_LOCALIZATION.json';
 import Button from '@/components/ui/Button';
 import { useState } from 'react';
 import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
 import Notification from '@/components/ui/Notification';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 import showNotification from '@/utils/showNotification';
+import { useLanguageContext } from '@/utils/contexts/LangContext';
 
 interface Props {
   endpoint: string;
@@ -20,14 +22,17 @@ function EndpointInput({
   const [value, setValue] = useState<string>(endpoint);
   const [notification, setNotification] = useState<null | string>(null);
 
+  const { language } = useLanguageContext();
+  const textContent = TEXT_CONTENT_LOCALIZATION[language];
+
   function handleSubmit(): void {
     if (value === endpoint) {
-      showNotification(NOTIFICATION.SAME_URL, setNotification);
+      showNotification(NOTIFICATION[language].SAME_URL, setNotification);
     } else {
       setEndpoint(value);
       localStorage.setItem(LOCAL_STORAGE_VALUES.ENDPOINT, `${value}`);
       setSideMenuOpen(false);
-      showNotification(NOTIFICATION.URL_CHANGED, setNotification);
+      showNotification(NOTIFICATION[language].URL_CHANGED, setNotification);
     }
   }
 
@@ -39,7 +44,7 @@ function EndpointInput({
         onChange={(event) => setValue(event.target.value)}
       />
       <Button
-        title="Change"
+        title={textContent.button}
         type="button"
         styleType="light"
         onClick={handleSubmit}
@@ -47,7 +52,7 @@ function EndpointInput({
       {notification && (
         <Notification
           text={notification}
-          isError={notification === NOTIFICATION.SAME_URL}
+          isError={notification === NOTIFICATION[language].SAME_URL}
         />
       )}
     </div>

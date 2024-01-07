@@ -1,10 +1,11 @@
 'use client';
+import styles from './authForm.module.scss';
+import TEXT_CONTENT_LOCALIZATION from './TEXT_CONTENT_LOCALIZATION.json';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AuthFormData } from '@/types';
-import styles from './authForm.module.scss';
 import Button from '@/components/ui/Button';
 import Notification from '@/components/ui/Notification';
 import InputField from '@/components/ui/InputField';
@@ -17,6 +18,7 @@ import showNotification from '@/utils/showNotification';
 import schema from '@/utils/authFormValidationSchema';
 import viewHideIcon from '../../../public/view-hide.svg';
 import viewIcon from '../../../public/view.svg';
+import { useLanguageContext } from '@/utils/contexts/LangContext';
 
 interface Props {
   isSignUp?: boolean;
@@ -35,12 +37,14 @@ function AuthForm({
   linkTitle,
   linkHref,
 }: Props): JSX.Element {
+  const { language } = useLanguageContext();
+  const textContent = TEXT_CONTENT_LOCALIZATION[language];
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<AuthFormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema[language]),
   });
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -55,7 +59,7 @@ function AuthForm({
       if (response === RESPONSE_STATUS.SUCCESS) {
         isSignUp &&
           showNotification(
-            NOTIFICATION.SIGNUP_SUCCESS,
+            NOTIFICATION[language].SIGNUP_SUCCESS,
             setSuccessMessage,
             undefined,
             router,
@@ -63,7 +67,7 @@ function AuthForm({
           );
         !isSignUp &&
           showNotification(
-            NOTIFICATION.LOGIN_SUCCESS,
+            NOTIFICATION[language].LOGIN_SUCCESS,
             setSuccessMessage,
             undefined,
             router,
@@ -74,7 +78,7 @@ function AuthForm({
       isSignUp &&
         e === ERROR_CODES.USER_ALREADY_EXISTS &&
         showNotification(
-          NOTIFICATION.USER_ALREADY_EXISTS,
+          NOTIFICATION[language].USER_ALREADY_EXISTS,
           setErrorMessage,
           setNotificationLink
         );
@@ -82,14 +86,17 @@ function AuthForm({
       !isSignUp &&
         e === ERROR_CODES.USER_DOESNT_EXIST &&
         showNotification(
-          NOTIFICATION.USER_DOESNT_EXIST,
+          NOTIFICATION[language].USER_DOESNT_EXIST,
           setErrorMessage,
           setNotificationLink
         );
 
       !isSignUp &&
         e === ERROR_CODES.WRONG_PASSWORD &&
-        showNotification(NOTIFICATION.WRONG_PASSWORD, setErrorMessage);
+        showNotification(
+          NOTIFICATION[language].WRONG_PASSWORD,
+          setErrorMessage
+        );
     }
   };
 
@@ -98,22 +105,22 @@ function AuthForm({
       <h1 className={styles.form__title}>{title}</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <InputField
-          label="Email"
+          label={textContent.email.label}
           type="email"
           register={register}
           registeredName="email"
           autoComplete="email"
-          placeholder="Email"
+          placeholder={textContent.email.placeholder}
           hasError={!!errors.email}
           helperText={errors.email?.message}
         />
         <InputField
-          label="Password"
+          label={textContent.password.label}
           type={isPasswordVisible ? 'text' : 'password'}
           register={register}
           registeredName="password"
           autoComplete={isSignUp ? 'new-password' : 'current-password'}
-          placeholder="Password"
+          placeholder={textContent.password.placeholder}
           endIcon={isPasswordVisible ? viewIcon : viewHideIcon}
           handleEndIconClick={() => setPasswordVisible(!isPasswordVisible)}
           hasError={!!errors.password}
@@ -121,12 +128,12 @@ function AuthForm({
         />
         {isSignUp && (
           <InputField
-            label="Confirm Password"
+            label={textContent.confirmPassword.label}
             type={isConfirmPasswordVisible ? 'text' : 'password'}
             register={register}
             registeredName="confirmPassword"
             autoComplete="new-password"
-            placeholder="Password"
+            placeholder={textContent.confirmPassword.placeholder}
             endIcon={isConfirmPasswordVisible ? viewIcon : viewHideIcon}
             handleEndIconClick={() =>
               setConfirmPasswordVisible(!isConfirmPasswordVisible)

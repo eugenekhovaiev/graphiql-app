@@ -1,0 +1,28 @@
+{
+  "en": {
+    "logo": "GraphiQl Editor",
+    "nav": {
+      "about": "About Us",
+      "editor": "Editor"
+    },
+    "access": {
+      "login": "Log In",
+      "signup": "Sign Up",
+      "signout": "Sign Out",
+      "close": "close"
+    }
+  },
+  "ru": {
+    "logo": "GraphiQl Редактор",
+    "nav": {
+      "about": "О Нас",
+      "editor": "Редактор"
+    },
+    "access": {
+      "login": "Войти",
+      "signup": "Зарегистироваться",
+      "signout": "Выйти",
+      "close": "закрыть"
+    }
+  }
+}

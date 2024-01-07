@@ -1,12 +1,17 @@
+import styles from './footer.module.scss';
+import TEXT_CONTENT_LOCALIZATION from './TEXT_CONTENT_LOCALIZATION.json';
 import Image from 'next/image';
 import Link from 'next/link';
 import ContainerLayout from '../ContainerLayout';
 import rssLogo from '../../../public/logo-rs-school.svg';
 import ghLogo from '../../../public/logo-github.svg';
-import styles from './footer.module.scss';
 import LINKS from '@/consts/LINKS';
+import { useLanguageContext } from '@/utils/contexts/LangContext';
 
 function Footer(): JSX.Element {
+  const { language } = useLanguageContext();
+  const textContent = TEXT_CONTENT_LOCALIZATION[language];
+
   return (
     <footer className={styles.footer}>
       <ContainerLayout>
@@ -19,7 +24,7 @@ function Footer(): JSX.Element {
             <Image
               src={rssLogo}
               className={styles.footer__rssLogo}
-              alt="Rolling Scopes School logo"
+              alt={textContent.rssLogoAlt}
               priority={false}
             />
           </Link>
@@ -37,9 +42,11 @@ function Footer(): JSX.Element {
             <Image
               src={ghLogo}
               className={styles.footer__ghLogo}
-              alt="GitHub logo"
+              alt={textContent.ghLogoAlt}
             />
-            <span className={styles.footer__ghText}>View on GitHub</span>
+            <span className={styles.footer__ghText}>
+              {textContent.ghLinkTitle}
+            </span>
           </Link>
         </div>
       </ContainerLayout>
