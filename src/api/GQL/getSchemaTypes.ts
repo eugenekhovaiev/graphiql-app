@@ -13,7 +13,6 @@ export default async function getSchemaTypes(
       body: JSON.stringify({ query: INTROSPECTION_QUERY }),
     });
     const data = await response.json();
-    console.log(data);
     return data.data.__schema.types;
   } catch (error) {}
 }

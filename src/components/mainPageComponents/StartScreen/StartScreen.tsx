@@ -21,7 +21,6 @@ function StartScreen(): JSX.Element {
               className={styles.startScreen__image}
               src={graphQLSvg}
               alt="image"
-              priority
             />
           </div>
         </div>
