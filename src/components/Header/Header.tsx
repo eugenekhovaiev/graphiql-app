@@ -78,7 +78,7 @@ function Header(): JSX.Element {
         const response = await signOutUser();
         response === RESPONSE_STATUS.SUCCESS &&
           showNotification(
-            NOTIFICATION.LOGOUT_SUCCESS,
+            NOTIFICATION[language].LOGOUT_SUCCESS,
             setSuccessMessage,
             undefined,
             router,
@@ -86,7 +86,10 @@ function Header(): JSX.Element {
           );
       } catch (e) {}
     } else {
-      showNotification(NOTIFICATION.USER_ARE_NOT_AUTHORIZED, setErrorMessage);
+      showNotification(
+        NOTIFICATION[language].USER_ARE_NOT_AUTHORIZED,
+        setErrorMessage
+      );
     }
 
     if (isBurgerOpened) {
