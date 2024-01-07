@@ -15,6 +15,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import fetchUserRequest from '@/api/GQL/fetchUserRequest';
 import EDITOR_MESSAGES from '@/consts/EDITOR_MESSAGES';
 import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
+import STATUS_CODES from '@/consts/STATUS_CODES';
 
 export const EndpointContext = createContext({
   endpoint: '',
@@ -46,10 +47,12 @@ function Editor(): JSX.Element {
     async function getGQLResponse(): Promise<void> {
       try {
         const response = await fetchUserRequest(endpoint, GQLRequest);
-        setGQLResponse(JSON.stringify(response));
-      } catch (error) {
-        console.log('ERROR ATTENTION', error);
-      }
+        if (response === STATUS_CODES.FAIL) {
+          setGQLResponse(EDITOR_MESSAGES.WRONG_URL);
+        } else {
+          setGQLResponse(JSON.stringify(response));
+        }
+      } catch (error) {}
     }
 
     getGQLResponse();
