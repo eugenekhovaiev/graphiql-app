@@ -30,7 +30,7 @@ const DEVELOPERS_INFO_ENG = [
   {
     name: 'Maria Bogdanova',
     position: 'Frontend developer',
-    imageUrl: '',
+    imageUrl: '/maria-photo.jpg',
     description: `
       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
       sed do eiusmod tempor incididunt ut labore et dolore
