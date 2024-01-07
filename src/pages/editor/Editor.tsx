@@ -55,7 +55,9 @@ function Editor(): JSX.Element {
       } catch (error) {}
     }
 
-    getGQLResponse();
+    if (GQLRequest.length > 0) {
+      getGQLResponse();
+    }
   }, [GQLRequest]);
 
   useEffect(() => {

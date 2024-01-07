@@ -21,7 +21,7 @@ function SideBar({
   const [notification, setNotification] = useState<null | string>(null);
 
   function onCodeRun(): void {
-    if (code === GQLRequest) {
+    if (code === GQLRequest || code.length === 0) {
       showNotification(NOTIFICATION.NO_CHANGES_IN_EDITOR, setNotification);
     } else {
       setGQLRequest(code);
