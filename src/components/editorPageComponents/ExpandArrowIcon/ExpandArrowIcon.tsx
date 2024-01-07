@@ -5,7 +5,7 @@ import styles from './expandArrowIcon.module.scss';
 
 interface Props {
   isOpen: boolean;
-  setOpen: (isOpen: boolean) => void;
+  setOpen: (isOpen: boolean | ((prev: boolean) => boolean)) => void;
 }
 
 function ExpandArrowIcon({ isOpen, setOpen }: Props): JSX.Element {
@@ -13,8 +13,7 @@ function ExpandArrowIcon({ isOpen, setOpen }: Props): JSX.Element {
     <Image
       className={styles.arrowIcon}
       src={isOpen ? arrowDown : arrowUp}
-      // todo: replace with (prev) => !prev and fix types
-      onClick={() => setOpen(!isOpen)}
+      onClick={() => setOpen((prev) => !prev)}
       alt="expand arrow"
     />
   );
