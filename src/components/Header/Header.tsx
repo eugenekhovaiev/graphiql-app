@@ -2,10 +2,11 @@
 import styles from './header.module.scss';
 import linkStyles from '@/components/ui/LinkElement/linkElement.module.scss';
 import buttonStyles from '@/components/ui/Button/button.module.scss';
+import TEXT_CONTENT_LOCALIZATION from './TEXT_CONTENT_LOCALIZATION.json';
 
 import closeIcon from '/public/close_round_duotone.svg';
 
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
@@ -24,6 +25,7 @@ import { auth } from '@/api/firebase/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import showNotification from '@/utils/showNotification';
+import { Language, useLanguageContext } from '@/utils/contexts/LangContext';
 
 function Header(): JSX.Element {
   const [scrollPos, setScrollPos] = useState(0);
@@ -33,6 +35,11 @@ function Header(): JSX.Element {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+
+  const { language, updateLanguage } = useLanguageContext();
+  const textContent = TEXT_CONTENT_LOCALIZATION[language];
 
   const router = useRouter();
 
@@ -87,6 +94,14 @@ function Header(): JSX.Element {
     }
   };
 
+  const handleLanguageChange = (
+    event: ChangeEvent<HTMLSelectElement>
+  ): void => {
+    const newValue = event.target.value;
+    setSelectedLanguage(newValue);
+    updateLanguage(newValue as Language);
+  };
+
   return (
     <header
       className={`${styles.header} ${
@@ -95,7 +110,7 @@ function Header(): JSX.Element {
     >
       <ContainerLayout className={styles.header__content}>
         <Link className={styles.header__logo} href={LINKS.HOME}>
-          GraphiQl Editor
+          {textContent.logo}
         </Link>
         <nav
           className={`${styles.header__menu} ${
@@ -104,7 +119,7 @@ function Header(): JSX.Element {
         >
           <div className={styles.header__navBar}>
             <LinkElement
-              title="About Us"
+              title={textContent.nav.about}
               className={`${styles.header__link} ${
                 router.pathname === LINKS.HOME ? linkStyles.link_routed : ''
               }`}
@@ -113,7 +128,7 @@ function Header(): JSX.Element {
             />
             {isLoggedIn && (
               <LinkElement
-                title="Editor"
+                title={textContent.nav.editor}
                 className={`${styles.header__link} ${
                   router.pathname === LINKS.EDITOR ? linkStyles.link_routed : ''
                 }`}
@@ -123,13 +138,17 @@ function Header(): JSX.Element {
             )}
           </div>
           <div className={styles.header__access}>
-            <select className={styles.header__select}>
+            <select
+              className={styles.header__select}
+              value={selectedLanguage}
+              onChange={handleLanguageChange}
+            >
               <option value="en">EN</option>
               <option value="ru">RU</option>
             </select>
             {!isLoggedIn && (
               <Button
-                title="Log In"
+                title={textContent.access.login}
                 className={`${styles.header__button} ${
                   scrollPos === 0 ? '' : buttonStyles.button_scrolling
                 }`}
@@ -141,7 +160,7 @@ function Header(): JSX.Element {
             )}
             {!isLoggedIn && (
               <Button
-                title="SignUp"
+                title={textContent.access.signup}
                 className={`${styles.header__button} ${
                   scrollPos === 0 ? '' : buttonStyles.button_scrolling
                 }`}
@@ -151,14 +170,14 @@ function Header(): JSX.Element {
             )}
             {isLoggedIn && (
               <Button
-                title="Sign Out"
+                title={textContent.access.signout}
                 styleType="secondary"
                 onClick={onLogOutClick}
               />
             )}
           </div>
           <div className={styles.header__closeIcon} onClick={handleBurgerClose}>
-            <Image src={closeIcon} alt="close" />
+            <Image src={closeIcon} alt={textContent.access.close} />
           </div>
         </nav>
         <div className={styles.header__burger} onClick={handleBurgerOpen}>
