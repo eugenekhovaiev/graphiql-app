@@ -7,9 +7,12 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/api/firebase/firebaseConfig';
+import { useLanguageContext } from '@/utils/contexts/LangContext';
 
 function SignUp(): JSX.Element {
   const router = useRouter();
+
+  const { language } = useLanguageContext();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -25,9 +28,9 @@ function SignUp(): JSX.Element {
         <AuthForm
           isSignUp
           onFormSubmit={createUser}
-          title={FORM.SIGNUP_TITLE}
-          subtitle={FORM.SIGNUP_SUBTITLE}
-          linkTitle={FORM.LOGIN_TITLE}
+          title={FORM[language].SIGNUP_TITLE}
+          subtitle={FORM[language].SIGNUP_SUBTITLE}
+          linkTitle={FORM[language].LOGIN_TITLE}
           linkHref={LINKS.LOGIN}
         />
       </ContainerLayout>

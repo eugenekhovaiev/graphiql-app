@@ -1,0 +1,10 @@
+{
+  "en": {
+    "title": "Docs",
+    "description": "A GraphQL schema provides a root type for each kind of operation."
+  },
+  "ru": {
+    "title": "Документация",
+    "description": "Схема GraphQL предоставляет корневой тип для каждого типа операций."
+  }
+}

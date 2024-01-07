@@ -4,6 +4,7 @@ import showNotification from '@/utils/showNotification';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 import { useState } from 'react';
 import Notification from '@/components/ui/Notification';
+import { useLanguageContext } from '@/utils/contexts/LangContext';
 
 interface Props {
   code: string;
@@ -19,10 +20,14 @@ function SideBar({
   setGQLRequest,
 }: Props): JSX.Element {
   const [notification, setNotification] = useState<null | string>(null);
+  const { language } = useLanguageContext();
 
   function onCodeRun(): void {
     if (code === GQLRequest || code.length === 0) {
-      showNotification(NOTIFICATION.NO_CHANGES_IN_EDITOR, setNotification);
+      showNotification(
+        NOTIFICATION[language].NO_CHANGES_IN_EDITOR,
+        setNotification
+      );
     } else {
       setGQLRequest(code);
     }

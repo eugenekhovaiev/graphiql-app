@@ -1,33 +1,28 @@
 import styles from './aboutCourse.module.scss';
+import TEXT_CONTENT_LOCALIZATION from './TEXT_CONTENT_LOCALIZATION.json';
 import buttonStyles from '../../ui/Button/button.module.scss';
 import ContainerLayout from '../../ContainerLayout';
 import Link from 'next/link';
 import LINKS from '@/consts/LINKS';
+import { useLanguageContext } from '@/utils/contexts/LangContext';
 
 function AboutCourse(): JSX.Element {
+  const { language } = useLanguageContext();
+  const textContent = TEXT_CONTENT_LOCALIZATION[language];
+
   return (
     <section className={styles.aboutCourse}>
       <ContainerLayout>
         <div className={styles.aboutCourse__wrapper}>
-          <h2 className={styles.aboutCourse__title}>React Course</h2>
+          <h2 className={styles.aboutCourse__title}>{textContent.title}</h2>
           <p className={styles.aboutCourse__description}>
-            <span className={styles.textHighlight}>RS School</span>, established
-            by The Rolling Scopes developer community in 2013, is a
-            community-based education program. As part of this program, the
-            <span className={styles.textHighlight}> React Course</span> offers a
-            <span className={styles.textHighlight}> cost-free</span> and
-            <span className={styles.textHighlight}> online</span> learning
-            experience in English, providing access to
-            <span className={styles.textHighlight}> open-source</span> learning
-            materials and the opportunity to receive an electronic
-            <span className={styles.textHighlight}> certificate</span> upon
-            successful completion.
+            <span className={styles.textHighlight}>
+              {textContent.descriptionStart}
+            </span>
+            {textContent.description.p1}
           </p>
           <p className={styles.aboutCourse__description}>
-            This course is specifically designed for students who have completed
-            RS School Stage #2 during the 2022Q3 session, as well as new
-            students with practical expertise and knowledge in JavaScript and
-            TypeScript.
+            {textContent.description.p2}
           </p>
 
           <Link
@@ -35,7 +30,7 @@ function AboutCourse(): JSX.Element {
             target="_blank"
             href={LINKS.RSSCHOOL_REACT}
           >
-            Learn more
+            {textContent.button}
           </Link>
         </div>
       </ContainerLayout>
