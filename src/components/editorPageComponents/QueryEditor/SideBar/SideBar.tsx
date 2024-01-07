@@ -30,12 +30,17 @@ function SideBar({
 
   return (
     <div className={styles.sidebar}>
-      <button className={styles.sidebar__button} onClick={onCodeRun}>
+      <button
+        data-testid="run-button"
+        className={styles.sidebar__button}
+        onClick={onCodeRun}
+      >
         <div
           className={`${styles.sidebar__icon} ${styles.sidebar__icon_run}`}
         />
       </button>
       <button
+        data-testid="prettify-button"
         className={`${styles.sidebar__button} ${styles.sidebar__button_light}`}
         onClick={(): void => {
           setCode(prettify(code));

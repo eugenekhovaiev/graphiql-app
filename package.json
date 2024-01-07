@@ -10,8 +10,10 @@
     "lint:fix": "next lint --fix",
     "format": "prettier --write ./**/*.{ts,tsx,css,scss,sass,json} --config ./.prettierrc.json",
     "prepare": "husky install",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:coverage:ui": "vitest --ui --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
