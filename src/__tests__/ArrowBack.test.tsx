@@ -25,7 +25,7 @@ describe('ArrowBack Component', () => {
           name: 'exampleField',
           description: 'example',
           type: { name: 'String' },
-        }} // Mock GQLField
+        }}
         prevList={mockPrevList}
       />
     );
@@ -42,7 +42,7 @@ describe('ArrowBack Component', () => {
           name: 'exampleField',
           description: 'example',
           type: { name: 'String' },
-        }} // Mock GQLField
+        }}
         prevList={mockPrevList}
       />
     );
