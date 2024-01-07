@@ -6,7 +6,9 @@ function DocsDetails({ name, description, type }: GQLField): JSX.Element {
     <>
       <h2 className={styles.docsDetails__title}>{name}</h2>
       {description && <p>{description}</p>}
-      <i>Type: {type.name}</i>
+      {type.name && (
+        <p className={styles.docsDetails__type}>Type: {type.name}</p>
+      )}
     </>
   );
 }
