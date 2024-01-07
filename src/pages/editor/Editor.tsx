@@ -32,6 +32,7 @@ function Editor(): JSX.Element {
   const [GQLResponse, setGQLResponse] = useState(
     EDITOR_MESSAGES.RESPONSE_DEFAULT as string
   );
+  const [variables, setVariables] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -45,6 +46,9 @@ function Editor(): JSX.Element {
   useEffect(() => {
     async function getGQLResponse(): Promise<void> {
       try {
+        console.log(variables);
+        console.log(GQLRequest);
+
         const response = await fetchUserRequest(endpoint, GQLRequest);
         if (response === STATUS_CODES.FAIL) {
           setGQLResponse(EDITOR_MESSAGES.WRONG_URL);
@@ -92,7 +96,9 @@ function Editor(): JSX.Element {
                   setOpen={setBottomSectionOpen}
                 />
               </div>
-              {isBottomSectionOpen && <VariablesEditor />}
+              {isBottomSectionOpen && (
+                <VariablesEditor setVariables={setVariables} />
+              )}
               {/*<HeadersEditor />*/}
             </div>
             <ResponseViewer GQLResponse={GQLResponse} />
