@@ -1,7 +1,11 @@
-@import "@/sass/abstracts/variables.module";
+@import '@/sass/abstracts/variables.module';
 
 .docsDetails {
   &__title {
     color: $secondary-color;
+  }
+
+  &__type {
+    color: $primary-color-s;
   }
 }

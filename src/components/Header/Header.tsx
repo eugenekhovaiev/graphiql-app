@@ -183,12 +183,17 @@ function Header(): JSX.Element {
             <Image src={closeIcon} alt={textContent.access.close} />
           </div>
         </nav>
-        <div className={styles.header__burger} onClick={handleBurgerOpen}>
+        <div
+          data-testid="burger-menu"
+          className={styles.header__burger}
+          onClick={handleBurgerOpen}
+        >
           <div className={styles.header__burgerLine} />
           <div className={styles.header__burgerLine} />
           <div className={styles.header__burgerLine} />
         </div>
         <div
+          data-testid="overlay"
           className={`${styles.header__overlay} ${
             isBurgerOpened ? styles.header__overlay_active : ''
           }`}

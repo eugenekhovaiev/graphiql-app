@@ -35,7 +35,17 @@ function DocsList({
                 key={item.name}
                 onClick={() => setCurrentItem(item)}
               >
-                {item.name}
+                <span className={styles.docsList__name}>{item.name}</span>
+                {item.type.name && (
+                  <span className={styles.docsList__type}>
+                    : {item.type.name}
+                  </span>
+                )}
+                {item.description && (
+                  <p className={styles.docsList__description}>
+                    {item.description}
+                  </p>
+                )}
               </li>
             );
           }
@@ -48,7 +58,7 @@ function DocsList({
                 setCurrentList(item.fields ? item.fields : []);
               }}
             >
-              {item.name}
+              <span className={styles.docsList__name}>{item.name}</span>
             </li>
           );
         })

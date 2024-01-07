@@ -31,7 +31,7 @@ function DocsTypeCategories({
             className={styles.typeCategories__link}
             onClick={() => editLists(allTypes)}
           >
-            All Types
+            All Schema Types
           </li>
         )}
         {rootFields && (
@@ -39,7 +39,7 @@ function DocsTypeCategories({
             className={styles.typeCategories__link}
             onClick={() => editLists(rootFields)}
           >
-            Root
+            Root Types
           </li>
         )}
         {queryFields && (
@@ -47,7 +47,7 @@ function DocsTypeCategories({
             className={styles.typeCategories__link}
             onClick={() => editLists(queryFields)}
           >
-            Query
+            Query Types
           </li>
         )}
       </ul>

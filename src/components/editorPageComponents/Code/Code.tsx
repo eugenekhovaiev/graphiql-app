@@ -2,6 +2,7 @@ import styles from './code.module.scss';
 import { KeyboardEvent, ChangeEvent, useState, useEffect, useRef } from 'react';
 import { Inconsolata } from 'next/font/google';
 import TAB from '@/consts/TAB';
+
 interface Props {
   value?: string;
   setValue?: (value: string) => void;
@@ -11,7 +12,7 @@ interface Props {
 const inconsolata = Inconsolata({ subsets: ['latin'] });
 
 function Code({ value, setValue, readonly }: Props): JSX.Element {
-  const [code, setCode] = useState(value || '');
+  const [code, setCode] = useState<string>(value || '');
   const [rows, setRows] = useState(value?.split('\n').length || 1);
   const [cursor, setCursor] = useState(0);
   const codeRef = useRef<HTMLTextAreaElement | null>(null);
@@ -100,6 +101,7 @@ function Code({ value, setValue, readonly }: Props): JSX.Element {
         break;
     }
   };
+
   return (
     <div
       style={{ fontFamily: inconsolata.style.fontFamily }}

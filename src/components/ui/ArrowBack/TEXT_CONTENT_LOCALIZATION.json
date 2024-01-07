@@ -1,0 +1,10 @@
+{
+  "en": {
+    "button": "Back",
+    "iconAlt": "Arrow back"
+  },
+  "ru": {
+    "button": "Назад",
+    "iconAlt": "Стрелочка назад"
+  }
+}

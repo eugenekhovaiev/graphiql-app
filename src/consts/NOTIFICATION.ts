@@ -9,6 +9,8 @@ const NOTIFICATION = {
     WRONG_PASSWORD:
       "There's an issue with your email or password. Please, try again.",
     URL_CHANGED: "Congratulations! You've successfully updated the URL.",
+    SAME_URL: "Oops! It looks like you've entered the same URL as before",
+    NO_CHANGES_IN_EDITOR: 'Please update your input to provide new request',
   },
   ru: {
     USER_ALREADY_EXISTS: 'У Вас уже есть аккаунт, пожалуйста ',
@@ -20,6 +22,9 @@ const NOTIFICATION = {
     WRONG_PASSWORD:
       'Возникла проблема с Вашим адресом электронной почты или паролем. Пожалуйста, попробуйте еще раз.',
     URL_CHANGED: 'Поздравляем! Вы успешно обновили URL.',
+    SAME_URL: 'Упс! Похоже, Вы ввели тот же URL, что и раньше.',
+    NO_CHANGES_IN_EDITOR:
+      'Пожалуйста, введите другие данные, чтобы предоставить новый запрос.',
   },
 };
 

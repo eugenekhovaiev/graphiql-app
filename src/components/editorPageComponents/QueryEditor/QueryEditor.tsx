@@ -1,31 +1,36 @@
 import styles from './queryEditor.module.scss';
-import { useState } from 'react';
 import Code from '../Code';
+import SideBar from '@/components/editorPageComponents/QueryEditor/SideBar/SideBar';
+import { useContext, useEffect, useState } from 'react';
+import { EndpointContext } from '@/pages/editor/Editor';
 import prettify from '@/utils/prettify';
+import EDITOR_MESSAGES from '@/consts/EDITOR_MESSAGES';
+import { useLanguageContext } from '@/utils/contexts/LangContext';
 
-function QueryEditor(): JSX.Element {
-  const [code, setCode] = useState('');
+interface Props {
+  GQLRequest: string;
+  setGQLRequest: (GQLRequest: string) => void;
+}
+
+function QueryEditor({ GQLRequest, setGQLRequest }: Props): JSX.Element {
+  const context = useContext(EndpointContext);
+  const [code, setCode] = useState<string>('');
+
+  const { language } = useLanguageContext();
+
+  useEffect(() => {
+    setCode(prettify(EDITOR_MESSAGES[language].REQUEST_DEFAULT));
+  }, [context.endpoint]);
 
   return (
     <section className={styles.queryEditor}>
       <Code value={code} setValue={setCode} />
-      <div className={styles.queryEditor__sidebar}>
-        <button className={styles.queryEditor__sidebarButton}>
-          <div
-            className={`${styles.queryEditor__icon} ${styles.queryEditor__icon_run}`}
-          />
-        </button>
-        <button
-          className={`${styles.queryEditor__sidebarButton} ${styles.queryEditor__sidebarButton_light}`}
-          onClick={(): void => {
-            setCode(prettify(code));
-          }}
-        >
-          <div
-            className={`${styles.queryEditor__icon} ${styles.queryEditor__icon_prettify}`}
-          />
-        </button>
-      </div>
+      <SideBar
+        code={code}
+        setCode={setCode}
+        GQLRequest={GQLRequest}
+        setGQLRequest={setGQLRequest}
+      />
     </section>
   );
 }

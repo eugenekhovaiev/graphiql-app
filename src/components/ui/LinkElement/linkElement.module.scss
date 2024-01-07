@@ -11,8 +11,8 @@
 
   text-decoration: none;
   color: inherit;
-  font-size: 1.8rem;
-  
+  font-size: 1.6rem;
+
   @include transition;
 
   &::after {
@@ -48,11 +48,7 @@
     }
   }
 
-  @include media-l {
-    font-size: 1.6rem;
-  }
-
-  @include media-s {
-    font-size: 1.4rem;
+  @include media-m {
+    font-size: 1.8rem;
   }
 }
