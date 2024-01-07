@@ -2,7 +2,7 @@
 @import '@/sass/abstracts/mixins.module.scss';
 
 .header {
-  padding: 2.5rem 3.2rem;
+  padding: 1.5rem 3.2rem;
 
   position: sticky;
   z-index: 2;
@@ -45,7 +45,7 @@
   }
 
   &__select {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: inherit;
 
     border: none;
@@ -234,6 +234,9 @@
       &_active {
         right: 0;
       }
+    }
+    &__select {
+      font-size: 1.8rem;
     }
   }
 }
