@@ -106,7 +106,6 @@ function AuthForm({
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <InputField
           label={textContent.email.label}
-          type="email"
           register={register}
           registeredName="email"
           autoComplete="email"

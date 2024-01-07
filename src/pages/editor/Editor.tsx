@@ -1,10 +1,6 @@
 import styles from './editor.module.scss';
 import ResponseViewer from 'src/components/editorPageComponents/ResponseViewer';
 import QueryEditor from 'src/components/editorPageComponents/QueryEditor';
-import VariablesEditor from 'src/components/editorPageComponents/VariablesEditor';
-import HeadersEditor from 'src/components/editorPageComponents/HeadersEditor';
-import arrowUp from '../../../public/arrow-up.svg';
-import Image from 'next/image';
 import EndpointInput from 'src/components/editorPageComponents/EndpointInput';
 import { createContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -16,6 +12,8 @@ import fetchUserRequest from '@/api/GQL/fetchUserRequest';
 import EDITOR_MESSAGES from '@/consts/EDITOR_MESSAGES';
 import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
 import STATUS_CODES from '@/consts/STATUS_CODES';
+import ExpandArrowIcon from '@/components/editorPageComponents/ExpandArrowIcon';
+import VariablesEditor from '@/components/editorPageComponents/VariablesEditor';
 
 export const EndpointContext = createContext({
   endpoint: '',
@@ -28,11 +26,13 @@ function Editor(): JSX.Element {
   }
 
   const [isSideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
+  const [isBottomSectionOpen, setBottomSectionOpen] = useState(false);
   const [endpoint, setEndpoint] = useState(initialValue || '');
   const [GQLRequest, setGQLRequest] = useState('');
   const [GQLResponse, setGQLResponse] = useState(
     EDITOR_MESSAGES.RESPONSE_DEFAULT
   );
+  const [variables, setVariables] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -46,6 +46,18 @@ function Editor(): JSX.Element {
   useEffect(() => {
     async function getGQLResponse(): Promise<void> {
       try {
+        if (variables) {
+          const variablesObject = JSON.parse(variables);
+          const variablesArray = Object.keys(variablesObject);
+
+          variablesArray.forEach((variable) => {
+            const draw = GQLRequest.replaceAll(
+              `$${variable}`,
+              variablesObject[variable]
+            );
+            setGQLRequest(draw);
+          });
+        }
         const response = await fetchUserRequest(endpoint, GQLRequest);
         if (response === STATUS_CODES.FAIL) {
           setGQLResponse(EDITOR_MESSAGES.WRONG_URL);
@@ -85,15 +97,18 @@ function Editor(): JSX.Element {
               />
               <div className={styles.editor__bottomBlockWrapper}>
                 <div className={styles.editor__bottomBlockLinksWrapper}>
-                  <VariablesEditor />
-                  <HeadersEditor />
+                  <p onClick={() => setBottomSectionOpen(true)}>Variables</p>
+                  <p onClick={() => setBottomSectionOpen(true)}>Headers</p>
                 </div>
-                <Image
-                  className={styles.editor__arrow}
-                  src={arrowUp}
-                  alt="expand arrow"
+                <ExpandArrowIcon
+                  isOpen={isBottomSectionOpen}
+                  setOpen={setBottomSectionOpen}
                 />
               </div>
+              {isBottomSectionOpen && (
+                <VariablesEditor setVariables={setVariables} />
+              )}
+              {/*<HeadersEditor />*/}
             </div>
             <ResponseViewer GQLResponse={GQLResponse} />
           </div>
