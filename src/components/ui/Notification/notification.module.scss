@@ -3,7 +3,7 @@
 
 .notification {
   position: absolute;
-  top: 2.5rem;
+  top: 0.5rem;
   right: 0.5rem;
   z-index: 1000;
   display: flex;
@@ -16,8 +16,7 @@
   border-radius: 1rem;
 
   @include media-s {
-    top: 4.5rem;
-    width: 25rem;
+    width: 90vw;
     font-size: 1.6rem;
   }
 
