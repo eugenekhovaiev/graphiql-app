@@ -7,23 +7,28 @@ import NOTIFICATION from '@/consts/NOTIFICATION';
 import showNotification from '@/utils/showNotification';
 
 interface Props {
+  endpoint: string;
   setEndpoint: (endpoint: string) => void;
   setSideMenuOpen: (isSideMenuOpen: boolean) => void;
 }
 
-function EndpointInput({ setEndpoint, setSideMenuOpen }: Props): JSX.Element {
-  let initialValue;
-  if (typeof window !== 'undefined') {
-    initialValue = localStorage.getItem(LOCAL_STORAGE_VALUES.ENDPOINT);
-  }
-  const [value, setValue] = useState<string>(initialValue || '');
-  const [isNotification, setNotification] = useState<null | string>(null);
+function EndpointInput({
+  endpoint,
+  setEndpoint,
+  setSideMenuOpen,
+}: Props): JSX.Element {
+  const [value, setValue] = useState<string>(endpoint);
+  const [notification, setNotification] = useState<null | string>(null);
 
   function handleSubmit(): void {
-    setEndpoint(value);
-    localStorage.setItem(LOCAL_STORAGE_VALUES.ENDPOINT, `${value}`);
-    setSideMenuOpen(false);
-    showNotification(NOTIFICATION.URL_CHANGED, setNotification);
+    if (value === endpoint) {
+      showNotification(NOTIFICATION.SAME_URL, setNotification);
+    } else {
+      setEndpoint(value);
+      localStorage.setItem(LOCAL_STORAGE_VALUES.ENDPOINT, `${value}`);
+      setSideMenuOpen(false);
+      showNotification(NOTIFICATION.URL_CHANGED, setNotification);
+    }
   }
 
   return (
@@ -39,7 +44,12 @@ function EndpointInput({ setEndpoint, setSideMenuOpen }: Props): JSX.Element {
         styleType="light"
         onClick={handleSubmit}
       />
-      {isNotification && <Notification text={NOTIFICATION.URL_CHANGED} />}
+      {notification && (
+        <Notification
+          text={notification}
+          isError={notification === NOTIFICATION.SAME_URL}
+        />
+      )}
     </div>
   );
 }
