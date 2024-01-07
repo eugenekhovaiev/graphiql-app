@@ -2,6 +2,16 @@ import { render, screen } from '@testing-library/react';
 import Main from '@/pages/';
 import RootLayout from '@/components/RootLayout';
 
+vi.mock('next/router', async () => {
+  const actual = await vi.importActual('next/router');
+  return {
+    ...actual,
+    useRouter: vi.fn(() => ({
+      push: vi.fn(),
+    })),
+  };
+});
+
 describe('Main Page', () => {
   it('renders StartScreen component', () => {
     render(

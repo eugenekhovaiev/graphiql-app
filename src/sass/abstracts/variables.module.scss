@@ -14,18 +14,7 @@ $error-color-light: #ffcccc;
 $success-color: #126b29;
 $success-color-light: #d4edda;
 
-$screen-width-s: 576px;
-$screen-width-m: 768px;
-$screen-width-l: 992px;
-$screen-width-xl: 1200px;
-
-:export {
-  textColor: $text-color;
-  primaryColor: $primary-color;
-  primaryColorS: $primary-color-s;
-  primaryColorXS: $primary-color-xs;
-  primaryColorXXS: $primary-color-xxs;
-  secondaryColor: $secondary-color;
-  secondaryColorS: $secondary-color-s;
-  secondaryColorXS: $secondary-color-xs;
-}
+$screen-width-s: 575px;
+$screen-width-m: 767px;
+$screen-width-l: 991px;
+$screen-width-xl: 1199px;

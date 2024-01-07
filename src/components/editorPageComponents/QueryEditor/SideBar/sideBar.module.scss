@@ -1,0 +1,49 @@
+@import 'src/sass/abstracts/variables.module';
+@import 'src/sass/abstracts/mixins.module';
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__button {
+    cursor: pointer;
+    padding: 0.6rem;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $secondary-color;
+    border: 0.1rem solid $secondary-color;
+    border-radius: 1rem;
+    @include transition;
+
+    &:hover {
+      background-color: $secondary-color-xs;
+      border-color: $secondary-color-xs;
+    }
+
+    &:active {
+      background-color: $secondary-color-s;
+    }
+
+    &_light {
+      background-color: $primary-color-xxs;
+    }
+  }
+
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &_run {
+      background-image: url('../../../../../public/play-light.svg');
+    }
+
+    &_prettify {
+      background-image: url('../../../../../public/prettify.svg');
+    }
+  }
+}

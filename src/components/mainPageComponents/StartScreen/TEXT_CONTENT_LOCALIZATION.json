@@ -1,0 +1,12 @@
+{
+  "en": {
+    "title": "Your playground for GraphQL requests",
+    "subtitle": "Craft queries effortlessly with our user-friendly interface",
+    "imageAlt": "logo"
+  },
+  "ru": {
+    "title": "Ваша площадка для запросов GraphQL",
+    "subtitle": "Легко создавайте запросы при помощи нашего удобного интерфейса.",
+    "imageAlt": "логотип"
+  }
+}

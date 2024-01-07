@@ -1,5 +1,5 @@
-@import "@/sass/abstracts/variables.module";
-@import "@/sass/abstracts/mixins.module";
+@import '@/sass/abstracts/variables.module';
+@import '@/sass/abstracts/mixins.module';
 
 .form {
   display: flex;
@@ -41,7 +41,7 @@
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 300;
     text-align: center;
 

@@ -2,6 +2,16 @@ import { render, screen } from '@testing-library/react';
 import RootLayout from '@/components/RootLayout';
 import NotFound from '@/pages/404/';
 
+vi.mock('next/router', async () => {
+  const actual = await vi.importActual('next/router');
+  return {
+    ...actual,
+    useRouter: vi.fn(() => ({
+      push: vi.fn(),
+    })),
+  };
+});
+
 describe('404 Page', () => {
   it('renders 404 page content', () => {
     render(

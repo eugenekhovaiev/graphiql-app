@@ -1,10 +1,11 @@
-@import "@/sass/abstracts/variables.module";
-@import "@/sass/abstracts/mixins.module";
+@import '@/sass/abstracts/variables.module';
+@import '@/sass/abstracts/mixins.module';
 
 .notification {
   position: absolute;
-  top: 2.5rem;
-  right: .5rem;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1000;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -15,8 +16,7 @@
   border-radius: 1rem;
 
   @include media-s {
-    top: 4.5rem;
-    width: 25rem;
+    width: 90vw;
     font-size: 1.6rem;
   }
 
@@ -42,7 +42,7 @@
   &__link {
     text-decoration: underline;
     text-decoration-thickness: 1px;
-    text-underline-offset: .3rem;
+    text-underline-offset: 0.3rem;
 
     &:hover {
       color: $primary-color;

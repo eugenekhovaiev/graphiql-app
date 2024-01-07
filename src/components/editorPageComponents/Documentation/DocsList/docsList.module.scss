@@ -1,0 +1,39 @@
+@import '../../../../sass/abstracts/variables.module';
+@import '../../../../sass/abstracts/mixins.module';
+
+.docsList {
+  max-height: 70vh;
+  overflow: auto;
+  @include scrolling;
+
+  &__item {
+    padding: 0.3rem;
+    font-size: 1.6rem;
+    @include transition;
+  }
+
+  &__name {
+    width: fit-content;
+    font-weight: 300;
+    color: $primary-color;
+    text-transform: capitalize;
+    border-bottom: 0.1rem solid transparent;
+    &:hover {
+      cursor: pointer;
+      font-weight: 400;
+      border-bottom: 0.1rem solid $secondary-color;
+    }
+  }
+
+  &__type {
+    font-size: 1.5rem;
+    color: $primary-color-s;
+  }
+
+  &__description {
+    margin: 1rem 0 1.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: $text-color;
+  }
+}

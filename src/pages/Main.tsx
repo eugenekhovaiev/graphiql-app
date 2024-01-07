@@ -1,7 +1,7 @@
-import StartScreen from '@/components/StartScreen';
-import AboutProject from '@/components/AboutProject';
-import AboutCourse from '@/components/AboutCourse';
-import AboutUs from '@/components/AboutUs';
+import StartScreen from 'src/components/mainPageComponents/StartScreen';
+import AboutProject from 'src/components/mainPageComponents/AboutProject';
+import AboutCourse from 'src/components/mainPageComponents/AboutCourse';
+import AboutUs from 'src/components/mainPageComponents/AboutUs';
 
 function Main(): JSX.Element {
   return (

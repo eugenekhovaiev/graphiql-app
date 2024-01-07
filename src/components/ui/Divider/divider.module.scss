@@ -1,0 +1,8 @@
+@import '../../../sass/abstracts/variables.module';
+@import '../../../sass/abstracts/mixins.module';
+
+.divider {
+  width: 1px;
+  margin: -1.2rem 0;
+  background-color: $secondary-color-xs;
+}

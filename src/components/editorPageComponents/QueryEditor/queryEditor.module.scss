@@ -1,0 +1,9 @@
+@import '../../../sass/abstracts/variables.module';
+@import '../../../sass/abstracts/mixins.module';
+
+.queryEditor {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}

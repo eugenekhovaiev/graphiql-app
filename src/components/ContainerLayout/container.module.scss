@@ -1,23 +1,23 @@
-@import "../../sass/abstracts/variables.module";
+@import '../../sass/abstracts/mixins.module';
 
 .container {
   margin: 0 auto;
   max-width: 1140px;
   height: 100%;
 
-  @media screen and (max-width: $screen-width-xl) {
+  @include media-xl {
     max-width: 960px;
   }
 
-  @media screen and (max-width: $screen-width-l) {
+  @include media-l {
     max-width: 720px;
   }
 
-  @media screen and (max-width: $screen-width-m) {
+  @include media-m {
     max-width: 540px;
   }
 
-  @media screen and (max-width: $screen-width-s) {
+  @include media-s {
     width: 90%;
   }
 }
