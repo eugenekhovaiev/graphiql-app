@@ -11,15 +11,27 @@ vi.mock('next/font/google', async () => {
     })),
   };
 });
+const mockGQLRequest = '{value: request}';
+const mockSetGQLRequest = vi.fn();
 
 describe('QueryEditor Component', () => {
   it('renders QueryEditor component correctly', () => {
-    render(<QueryEditor />);
+    render(
+      <QueryEditor
+        GQLRequest={mockGQLRequest}
+        setGQLRequest={mockSetGQLRequest}
+      />
+    );
     expect(screen.getByTestId('run-button')).toBeInTheDocument();
     expect(screen.getByTestId('prettify-button')).toBeInTheDocument();
   });
   it('handles prettify call', async () => {
-    render(<QueryEditor />);
+    render(
+      <QueryEditor
+        GQLRequest={mockGQLRequest}
+        setGQLRequest={mockSetGQLRequest}
+      />
+    );
     await userEvent.click(screen.getByTestId('prettify-button'));
     expect(screen.getByTestId('prettify-button')).toBeInTheDocument();
   });

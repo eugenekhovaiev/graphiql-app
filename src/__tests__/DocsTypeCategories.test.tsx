@@ -48,9 +48,9 @@ describe('DocsTypeCategories Component', () => {
     );
 
     expect(screen.getByRole('heading')).toHaveTextContent('Docs');
-    expect(screen.getByText('All Types')).toBeInTheDocument();
-    expect(screen.getByText('Root')).toBeInTheDocument();
-    expect(screen.getByText('Query')).toBeInTheDocument();
+    expect(screen.getByText('All Schema Types')).toBeInTheDocument();
+    expect(screen.getByText('Root Types')).toBeInTheDocument();
+    expect(screen.getByText('Query Types')).toBeInTheDocument();
   });
 
   it('checks if editLists is called with correct arguments', async () => {
@@ -65,11 +65,11 @@ describe('DocsTypeCategories Component', () => {
       />
     );
 
-    await userEvent.click(screen.getByText('All Types'));
+    await userEvent.click(screen.getByText('All Schema Types'));
     waitFor(() => expect(mockEditLists).toHaveBeenCalledWith(mockAllTypes));
-    await userEvent.click(screen.getByText('Root'));
+    await userEvent.click(screen.getByText('Root Types'));
     waitFor(() => expect(mockEditLists).toHaveBeenCalledWith(mockRootFields));
-    await userEvent.click(screen.getByText('Query'));
+    await userEvent.click(screen.getByText('Query Types'));
     waitFor(() => expect(mockEditLists).toHaveBeenCalledWith(mockQueryFields));
   });
 });

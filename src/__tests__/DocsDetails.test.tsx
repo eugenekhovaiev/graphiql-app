@@ -9,11 +9,11 @@ vi.mock('next/font/google', async () => {
 
 describe('DocsDetails Component', () => {
   it('renders DocsDetails Component', () => {
-    render(
-      <DocsDetails name="Title" description="Details" type={{ name: null }} />
-    );
+    const mockType = { name: 'Int' };
+
+    render(<DocsDetails name="Title" description="Details" type={mockType} />);
     expect(screen.getByRole('heading')).toHaveTextContent('Title');
     expect(screen.getByText('Details')).toBeInTheDocument();
-    expect(screen.getByText('Type:')).toBeInTheDocument();
+    expect(screen.getByText(`Type: ${mockType.name}`)).toBeInTheDocument();
   });
 });

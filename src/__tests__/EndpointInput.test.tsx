@@ -12,6 +12,7 @@ vi.mock('next/font/google', async () => {
   };
 });
 
+const mockEndpoint = 'endpoint';
 const mockSetEndpoint = vi.fn();
 const mocksetSideMenuOpen = vi.fn();
 
@@ -19,6 +20,7 @@ describe('EndpointInput Component', () => {
   it('renders EndpointInput component correctly', () => {
     render(
       <EndpointInput
+        endpoint={mockEndpoint}
         setEndpoint={mockSetEndpoint}
         setSideMenuOpen={mocksetSideMenuOpen}
       />
@@ -30,6 +32,7 @@ describe('EndpointInput Component', () => {
     const localStorageSpy = vi.spyOn(Storage.prototype, 'setItem');
     render(
       <EndpointInput
+        endpoint={mockEndpoint}
         setEndpoint={mockSetEndpoint}
         setSideMenuOpen={mocksetSideMenuOpen}
       />
@@ -44,6 +47,23 @@ describe('EndpointInput Component', () => {
         expect(mockSetEndpoint).toHaveBeenCalledWith('/endpoint');
         expect(mocksetSideMenuOpen).toHaveBeenCalledWith(false);
       }
+    });
+  });
+  it('handles input unchange', async () => {
+    render(
+      <EndpointInput
+        endpoint={mockEndpoint}
+        setEndpoint={mockSetEndpoint}
+        setSideMenuOpen={mocksetSideMenuOpen}
+      />
+    );
+    const inputElement = screen.getByRole('textbox');
+    await userEvent.click(screen.getByRole('button', { name: 'Change' }));
+    waitFor(() => {
+      if (inputElement instanceof HTMLInputElement) {
+        expect(inputElement.value).toBe('endpoint');
+      }
+      expect(screen.getByAltText('notification')).toBeInTheDocument();
     });
   });
 });
