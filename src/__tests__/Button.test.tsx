@@ -45,6 +45,20 @@ describe('Button component', () => {
     expect(buttonElement).toBeInTheDocument();
   });
 
+  it('renders the Button with styleType="link"', () => {
+    const mockCallBack = vi.fn();
+    render(
+      <Button
+        title="Click me"
+        onClick={mockCallBack}
+        styleType="link"
+        type={'button'}
+      />
+    );
+    const buttonElement = screen.getByRole('button', { name: 'Click me' });
+    expect(buttonElement).toBeInTheDocument();
+  });
+
   it('calls the callback function', async () => {
     const mockCallBack = vi.fn();
     render(<Button title="Click me" onClick={mockCallBack} type="button" />);
