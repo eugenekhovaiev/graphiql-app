@@ -46,9 +46,18 @@ function Editor(): JSX.Element {
   useEffect(() => {
     async function getGQLResponse(): Promise<void> {
       try {
-        console.log(variables);
-        console.log(GQLRequest);
+        if (variables) {
+          const variablesObject = JSON.parse(variables);
+          const variablesArray = Object.keys(variablesObject);
 
+          variablesArray.forEach((variable) => {
+            const draw = GQLRequest.replaceAll(
+              `$${variable}`,
+              variablesObject[variable]
+            );
+            setGQLRequest(draw);
+          });
+        }
         const response = await fetchUserRequest(endpoint, GQLRequest);
         if (response === STATUS_CODES.FAIL) {
           setGQLResponse(EDITOR_MESSAGES.WRONG_URL);
