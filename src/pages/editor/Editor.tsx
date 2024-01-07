@@ -16,7 +16,6 @@ import fetchUserRequest from '@/api/GQL/fetchUserRequest';
 import EDITOR_MESSAGES from '@/consts/EDITOR_MESSAGES';
 import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
 import STATUS_CODES from '@/consts/STATUS_CODES';
-import { useLanguageContext } from '@/utils/contexts/LangContext';
 
 export const EndpointContext = createContext({
   endpoint: '',
@@ -28,12 +27,11 @@ function Editor(): JSX.Element {
     initialValue = localStorage.getItem(LOCAL_STORAGE_VALUES.ENDPOINT);
   }
 
-  const { language } = useLanguageContext();
   const [isSideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
   const [endpoint, setEndpoint] = useState(initialValue || '');
   const [GQLRequest, setGQLRequest] = useState('');
   const [GQLResponse, setGQLResponse] = useState(
-    EDITOR_MESSAGES[language].RESPONSE_DEFAULT
+    EDITOR_MESSAGES.RESPONSE_DEFAULT
   );
   const router = useRouter();
 
@@ -50,7 +48,7 @@ function Editor(): JSX.Element {
       try {
         const response = await fetchUserRequest(endpoint, GQLRequest);
         if (response === STATUS_CODES.FAIL) {
-          setGQLResponse(EDITOR_MESSAGES[language].WRONG_URL);
+          setGQLResponse(EDITOR_MESSAGES.WRONG_URL);
         } else {
           setGQLResponse(JSON.stringify(response));
         }
@@ -63,7 +61,7 @@ function Editor(): JSX.Element {
   }, [GQLRequest]);
 
   useEffect(() => {
-    setGQLResponse(EDITOR_MESSAGES[language].RESPONSE_DEFAULT);
+    setGQLResponse(EDITOR_MESSAGES.RESPONSE_DEFAULT);
   }, [endpoint]);
 
   return (

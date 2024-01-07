@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from 'react';
 import { EndpointContext } from '@/pages/editor/Editor';
 import prettify from '@/utils/prettify';
 import EDITOR_MESSAGES from '@/consts/EDITOR_MESSAGES';
-import { useLanguageContext } from '@/utils/contexts/LangContext';
 
 interface Props {
   GQLRequest: string;
@@ -16,10 +15,8 @@ function QueryEditor({ GQLRequest, setGQLRequest }: Props): JSX.Element {
   const context = useContext(EndpointContext);
   const [code, setCode] = useState<string>('');
 
-  const { language } = useLanguageContext();
-
   useEffect(() => {
-    setCode(prettify(EDITOR_MESSAGES[language].REQUEST_DEFAULT));
+    setCode(prettify(EDITOR_MESSAGES.REQUEST_DEFAULT));
   }, [context.endpoint]);
 
   return (

@@ -21,7 +21,7 @@ const DEVELOPERS_INFO = {
     {
       name: 'Yevhenii Khovaiev',
       position: 'Frontend developer',
-      imageUrl: '',
+      imageUrl: '/eugene-photo.jpg',
       description: `
       I learned computer engineering in Kyiv Politecnical Institute. Frontend and programming in general are, perhaps, areas my future will be connected with. And I'd be happy if I'm not wrong about it. In couple years I see myself as an excellent full-stack developer, which I am persistently and confidently pursuing. We'll se:)
       `,
@@ -41,7 +41,7 @@ const DEVELOPERS_INFO = {
     {
       name: 'Мария Богданова',
       position: 'Frontend-разработчик',
-      imageUrl: '',
+      imageUrl: '/maria-photo.jpg',
       description: `
       Я фронтенд разработчик, в настоящее время обучаюсь в Rolling Scopes School, где успешно завершила первый и второй этапы. В настоящее время с большим увлечением работаю над моим завершающим проектом для третьего этапа - GraphiQl. Проживаю в Польше и активно следую за своей мечтой о работе фронтенд разработчиком. 
       `,
@@ -50,14 +50,9 @@ const DEVELOPERS_INFO = {
     {
       name: 'Евгений Ховаев',
       position: 'Frontend-разработчик',
-      imageUrl: '',
+      imageUrl: '/eugene-photo.jpg',
       description: `
-        Тот же лорем, но по-русски. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Phasellus egestas tellus rutrum tellus
-        pellentesque eu. Arcu non sodales neque sodales ut etiam
-        sit amet. Urna id volutpat lacus laoreet. Sit amet
-        porttitor eget dolor morbi.
+      Я изучал компьютерную инженерию в Киевском Политехническом Институте. Фронтенд и программирование в целом — это, пожалуй, сферы, с которыми будет связано мое будущее. И я буду рад, если не ошибусь в этом. Через пару лет я вижу себя отличным full-stack разработчиком, к чему упорно и уверенно стремлюсь. Посмотрим :)
       `,
       gitHubUrl: 'https://github.com/eugenekhovaiev',
     },
