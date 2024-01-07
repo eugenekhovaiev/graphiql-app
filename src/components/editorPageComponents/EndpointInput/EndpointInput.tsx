@@ -1,4 +1,5 @@
 import styles from './endpointInput.module.scss';
+import TEXT_CONTENT_LOCALIZATION from './TEXT_CONTENT_LOCALIZATION.json';
 import Button from '@/components/ui/Button';
 import { useState } from 'react';
 import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
@@ -21,6 +22,7 @@ function EndpointInput({ setEndpoint, setSideMenuOpen }: Props): JSX.Element {
   const [isNotification, setNotification] = useState<null | string>(null);
 
   const { language } = useLanguageContext();
+  const textContent = TEXT_CONTENT_LOCALIZATION[language];
 
   function handleSubmit(): void {
     setEndpoint(value);
@@ -37,7 +39,7 @@ function EndpointInput({ setEndpoint, setSideMenuOpen }: Props): JSX.Element {
         onChange={(event) => setValue(event.target.value)}
       />
       <Button
-        title="Change"
+        title={textContent.button}
         type="button"
         styleType="light"
         onClick={handleSubmit}
