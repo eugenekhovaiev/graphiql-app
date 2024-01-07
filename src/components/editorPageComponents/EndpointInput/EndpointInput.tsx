@@ -5,6 +5,7 @@ import LOCAL_STORAGE_VALUES from '@/consts/LOCAL_STORAGE_VALUES';
 import Notification from '@/components/ui/Notification';
 import NOTIFICATION from '@/consts/NOTIFICATION';
 import showNotification from '@/utils/showNotification';
+import BUTTON_TITLES from '@/consts/BUTTON_TITLES';
 
 interface Props {
   endpoint: string;
@@ -39,7 +40,7 @@ function EndpointInput({
         onChange={(event) => setValue(event.target.value)}
       />
       <Button
-        title="Change"
+        title={BUTTON_TITLES.CHANGE}
         type="button"
         styleType="light"
         onClick={handleSubmit}

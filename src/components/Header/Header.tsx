@@ -23,6 +23,8 @@ import { auth } from '@/api/firebase/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import showNotification from '@/utils/showNotification';
+import BUTTON_TITLES from '@/consts/BUTTON_TITLES';
+import LINK_TITLES from '@/consts/LINK_TITLES';
 
 function Header(): JSX.Element {
   const [scrollPos, setScrollPos] = useState(0);
@@ -103,7 +105,7 @@ function Header(): JSX.Element {
         >
           <div className={styles.header__navBar}>
             <LinkElement
-              title="About Us"
+              title={LINK_TITLES.ABOUT_US}
               className={`${styles.header__link} ${
                 router.pathname === LINKS.HOME ? linkStyles.link_routed : ''
               }`}
@@ -112,7 +114,7 @@ function Header(): JSX.Element {
             />
             {isLoggedIn && (
               <LinkElement
-                title="Editor"
+                title={LINK_TITLES.EDITOR}
                 className={`${styles.header__link} ${
                   router.pathname === LINKS.EDITOR ? linkStyles.link_routed : ''
                 }`}
@@ -128,7 +130,7 @@ function Header(): JSX.Element {
             </select>
             {!isLoggedIn && (
               <Button
-                title="Log In"
+                title={BUTTON_TITLES.LOG_IN}
                 styleType={
                   router.pathname === LINKS.LOGIN ? 'link' : 'secondary'
                 }
@@ -137,14 +139,14 @@ function Header(): JSX.Element {
             )}
             {!isLoggedIn && (
               <Button
-                title="SignUp"
+                title={BUTTON_TITLES.SIGN_UP}
                 styleType={router.pathname === LINKS.SIGNUP ? 'link' : ''}
                 onClick={() => onLinkClick(true)}
               />
             )}
             {isLoggedIn && (
               <Button
-                title="Sign Out"
+                title={BUTTON_TITLES.SIGN_OUT}
                 styleType="secondary"
                 onClick={onLogOutClick}
               />

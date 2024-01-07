@@ -21,7 +21,7 @@ function Button({
       className={`${styles.button} ${
         styleType === 'secondary' ? styles.button_secondary : ''
       } ${styleType === 'long' ? styles.button_long : ''} ${
-        styleType === 'link' ? styles.button_linklike : ''
+        styleType === 'link' ? styles.button_link : ''
       } ${styleType === 'light' ? styles.button_light : ''} ${className || ''}`}
       type={type}
       onClick={onClick}
