@@ -45,13 +45,13 @@ describe('Button component', () => {
     expect(buttonElement).toBeInTheDocument();
   });
 
-  it('renders the Button with styleType="link"', () => {
+  it('renders the Button with styleType="routed"', () => {
     const mockCallBack = vi.fn();
     render(
       <Button
         title="Click me"
         onClick={mockCallBack}
-        styleType="link"
+        styleType="routed"
         type={'button'}
       />
     );

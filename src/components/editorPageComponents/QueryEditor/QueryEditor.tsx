@@ -10,12 +10,16 @@ function QueryEditor(): JSX.Element {
     <section className={styles.queryEditor}>
       <Code value={code} setValue={setCode} />
       <div className={styles.queryEditor__sidebar}>
-        <button className={styles.queryEditor__sidebarButton}>
+        <button
+          data-testid="run-button"
+          className={styles.queryEditor__sidebarButton}
+        >
           <div
             className={`${styles.queryEditor__icon} ${styles.queryEditor__icon_run}`}
           />
         </button>
         <button
+          data-testid="prettify-button"
           className={`${styles.queryEditor__sidebarButton} ${styles.queryEditor__sidebarButton_light}`}
           onClick={(): void => {
             setCode(prettify(code));
