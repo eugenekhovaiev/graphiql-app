@@ -1,0 +1,12 @@
+{
+  "en": {
+    "subtitle": "Page couldn’t be found",
+    "text": "The requested page either doesn’t exist or you don’t have access to it.",
+    "button": "Take me Home"
+  },
+  "ru": {
+    "subtitle": "Страница не найдена",
+    "text": "Запрошенная страница либо не существует, либо у вас нет к ней доступа.",
+    "button": "Домой"
+  }
+}
