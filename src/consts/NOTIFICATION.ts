@@ -7,6 +7,7 @@ enum NOTIFICATION {
   USER_ARE_NOT_AUTHORIZED = 'You are not authorized yet',
   WRONG_PASSWORD = "There's an issue with your email or password. Please, try again.",
   URL_CHANGED = "Congratulations! You've successfully updated the URL.",
+  SAME_URL = "Oops! It looks like you've entered the same URL as before",
   NO_CHANGES_IN_EDITOR = 'Please update your input to provide new request.',
 }
 
