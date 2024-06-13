@@ -40,11 +40,11 @@ The project is managed using SCRUM methodology and [Jira](https://www.atlassian.
 
 ### GitHub repository
 
-[link](https://github.com/XeniyaMV/graphiql-app)
+[Click here.](https://github.com/XeniyaMV/graphiql-app)
 
 ### Deployment
 
-[Website]() was deployed on Vercel.
+[Click here.](https://chipper-jalebi-e9d7fc.netlify.app/)
 
 ### How to Run Locally
 
