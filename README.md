@@ -35,6 +35,7 @@ any user-specified open GraphQL endpoint.
 - [TypeScript](https://www.typescriptlang.org/)
 - [SCSS](https://sass-lang.com/)
 - [Vitest](https://vitest.dev/) for tests
+- [Firebase](https://firebase.google.com/) for authentification
 
 The project is managed using SCRUM methodology and [Jira](https://www.atlassian.com/software/jira) tools.
 
@@ -44,7 +45,7 @@ The project is managed using SCRUM methodology and [Jira](https://www.atlassian.
 
 ### Deployment
 
-[Click here.](https://chipper-jalebi-e9d7fc.netlify.app/)
+[Click here.](https://graphiql-editor-dev.netlify.app/)
 
 ### How to Run Locally
 
